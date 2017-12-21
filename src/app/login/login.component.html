@@ -1,26 +1,54 @@
-<mat-card fxFlex="66%">
+<mat-card fxFlex="50%">
   <mat-tab-group>
-    <mat-tab label="Tab 1">
 
-      <form class="example-form">
-        <mat-form-field fxLayout="row" class="example-full-width">
-          <input class="login-input" matInput placeholder="Favorite food" value="Sushi">
-        </mat-form-field>
-
-        <mat-form-field fxLayout="row" class="example-full-width">
-          <input class="login-input" matInput placeholder="Favorite food" value="Sushi">
-        </mat-form-field>
+    <mat-tab label="SignIn">
+      <form>
+        <div fxLayout="row">
+          <mat-form-field class="login-input">
+            <input matInput placeholder="Email" [(ngModel)]="signinEmail" name="signinEmail">
+            <button mat-button *ngIf="signinEmail" matSuffix mat-icon-button aria-label="Clear" (click)="signinEmail=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row">
+          <mat-form-field class="login-input">
+            <input matInput placeholder="Password" [(ngModel)]="signinPassword" name="signinPassword">
+            <button mat-button *ngIf="signinPassword" matSuffix mat-icon-button aria-label="Clear" (click)="signinPassword=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
       </form>
-
     </mat-tab>
-    <mat-tab label="Tab 2">
-      <form class="example-form">
-        <mat-form-field fxLayout="row" class="example-full-width">
-          <input class="login-input" matInput placeholder="Favorite food" value="Sushi">
+
+    <mat-tab label="SignUp">
+      <form class="login-form">
+        <mat-form-field class="login-input">
+          <input class="yolo" matInput placeholder="Email" [(ngModel)]="signupEmail" name="signupEmail">
+          <button mat-button *ngIf="signupEmail" matSuffix mat-icon-button aria-label="Clear" (click)="signupEmail=''">
+            <mat-icon>close</mat-icon>
+          </button>
         </mat-form-field>
 
-        <mat-form-field fxLayout="row" class="example-full-width">
-          <input class="login-input" matInput placeholder="Favorite food" value="Sushi">
+        <mat-form-field class="login-input">
+          <input matInput placeholder="Nickname" [(ngModel)]="signupNickname" name="signupNickname">
+          <button mat-button *ngIf="signupNickname" matSuffix mat-icon-button aria-label="Clear" (click)="signupNickname=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <mat-form-field class="login-input">
+          <input class="login-input" matInput placeholder="Password" [(ngModel)]="signupPassword" name="signupPassword">
+          <button mat-button *ngIf="signupPassword" matSuffix mat-icon-button aria-label="Clear" (click)="signupPassword=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+        <mat-form-field class="login-input">
+          <input class="login-input" matInput placeholder="Confirm Password" [(ngModel)]="signupPasswordConfirm" name="signupPasswordConfirm">
+          <button mat-button *ngIf="signupPasswordConfirm" matSuffix mat-icon-button aria-label="Clear" (click)="signupPasswordConfirm=''">
+            <mat-icon>close</mat-icon>
+          </button>
         </mat-form-field>
       </form>
     </mat-tab>

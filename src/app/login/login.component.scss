@@ -2,7 +2,9 @@
 :host {
     justify-content: space-around;
     .login-input {
+        justify-content: space-around;
+    }
+    .login-form {
         width: 80%;
-        background-color: $maCouleur;
     }
 }
