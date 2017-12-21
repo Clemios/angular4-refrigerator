@@ -21,7 +21,8 @@ import { LogsComponent } from './logs/logs.component'
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
 import { RefrigeratorComponent } from './refrigerator/refrigerator.component'
 import { RefrigeratorListComponent } from './refrigerator/refrigerator-list/refrigerator-list.component'
-import { RefrigeratorEditorComponent } from './refrigerator/refrigerator-editor/refrigerator-editor.component'
+import { RefrigeratorEditorComponent } from './refrigerator/refrigerator-editor/refrigerator-editor.component';
+import { LoginComponent } from './login/login.component'
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { RefrigeratorEditorComponent } from './refrigerator/refrigerator-editor/
     RefrigeratorComponent,
     RefrigeratorListComponent,
     RefrigeratorEditorComponent,
+    LoginComponent,
   ],
   imports: [
     HttpClientModule,
