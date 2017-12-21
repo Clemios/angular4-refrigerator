@@ -5,6 +5,7 @@ import {
   MatToolbarModule, MatSidenavModule, MatMenuModule,
   MatSelectModule
 } from '@angular/material'
+import { MatTabsModule } from '@angular/material/tabs'
 import { MatListModule, MatCardModule } from '@angular/material'
 
 @NgModule({
@@ -12,6 +13,7 @@ import { MatListModule, MatCardModule } from '@angular/material'
     MatButtonModule,
     MatToolbarModule,
     MatIconModule,
+    MatTabsModule,
     MatSidenavModule,
     MatSelectModule,
     MatMenuModule,
@@ -23,6 +25,7 @@ import { MatListModule, MatCardModule } from '@angular/material'
     MatButtonModule,
     MatToolbarModule,
     MatIconModule,
+    MatTabsModule,
     MatSelectModule,
     MatSidenavModule,
     MatMenuModule,
