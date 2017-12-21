@@ -1,4 +1,7 @@
 import { Component, OnInit, HostBinding, Input } from '@angular/core'
+import { Router } from '@angular/router'
+
+import { AuthenticationService } from '../services/auth.service'
 
 @Component({
   selector: 'app-login',
@@ -15,9 +18,16 @@ export class LoginComponent implements OnInit {
   @Input() signupPassword: string
   @Input() signupPasswordConfirm: string
 
-  constructor() { }
+  constructor(private router: Router,
+    private authService: AuthenticationService) { }
 
   ngOnInit() {
+  }
+
+  public login() {
+    this.authService
+      .login()
+      .subscribe(() => this.router.navigateByUrl('/'))
   }
 
 }

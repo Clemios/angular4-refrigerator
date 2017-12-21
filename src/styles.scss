@@ -31,3 +31,9 @@ body {
 .mat-card {
   margin: 0.5em;
 }
+
+.login-card {
+  .mat-tab-label {
+    width: 50%;
+  }
+}

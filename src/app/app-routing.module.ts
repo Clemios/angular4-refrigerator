@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
+import { PublicGuard, ProtectedGuard } from 'ngx-auth'
 
 import { HomeComponent } from './home/home.component'
 import { LogsComponent } from './logs/logs.component'
@@ -24,7 +25,8 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent,
+    canActivate: [PublicGuard],
+    loadChildren: './login/login.module#LoginModule'
   },
   {
     path: 'logs',

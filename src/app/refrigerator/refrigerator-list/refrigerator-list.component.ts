@@ -41,6 +41,7 @@ export class RefrigeratorListComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck() {
+    console.log('check')
     if (this.lastNbOfItems !== this.ingredients.length) {
       this.filter()
       this.lastNbOfItems = this.ingredients.length

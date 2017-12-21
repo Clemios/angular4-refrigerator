@@ -1,11 +1,21 @@
 @import "../../variables.scss";
 :host {
     justify-content: space-around;
-    .login-input {
-        justify-content: space-around;
-    }
-    .login-form {
-        width: 80%;
-        background-color: $maCouleur;
+    .login-card {
+        padding: unset;
+        form {
+            padding-top: 18px;
+            padding-bottom: 18px;
+            .login-input-wrapper {
+                justify-content: space-around;
+                margin-bottom: 12px;
+                .login-input {
+                    width: 80%;
+                }
+            }
+            .login-actions {
+                justify-content: space-around;
+            }
+        }
     }
 }

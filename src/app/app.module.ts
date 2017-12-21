@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { FormsModule } from '@angular/forms'
 
+import { AuthenticationModule } from './services/auth.module'
+
 import { AppRoutingModule } from './app-routing.module'
 
 import { MaterialModule } from './material.module'
@@ -22,7 +24,6 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { RefrigeratorComponent } from './refrigerator/refrigerator.component'
 import { RefrigeratorListComponent } from './refrigerator/refrigerator-list/refrigerator-list.component'
 import { RefrigeratorEditorComponent } from './refrigerator/refrigerator-editor/refrigerator-editor.component'
-import { LoginComponent } from './login/login.component'
 
 @NgModule({
   declarations: [
@@ -35,11 +36,11 @@ import { LoginComponent } from './login/login.component'
     RefrigeratorComponent,
     RefrigeratorListComponent,
     RefrigeratorEditorComponent,
-    LoginComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
+    AuthenticationModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
     FormsModule,
