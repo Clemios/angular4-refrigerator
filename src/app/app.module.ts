@@ -19,7 +19,6 @@ import { LogDisplayerComponent } from './logs/log-displayer/log-displayer.compon
 import { LogsComponent } from './logs/logs.component'
 
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
-import { DoorsComponent } from './doors/doors.component'
 import { RefrigeratorComponent } from './refrigerator/refrigerator.component'
 import { RefrigeratorListComponent } from './refrigerator/refrigerator-list/refrigerator-list.component'
 import { RefrigeratorEditorComponent } from './refrigerator/refrigerator-editor/refrigerator-editor.component'
@@ -32,7 +31,6 @@ import { RefrigeratorEditorComponent } from './refrigerator/refrigerator-editor/
     LogsComponent,
     LogWritterComponent,
     LogDisplayerComponent,
-    DoorsComponent,
     RefrigeratorComponent,
     RefrigeratorListComponent,
     RefrigeratorEditorComponent,
