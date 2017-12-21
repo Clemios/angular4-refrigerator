@@ -1,0 +1,6 @@
+<mat-card class="logEditor" fxFlex="40%" style="background-color:pink;">
+  <app-log-writter (onLogMessageAdded)="add_logMessage($event)"></app-log-writter>
+</mat-card>
+<mat-card fxFlex="60%">
+  <app-log-displayer [logMessages]="logMessages"></app-log-displayer>
+</mat-card>
