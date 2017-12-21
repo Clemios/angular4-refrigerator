@@ -23,6 +23,10 @@ import { RefrigeratorComponent } from './refrigerator/refrigerator.component'
 import { RefrigeratorListComponent } from './refrigerator/refrigerator-list/refrigerator-list.component'
 import { RefrigeratorEditorComponent } from './refrigerator/refrigerator-editor/refrigerator-editor.component'
 import { LoginComponent } from './login/login.component'
+import { RecipesComponent } from './recipes/recipes.component'
+import { RecipesListComponent } from './recipes/recipes-list/recipes-list.component'
+import { RecipesEditorComponent } from './recipes/recipes-editor/recipes-editor.component'
+import { RecipesCardsComponent } from './recipes/recipes-cards/recipes-cards.component'
 
 @NgModule({
   declarations: [
@@ -35,7 +39,11 @@ import { LoginComponent } from './login/login.component'
     RefrigeratorComponent,
     RefrigeratorListComponent,
     RefrigeratorEditorComponent,
-    LoginComponent
+    LoginComponent,
+    RecipesComponent,
+    RecipesListComponent,
+    RecipesEditorComponent,
+    RecipesCardsComponent
   ],
   imports: [
     HttpClientModule,

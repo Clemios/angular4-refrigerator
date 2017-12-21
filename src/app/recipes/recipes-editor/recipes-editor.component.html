@@ -1,0 +1,31 @@
+<form>
+  <div fxLayout="row" style="justify-content: space-between;">
+    <mat-form-field fxFlex="60%">
+      <input matInput placeholder="Recette..." [(ngModel)]="recipeName" name="recipeName">
+      <button mat-button *ngIf="recipeName" matSuffix mat-icon-button aria-label="Clear" (click)="recipeName=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <div fxFlex="30%">
+      <button style="float: right;" mat-button *ngIf='recipeName && recipeQuantity && recipeUnit' matSuffix mat-icon-button aria-label="Send"
+        (click)="addRecipe(recipeName, recipeQuantity, recipeUnit)">
+        <mat-icon>send</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div fxLayout="row" style="justify-content: space-between;">
+    <mat-form-field fxFlex="60%">
+      <input matInput placeholder="Quantitée..." [(ngModel)]="recipeQuantity" name="recipeQuantity">
+      <button mat-button *ngIf="recipeQuantity" matSuffix mat-icon-button aria-label="Clear" (click)="recipeQuantity=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <mat-form-field fxFlex="30%">
+      <mat-select placeholder="Unitée" [(ngModel)]="recipeUnit" name="recipeUnit">
+        <mat-option *ngFor="let unit of units" [value]="unit.value">
+          {{unit.label}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</form>
