@@ -20,27 +20,3 @@ Angular and Material releases are more frequent. Since the switchover to semver,
 ### Building and Testing
 * `npm run docker:build` to build the Docker image
 * `npm run docker:debug` to test the Docker image
-
-### Zeit Now Deployment
-* Build and publish your Docker image
-* Install now-cli by executing `npm install -g now`
-* Navigate to this project's `now` folder: `cd now`
-* Update the `Dockerfile` to pull from your image
-* Execute `now --public --docker`
-* Voila, your project is publish on the web!
-
-### Push Button Deployments
-> Below instruction have not been tested on a Windows environment
-* Create `.env` file and set `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`
-  * Sample `.env` file:
-  ```Bash
-    AWS_ACCESS_KEY_ID=your_own_key_id
-    AWS_SECRET_ACCESS_KEY=your_own_secret_key
-  ```
-* Install AWS CLI
-  * Mac: `brew install awscli`
-* Log in to AWS CLI with your credentials
-  * Run `aws configure`
-  * You'll need your Access Key ID and Secret Access Key
-  * Default region name: us-east-1
-* `npm run aws:release` to configure Docker with aws, publish your latest image build and release it on ECS
