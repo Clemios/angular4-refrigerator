@@ -15,7 +15,6 @@ app.get('/', function (req, res) {
 
 app.post('/check', function (req, res) {
 	var data = req.body;
-	console.log('DATA:', data.email, data.password)
 	user.checkForSignin(data.email, data.password, function (err, rows, fields) {
 		//if (err) throw err;
 		res.json(rows[0]);

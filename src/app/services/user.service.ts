@@ -33,8 +33,6 @@ export class UserService {
 			headers: headers
 		})
 
-		console.log('DATA:', data)
-
 		return this.http.post('http://localhost:4500/check', JSON.stringify(data), options)
 			.map((res) => { if (res._body !== '') { return res.json() } else { return {} } })
 	}

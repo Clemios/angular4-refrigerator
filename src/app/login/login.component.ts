@@ -53,7 +53,6 @@ export class LoginComponent implements OnInit {
     this.checkForSignin(signinEmail, signinPassword).subscribe((loggedUser: LoggedUser) => {
       if (!isEmpty(loggedUser)) {
         this.loggedUser = loggedUser
-        console.log('loggedUser', this.loggedUser)
         this.login()
       } else {
         console.log('USER NOT FOUND')
