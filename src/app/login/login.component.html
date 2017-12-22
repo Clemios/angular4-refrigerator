@@ -5,7 +5,7 @@
       <form>
         <div class="login-input-wrapper" fxLayout="row">
           <mat-form-field class="login-input">
-            <input matInput placeholder="Email" [(ngModel)]="signinEmail" name="signinEmail">
+            <input matInput placeholder="Email" [(ngModel)]="signinEmail" name="signinEmailInput">
             <button mat-button *ngIf="signinEmail" matSuffix mat-icon-button aria-label="Clear" (click)="signinEmail=''">
               <mat-icon>close</mat-icon>
             </button>
@@ -13,7 +13,7 @@
         </div>
         <div class="login-input-wrapper" fxLayout="row">
           <mat-form-field class="login-input">
-            <input matInput placeholder="Password" [(ngModel)]="signinPassword" name="signinPassword">
+            <input matInput placeholder="Password" [(ngModel)]="signinPassword" name="signinPasswordInput">
             <button mat-button *ngIf="signinPassword" matSuffix mat-icon-button aria-label="Clear" (click)="signinPassword=''">
               <mat-icon>close</mat-icon>
             </button>
@@ -21,7 +21,7 @@
         </div>
         <div class="login-actions" fxLayout="row">
           <button mat-button (click)="passwordRecover()">Forgot password ?</button>
-          <button mat-raised-button color="primary" (click)="login()">Sign In</button>
+          <button mat-raised-button color="primary" (click)="signin(signinEmail, signinPassword)">Sign In</button>
         </div>
       </form>
     </mat-tab>
@@ -30,7 +30,7 @@
       <form>
         <div class="login-input-wrapper" fxLayout="row">
           <mat-form-field class="login-input">
-            <input class="yolo" matInput placeholder="Email" [(ngModel)]="signupEmail" name="signupEmail">
+            <input class="yolo" matInput placeholder="Email" [(ngModel)]="signupEmail" name="signupEmailInput">
             <button mat-button *ngIf="signupEmail" matSuffix mat-icon-button aria-label="Clear" (click)="signupEmail=''">
               <mat-icon>close</mat-icon>
             </button>
@@ -38,7 +38,7 @@
         </div>
         <div class="login-input-wrapper" fxLayout="row">
           <mat-form-field class="login-input">
-            <input matInput placeholder="Nickname" [(ngModel)]="signupNickname" name="signupNickname">
+            <input matInput placeholder="Nickname" [(ngModel)]="signupNickname" name="signupNicknameInput">
             <button mat-button *ngIf="signupNickname" matSuffix mat-icon-button aria-label="Clear" (click)="signupNickname=''">
               <mat-icon>close</mat-icon>
             </button>
@@ -46,7 +46,7 @@
         </div>
         <div class="login-input-wrapper" fxLayout="row">
           <mat-form-field class="login-input">
-            <input matInput placeholder="Password" [(ngModel)]="signupPassword" name="signupPassword">
+            <input matInput placeholder="Password" [(ngModel)]="signupPassword" name="signupPasswordInput">
             <button mat-button *ngIf="signupPassword" matSuffix mat-icon-button aria-label="Clear" (click)="signupPassword=''">
               <mat-icon>close</mat-icon>
             </button>

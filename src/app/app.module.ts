@@ -16,26 +16,14 @@ import { CovalentModule } from './covalent.module'
 
 import { AppComponent } from './app.component'
 import { HomeComponent } from './home/home.component'
-import { LogWritterComponent } from './logs/log-writter/log-writter.component'
-import { LogDisplayerComponent } from './logs/log-displayer/log-displayer.component'
-import { LogsComponent } from './logs/logs.component'
 
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
-import { RefrigeratorComponent } from './refrigerator/refrigerator.component'
-import { RefrigeratorListComponent } from './refrigerator/refrigerator-list/refrigerator-list.component'
-import { RefrigeratorEditorComponent } from './refrigerator/refrigerator-editor/refrigerator-editor.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     PageNotFoundComponent,
-    LogsComponent,
-    LogWritterComponent,
-    LogDisplayerComponent,
-    RefrigeratorComponent,
-    RefrigeratorListComponent,
-    RefrigeratorEditorComponent,
   ],
   imports: [
     HttpClientModule,

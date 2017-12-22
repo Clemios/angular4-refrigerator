@@ -18,9 +18,19 @@
         "testTsconfig": "tsconfig.spec.json",
         "prefix": "app",
         "styles": [
-            "styles.scss"
+            "styles.scss",
+            "../node_modules/noty/lib/noty.css",
+            "../node_modules/noty/lib/themes/bootstrap-v3.css",
+            "../node_modules/noty/lib/themes/bootstrap-v4.css",
+            "../node_modules/noty/lib/themes/light.css",
+            "../node_modules/noty/lib/themes/metroui.css",
+            "../node_modules/noty/lib/themes/mint.css",
+            "../node_modules/noty/lib/themes/nest.css",
+            "../node_modules/noty/lib/themes/relax.css",
+            "../node_modules/noty/lib/themes/semanticui.css",
+            "../node_modules/noty/lib/themes/sunset.css"
         ],
-        "scripts": [],
+        "scripts": ["../node_modules/noty/lib/noty.js"],
         "environmentSource": "environments/environment.ts",
         "environments": {
             "dev": "environments/environment.ts",
