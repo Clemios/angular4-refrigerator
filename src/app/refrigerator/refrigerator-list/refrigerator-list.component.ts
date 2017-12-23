@@ -8,7 +8,7 @@ import { IPageChangeEvent } from '@covalent/core'
 @Component({
   selector: 'app-refrigerator-list',
   templateUrl: './refrigerator-list.component.html',
-  styleUrls: ['./refrigerator-list.component.css']
+  styleUrls: ['./refrigerator-list.component.scss']
 })
 export class RefrigeratorListComponent implements OnInit, DoCheck {
 

@@ -3,7 +3,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
 @Component({
   selector: 'app-refrigerator-editor',
   templateUrl: './refrigerator-editor.component.html',
-  styleUrls: ['./refrigerator-editor.component.css']
+  styleUrls: ['./refrigerator-editor.component.scss']
 })
 export class RefrigeratorEditorComponent implements OnInit {
 

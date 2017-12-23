@@ -1,0 +1,11 @@
+{
+    "APP": {
+        "port": "4200"
+    },
+    "AUTHENTICATOR": {
+        "port": "4300"
+    },
+    "MYSQL": {
+        "port": "4500"
+    }
+}

@@ -5,7 +5,7 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
   selector: 'app-page-not-found',
   providers: [Location, { provide: LocationStrategy, useClass: PathLocationStrategy }],
   templateUrl: './page-not-found.component.html',
-  styleUrls: ['./page-not-found.component.css'],
+  styleUrls: ['./page-not-found.component.scss'],
 })
 export class PageNotFoundComponent implements OnInit {
   constructor(private location: Location) { } // inject Location into class constructor

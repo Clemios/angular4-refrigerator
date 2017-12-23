@@ -1,41 +1,33 @@
 var express = require('express');
 var app = express();
 
-// Import User Module Containing Functions Related To User Data
-var user = require('../models/user');
+// Import Ingredient Module Containing Functions Related To Ingredient Data
+var ingredient = require('../models/ingredient');
 
 // API Routes
 app.get('/', function (req, res) {
 
-	user.findAll(function (err, rows, fields) {
+	ingredient.findAll(function (err, rows, fields) {
 		if (err) throw err;
 		res.json(rows);
 	})
 });
 
-app.post('/check', function (req, res) {
+app.post('/addingredient', function (req, res, next) {
 	var data = req.body;
-	user.checkForSignin(data.email, data.password, function (err, rows, fields) {
-		//if (err) throw err;
-		res.json(rows[0]);
-	})
-});
-
-app.post('/adduser', function (req, res, next) {
-	var data = req.body;
-	user.findByUsername(data.username, function (err, rows, fields) {
+	ingredient.findByIngredientname(data.ingredientname, function (err, rows, fields) {
 		if (rows.length == 1) {
-			user.sendResponse(false, res);
+			ingredient.sendResponse(false, res);
 		} else {
-			user.encrypt(data, function (err, hash) {
+			ingredient.encrypt(data, function (err, hash) {
 				data = {
-					username: data.username,
+					ingredientname: data.ingredientname,
 					hashedpassword: hash
 				};
-				user.addUser(data, function (err, info) {
+				ingredient.addIngredient(data, function (err, info) {
 					if (err) throw err;
 					console.log(info);
-					user.sendResponse(true, res);
+					ingredient.sendResponse(true, res);
 				});
 			});
 		};
