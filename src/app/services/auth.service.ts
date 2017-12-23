@@ -8,6 +8,8 @@ import 'rxjs/add/operator/catch'
 import { AuthService } from 'ngx-auth'
 
 import { TokenStorage } from './token-storage.service'
+import { CONFIG } from '../../../config'
+
 
 interface AccessData {
   accessToken: string
@@ -54,7 +56,7 @@ export class AuthenticationService implements AuthService {
     return this.tokenStorage
       .getRefreshToken()
       .switchMap((refreshToken: string) => {
-        return this.http.post(`http://localhost:4300/refresh`, { refreshToken })
+        return this.http.post('http://localhost:' + CONFIG.AUTHENTICATOR.port + '/refresh', { refreshToken })
       })
       .do(this.saveAccessData.bind(this))
       .catch((err) => {
@@ -90,7 +92,7 @@ export class AuthenticationService implements AuthService {
    */
 
   public login(): Observable<any> {
-    return this.http.post(`http://localhost:4300/login`, {})
+    return this.http.post('http://localhost:' + CONFIG.AUTHENTICATOR.port + '/login', {})
       .do((tokens: AccessData) => this.saveAccessData(tokens))
   }
 

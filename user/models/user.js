@@ -22,7 +22,6 @@ module.exports.checkForSignin = function (signinEmail, signinPassword, callback)
 	pool.query("SELECT * FROM users WHERE email = '" + signinEmail + "' and password = '" + signinPassword + "'", callback);
 }
 
-
 module.exports.addUser = function (data, callback) {
 	connection.query("INSERT INTO users SET ?", data, callback);
 }

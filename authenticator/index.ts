@@ -1,6 +1,7 @@
 import * as express from 'express'
 import { Response, Controller, Post, attachControllers } from '@decorators/express'
 import { Injectable } from '@decorators/di'
+const CONFIG = require('../config.json')
 
 @Injectable()
 @Controller('/')
@@ -45,7 +46,7 @@ attachControllers(app, [
   UsersController
 ])
 
-const port = process.env.PORT || 4300
+const port = process.env.PORT || CONFIG.AUTHENTICATOR.port
 
 app.listen(port, function () {
   console.log('Authentification server ready on port ' + port)

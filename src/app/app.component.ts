@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, HostListener } from '@angular/core'
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common'
 import { Router } from '@angular/router'
 
@@ -14,6 +14,11 @@ import { AuthenticationService } from './services/auth.service'
 export class AppComponent {
   title = 'Refrigerator App'
 
+  // // Methode pour logout à la fermeture de l'app
+  // @HostListener('window:beforeunload') onWindowUnload() {
+  //   this.logout()
+  // }
+
   constructor(
     private router: Router,
     private authService: AuthenticationService) {
@@ -23,6 +28,9 @@ export class AppComponent {
     this.authService
       .logout()
   }
+
+
+
 }
 
 

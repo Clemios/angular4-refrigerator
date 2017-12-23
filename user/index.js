@@ -3,6 +3,7 @@ var cors = require('cors')
 var bodyParser = require('body-parser');
 var bcrypt = require('bcrypt');
 var mysql = require('mysql');
+var CONFIG = require('../config.json');
 
 // Initialize Express App
 var app = express();
@@ -28,8 +29,8 @@ app.use('/', express.static(__dirname));
 // Import API Routes
 app.use(require('./api/user_api'));
 
-port = process.env.PORT || 4500;
+port = process.env.PORT || CONFIG.USER.port;
 
 app.listen(port, function () {
-	console.log("MySQL api for user, ingredient and recipe ready on port " + port);
+	console.log("MySQL api for user ready on port " + port);
 })

@@ -7,6 +7,8 @@ import {
 	Headers,
 	RequestOptions
 } from '@angular/http'
+import { CONFIG } from '../../../config'
+
 
 
 export class UserService {
@@ -18,7 +20,7 @@ export class UserService {
 	}
 
 	getUsers() {
-		return this.http.get('http://localhost:4500/')
+		return this.http.get('http://localhost:' + CONFIG.USER.port)
 	}
 
 	checkUser(data) {
@@ -33,7 +35,7 @@ export class UserService {
 			headers: headers
 		})
 
-		return this.http.post('http://localhost:4500/check', JSON.stringify(data), options)
+		return this.http.post('http://localhost:' + CONFIG.USER.port + '/check', JSON.stringify(data), options)
 			.map((res) => { if (res._body !== '') { return res.json() } else { return {} } })
 	}
 
