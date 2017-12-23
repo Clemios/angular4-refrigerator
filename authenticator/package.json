@@ -1,13 +1,13 @@
 {
-  "name": "ngx-auth-server",
-  "version": "3.0.0",
+  "name": "authenticator",
+  "version": "1.0.0",
   "license": "MIT",
   "author": {
     "name": "Clément Fleury",
     "email": "clem_ios@hotmail.com"
   },
   "scripts": {
-    "start": "tsc && node ."
+    "start": "node ."
   },
   "dependencies": {
     "@decorators/express": "^2.0.0"

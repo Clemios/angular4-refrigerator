@@ -8,13 +8,30 @@
   </td-search-box>
 </div>
 <mat-divider></mat-divider>
-<td-data-table #dataTable [data]="filteredData" [columns]="columns" [selectable]="selectable" [clickable]="clickable" [multiple]="multiple"
-  [sortable]="sortable" [sortBy]="sortBy" [(ngModel)]="selectedRows" [sortOrder]="sortOrder" (sortChange)="sort($event)" (rowClick)="showAlert($event)"
-  [style.height.px]="400">
-</td-data-table>
-<div class="md-padding" *ngIf="!dataTable.hasData" layout="row" layout-align="center center">
-  <h3>No results to display.</h3>
-</div>
+<table td-data-table #dataTable>
+  <thead>
+    <tr td-data-table-column-row>
+      <th td-data-table-column *ngFor="let column of columns" [numeric]="column.numeric">
+        {{column.label}}
+      </th>
+      <th td-data-table-column>
+        <span>Actions</span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr td-data-table-row *ngFor="let row of filteredData">
+      <td td-data-table-cell *ngFor="let column of columns" [numeric]="column.numeric">
+        {{column.format ? column.format(row[column.name]) : row[column.name]}}
+      </td>
+      <td td-data-table-cell>
+        <button mat-icon-button color="warn">
+          <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
 <td-paging-bar #pagingBar [pageSize]="pageSize" [total]="filteredTotal" (change)="page($event)">
   <span hide-xs>Rows per page:</span>
   <mat-select [style.width.px]="50" [(ngModel)]="pageSize">

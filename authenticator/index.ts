@@ -1,14 +1,10 @@
 import * as express from 'express'
-// import { Response as Res } from 'express'
 import { Response, Controller, Post, attachControllers } from '@decorators/express'
 import { Injectable } from '@decorators/di'
 
 @Injectable()
 @Controller('/')
 class UsersController {
-
-  // private passUsers = false
-  // private passData = false
 
   @Post('/login')
   public login( @Response() res): void {
@@ -20,48 +16,6 @@ class UsersController {
     // emulate long request
     setTimeout(() => res.send(this.generateTokens()), 1000)
   }
-
-  // @Get('/users')
-  // public getUsers( @Response() res: Res): void {
-  //   this.passUsers = !this.passUsers
-
-  //   if (this.passUsers) {
-  //     res.send([
-  //       {
-  //         'id': 1,
-  //         'name': 'John Doe'
-  //       },
-  //       {
-  //         'id': 2,
-  //         'name': 'Jane Doe'
-  //       }
-  //     ])
-  //   } else {
-  //     res.status(401).send()
-  //   }
-  // }
-
-  // @Get('/data')
-  // public getData( @Response() res: Res): void {
-  //   this.passData = !this.passData
-
-  //   if (this.passData) {
-  //     res.send([
-  //       {
-  //         'id': 1,
-  //         'name': 'Pepsi'
-  //       },
-  //       {
-  //         'id': 2,
-  //         'name': 'Coca-Cola'
-  //       }
-  //     ])
-  //   } else {
-  //     // emulate long request
-  //     setTimeout(() => res.status(401).send(), 300)
-  //   }
-
-  // }
 
   private generateTokens() {
     return {
@@ -94,5 +48,5 @@ attachControllers(app, [
 const port = process.env.PORT || 4300
 
 app.listen(port, function () {
-  console.log('listening to port ' + port)
+  console.log('Authentification server ready on port ' + port)
 })

@@ -1,5 +1,9 @@
 import { Component } from '@angular/core'
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common'
+import { Router } from '@angular/router'
+
+
+import { AuthenticationService } from './services/auth.service'
 
 @Component({
   selector: 'app-root',
@@ -9,4 +13,16 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
 
 export class AppComponent {
   title = 'Refrigerator App'
+
+  constructor(
+    private router: Router,
+    private authService: AuthenticationService) {
+  }
+
+  public logout() {
+    this.authService
+      .logout()
+  }
 }
+
+

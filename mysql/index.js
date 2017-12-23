@@ -31,5 +31,5 @@ app.use(require('./api/user_api'));
 port = process.env.PORT || 4500;
 
 app.listen(port, function () {
-	console.log("listening to port " + port);
+	console.log("MySQL api for user, ingredient and recipe ready on port " + port);
 })

@@ -1,11 +1,14 @@
 <mat-toolbar color="primary" class="top-menu">
-  <button mat-mini-fab (click)="sidenav.toggle()">
+  <button mat-mini-fab color="accent" (click)="sidenav.toggle()">
     <mat-icon aria-label="Show sidebar menu">more_vert</mat-icon>
   </button>
-  <span fxFlex></span>
   <a mat-button routerLink="/home">
     <h1>Refrigerator App</h1>
   </a>
+  <span fxFlex></span>
+  <button mat-mini-fab color="accent" class="logout-button" (click)="logout()">
+    <mat-icon aria-label="Logout">power_settings_new</mat-icon>
+  </button>
 </mat-toolbar>
 <mat-sidenav-container>
   <mat-sidenav #sidenav class="main-sidebar" mode="side">
