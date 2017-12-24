@@ -49,27 +49,27 @@ INSERT INTO `users` VALUES (1,'clem_ios@hotmail.com','Clemios','wordrave'),(2,'o
 ```
 
 ### Démarrer le projet
-Pour que le projet fonctionne, il faut en plus de la DB, démarrer quelques microservices, pour cela, se rendre dans le repertoire du projet puis :
+Pour que le projet fonctionne, il faut en plus de la DB, démarrer quelques microservices (et donc plusieurs terminaux) :
+```bash
+cd Refrigerator/
+```
 * `npm install` -- (seulement la première fois) installe les nodes_modules
 * `npm start` -- démarre l'app angular
 ```bash
-cd anthenticator/
+cd Refrigerator/anthenticator/
 ```
 * `npm install` -- (seulement la première fois) installe les nodes_modules
 * `npm start` -- démarre le serveur d'authentification
-* `cd ..` -- pour revenir au répertoire précédent
 ```bash
-cd user/
+cd Refrigerator/user/
 ```
 * `npm install` -- (seulement la première fois) installe les nodes_modules
 * `npm start` -- démarre l'API user
-* `cd ..` -- pour revenir au répertoire précédent
 ```bash
-cd ingredient/
+cd Refrigerator/ingredient/
 ```
 * `npm install` -- (seulement la première fois) installe les nodes_modules
 * `npm start` -- démarre l'API ingredient
-* `cd ..` -- pour revenir au répertoire précédent
 
 
 ### Updating dependencies
