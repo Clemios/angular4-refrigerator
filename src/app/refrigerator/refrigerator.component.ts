@@ -31,12 +31,20 @@ export class RefrigeratorComponent implements OnInit {
     const ingredient = { name: newIngredient.ingredientName, quantity: newIngredient.ingredientQuantity, unit: newIngredient.ingredientUnit }
     return (this.ingredientService.addIngredient(ingredient)
       .subscribe((response) => {
-        if (response.ok) {
+        if (response.ok && JSON.parse(response._body).affectedRows === 1) {
           this.getIngredients()
           new Noty({
             text: 'Ingrédient ajouté',
             layout: 'topRight',
             type: 'success',
+            theme: 'mint',
+            timeout: 3000,
+          }).show()
+        } else {
+          new Noty({
+            text: 'ERREUR',
+            layout: 'topRight',
+            type: 'error',
             theme: 'mint',
             timeout: 3000,
           }).show()
@@ -48,10 +56,19 @@ export class RefrigeratorComponent implements OnInit {
   deleteIngredient(ingredientId) {
     return (this.ingredientService.deleteIngredient({ 'id': ingredientId })
       .subscribe((response) => {
-        if (response.ok) {
+        console.log('RESPONSE:', response)
+        if (response.ok && JSON.parse(response._body).affectedRows === 1) {
           this.getIngredients()
           new Noty({
             text: 'Ingrédient supprimé',
+            layout: 'topRight',
+            type: 'success',
+            theme: 'mint',
+            timeout: 3000,
+          }).show()
+        } else {
+          new Noty({
+            text: 'ERREUR',
             layout: 'topRight',
             type: 'error',
             theme: 'mint',

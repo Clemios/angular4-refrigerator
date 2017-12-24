@@ -20,7 +20,7 @@ app.post('/addingredient', function (req, res) {
 			console.log(err);
 			throw err
 		};
-		res.send();
+		res.send(JSON.stringify(rows));
 	})
 });
 
@@ -32,7 +32,7 @@ app.post('/deleteingredient', function (req, res) {
 			console.log(err);
 			throw err
 		};
-		res.send();
+		res.send(JSON.stringify(rows));
 	})
 });
 
