@@ -1,55 +1,68 @@
-<mat-card fxFlex="50%">
-  <mat-tab-group>
+<mat-card class="login-card" fxFlex="50%">
+  <mat-tab-group md-stretch-tabs>
 
     <mat-tab label="SignIn">
       <form>
-        <div fxLayout="row">
+        <div class="login-input-wrapper" fxLayout="row">
           <mat-form-field class="login-input">
-            <input matInput placeholder="Email" [(ngModel)]="signinEmail" name="signinEmail">
+            <input matInput placeholder="Email" [(ngModel)]="signinEmail" name="signinEmailInput">
             <button mat-button *ngIf="signinEmail" matSuffix mat-icon-button aria-label="Clear" (click)="signinEmail=''">
               <mat-icon>close</mat-icon>
             </button>
           </mat-form-field>
         </div>
-        <div fxLayout="row">
+        <div class="login-input-wrapper" fxLayout="row">
           <mat-form-field class="login-input">
-            <input matInput placeholder="Password" [(ngModel)]="signinPassword" name="signinPassword">
+            <input matInput placeholder="Password" [(ngModel)]="signinPassword" name="signinPasswordInput">
             <button mat-button *ngIf="signinPassword" matSuffix mat-icon-button aria-label="Clear" (click)="signinPassword=''">
               <mat-icon>close</mat-icon>
             </button>
           </mat-form-field>
         </div>
+        <div class="login-actions" fxLayout="row">
+          <button mat-button (click)="passwordRecover()">Forgot password ?</button>
+          <button mat-raised-button color="primary" (click)="signin(signinEmail, signinPassword)">Sign In</button>
+        </div>
       </form>
     </mat-tab>
 
     <mat-tab label="SignUp">
-      <form class="login-form">
-        <mat-form-field class="login-input">
-          <input class="yolo" matInput placeholder="Email" [(ngModel)]="signupEmail" name="signupEmail">
-          <button mat-button *ngIf="signupEmail" matSuffix mat-icon-button aria-label="Clear" (click)="signupEmail=''">
-            <mat-icon>close</mat-icon>
-          </button>
-        </mat-form-field>
-
-        <mat-form-field class="login-input">
-          <input matInput placeholder="Nickname" [(ngModel)]="signupNickname" name="signupNickname">
-          <button mat-button *ngIf="signupNickname" matSuffix mat-icon-button aria-label="Clear" (click)="signupNickname=''">
-            <mat-icon>close</mat-icon>
-          </button>
-        </mat-form-field>
-
-        <mat-form-field class="login-input">
-          <input class="login-input" matInput placeholder="Password" [(ngModel)]="signupPassword" name="signupPassword">
-          <button mat-button *ngIf="signupPassword" matSuffix mat-icon-button aria-label="Clear" (click)="signupPassword=''">
-            <mat-icon>close</mat-icon>
-          </button>
-        </mat-form-field>
-        <mat-form-field class="login-input">
-          <input class="login-input" matInput placeholder="Confirm Password" [(ngModel)]="signupPasswordConfirm" name="signupPasswordConfirm">
-          <button mat-button *ngIf="signupPasswordConfirm" matSuffix mat-icon-button aria-label="Clear" (click)="signupPasswordConfirm=''">
-            <mat-icon>close</mat-icon>
-          </button>
-        </mat-form-field>
+      <form>
+        <div class="login-input-wrapper" fxLayout="row">
+          <mat-form-field class="login-input">
+            <input class="yolo" matInput placeholder="Email" [(ngModel)]="signupEmail" name="signupEmailInput">
+            <button mat-button *ngIf="signupEmail" matSuffix mat-icon-button aria-label="Clear" (click)="signupEmail=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+        <div class="login-input-wrapper" fxLayout="row">
+          <mat-form-field class="login-input">
+            <input matInput placeholder="Nickname" [(ngModel)]="signupNickname" name="signupNicknameInput">
+            <button mat-button *ngIf="signupNickname" matSuffix mat-icon-button aria-label="Clear" (click)="signupNickname=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+        <div class="login-input-wrapper" fxLayout="row">
+          <mat-form-field class="login-input">
+            <input matInput placeholder="Password" [(ngModel)]="signupPassword" name="signupPasswordInput">
+            <button mat-button *ngIf="signupPassword" matSuffix mat-icon-button aria-label="Clear" (click)="signupPassword=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+        <div class="login-input-wrapper" fxLayout="row">
+          <mat-form-field class="login-input">
+            <input class="login-input" matInput placeholder="Confirm Password" [(ngModel)]="signupPasswordConfirm" name="signupPasswordConfirm">
+            <button mat-button *ngIf="signupPasswordConfirm" matSuffix mat-icon-button aria-label="Clear" (click)="signupPasswordConfirm=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+        <div class="login-actions" fxLayout="row">
+          <button mat-raised-button color="primary">Sign Up</button>
+        </div>
       </form>
     </mat-tab>
   </mat-tab-group>

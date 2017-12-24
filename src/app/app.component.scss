@@ -1,3 +1,14 @@
+.top-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  .logout-button {
+    zoom: 75%;
+  }
+}
+
 .main-container {
   min-height: 800px;
   padding: 20px;
@@ -9,12 +20,4 @@
   position: fixed;
   min-width: 160px;
   padding-top: 64px;
-}
-
-.top-menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 2;
 }

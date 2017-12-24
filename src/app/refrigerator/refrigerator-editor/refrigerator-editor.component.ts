@@ -3,7 +3,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
 @Component({
   selector: 'app-refrigerator-editor',
   templateUrl: './refrigerator-editor.component.html',
-  styleUrls: ['./refrigerator-editor.component.css']
+  styleUrls: ['./refrigerator-editor.component.scss']
 })
 export class RefrigeratorEditorComponent implements OnInit {
 
@@ -22,7 +22,6 @@ export class RefrigeratorEditorComponent implements OnInit {
 
   addIngredient(ingredientName, ingredientQuantity, ingredientUnit) {
     const newIngredient = { ingredientName, ingredientQuantity, ingredientUnit }
-    console.log(newIngredient)
     this.onIngredientAdded.emit(newIngredient)
   }
 
