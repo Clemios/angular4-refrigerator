@@ -14,9 +14,25 @@ app.get('/', function (req, res) {
 
 app.post('/addingredient', function (req, res) {
 	var data = req.body;
+	console.log('DATA BEFORE INSERT:', data)
 	ingredient.addIngredient(data, function (err, rows, fields) {
-		if (err) throw err;
-		res.json(rows);
+		if (err) {
+			console.log(err);
+			throw err
+		};
+		res.send();
+	})
+});
+
+app.post('/deleteingredient', function (req, res) {
+	var data = req.body;
+	console.log('DATA BEFORE DELETE:', data)
+	ingredient.deleteIngredient(data.id, function (err, rows, fields) {
+		if (err) {
+			console.log(err);
+			throw err
+		};
+		res.send();
 	})
 });
 

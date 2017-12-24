@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, DoCheck } from '@angular/core'
+import { Component, OnInit, Input, Output, OnChanges, DoCheck, EventEmitter } from '@angular/core'
 import {
   TdDataTableService, TdDataTableSortingOrder,
   ITdDataTableSortChangeEvent, ITdDataTableColumn
@@ -14,22 +14,23 @@ import { IPageChangeEvent } from '@covalent/core'
 export class RefrigeratorListComponent implements OnInit, DoCheck {
 
   @Input('ingredients') ingredients: any[]
+  @Output() onIngredientDeleted: EventEmitter<any> = new EventEmitter<any>()
 
   // Paramètres pour la dataTable
 
   columns: ITdDataTableColumn[] = [
-    { name: 'name', label: 'Name', filter: true, sortable: false, width: 300 },
-    { name: 'quantity', label: 'Quantity', filter: false, sortable: true },
-    { name: 'unit', label: 'Unit', filter: false, sortable: true },
+    { name: 'name', label: 'Name' },
+    { name: 'quantity', label: 'Quantity' },
+    { name: 'unit', label: 'Unit' },
   ]
 
   filteredData: any[] = this.ingredients
-  // filteredTotal: number = this.ingredients.length
+  filteredTotal = 0
 
   searchTerm = ''
   fromRow = 1
   currentPage = 1
-  pageSize = 10
+  pageSize = 5
   sortBy = ''
   selectedRows: any[] = []
   sortOrder: TdDataTableSortingOrder = TdDataTableSortingOrder.Descending
@@ -49,6 +50,10 @@ export class RefrigeratorListComponent implements OnInit, DoCheck {
       this.filter()
       this.lastNbOfItems = this.ingredients.length
     }
+  }
+
+  deleteIngredient(ingredientId) {
+    this.onIngredientDeleted.emit(ingredientId)
   }
 
   sort(sortEvent: ITdDataTableSortChangeEvent): void {
@@ -84,7 +89,7 @@ export class RefrigeratorListComponent implements OnInit, DoCheck {
         return column.name
       })
     newData = this._dataTableService.filterData(newData, this.searchTerm, true, excludedColumns)
-    // this.filteredTotal = newData.length
+    this.filteredTotal = newData.length
     newData = this._dataTableService.sortData(newData, this.sortBy, this.sortOrder)
     newData = this._dataTableService.pageData(newData, this.fromRow, this.currentPage * this.pageSize)
     this.filteredData = newData

@@ -22,6 +22,10 @@ module.exports.addIngredient = function (data, callback) {
 	pool.query("INSERT INTO ingredients SET ?", data, callback);
 }
 
+module.exports.deleteIngredient = function (ingredientId, callback) {
+	pool.query("DELETE FROM ingredients WHERE id = '" + ingredientId + "'", callback);
+}
+
 module.exports.findByIngredientName = function (ingredientName, callback) {
 	pool.query("SELECT * FROM ingredients WHERE ingredientName = '" + ingredientName + "'", callback);
 }

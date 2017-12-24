@@ -25,8 +25,15 @@ export class IngredientService {
         const options = new RequestOptions({
             headers: headers
         })
-        return this.http.post('http://localhost:' + CONFIG.INGREDIENT.port + '/addingredient', JSON.stringify(data), options)
-            .map((res: Response) => res.json())
+        return this.http.post('http://localhost:' + CONFIG.INGREDIENT.port + '/addingredient', JSON.stringify(data), options).pipe(
+            map((res: Response) => { console.log('ADD Response:', res); return (res) })
+        )
+    }
+
+    deleteIngredient(data) {
+        return this.http.post('http://localhost:' + CONFIG.INGREDIENT.port + '/deleteingredient', data).pipe(
+            map((res: Response) => { console.log('DELETE Response:', res); return (res) })
+        )
     }
 
 

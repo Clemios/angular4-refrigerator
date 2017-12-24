@@ -1,9 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core'
 import { IngredientService } from '../services/ingredient.service'
 
-interface I {
+interface Ingredient {
   name: string
-  description: string
+  quantity: string
+  unit: string
   id: number
 }
 
@@ -19,7 +20,7 @@ export class RefrigeratorComponent implements OnInit {
 
   getIngredients() {
     return (this.ingredientService.getIngredients()
-      .subscribe((ingredients: I[]) => {
+      .subscribe((ingredients: Ingredient[]) => {
         this.ingredients = ingredients
       })
     )
@@ -29,8 +30,18 @@ export class RefrigeratorComponent implements OnInit {
     const ingredient = { name: newIngredient.ingredientName, quantity: newIngredient.ingredientQuantity, unit: newIngredient.ingredientUnit }
     return (this.ingredientService.addIngredient(ingredient)
       .subscribe((response) => {
-        if (response.affectedRows === 1) {
-          this.ingredients.push(ingredient)
+        if (response.ok) {
+          this.getIngredients()
+        }
+      })
+    )
+  }
+
+  deleteIngredient(ingredientId) {
+    return (this.ingredientService.deleteIngredient({ 'id': ingredientId })
+      .subscribe((response) => {
+        if (response.ok) {
+          this.getIngredients()
         }
       })
     )
