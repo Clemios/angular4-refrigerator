@@ -66,7 +66,7 @@ INSERT INTO `tables_priv` (`Host`, `Db`, `User`, `Table_name`, `Grantor`, `Times
 ```
 
 ### Démarrer le projet
-Pour que le projet fonctionne, il faut en plus de la DB, démarrer quelques microservices (et donc plusieurs terminaux) :
+Pour que le projet fonctionne, il faut démarrer quelques microservices NodeJS (et donc plusieurs terminaux) :
 ```bash
 cd Refrigerator/
 ```
