@@ -6,7 +6,6 @@ var ingredient = require('../models/ingredient');
 
 // API Routes
 app.get('/', function (req, res) {
-	console.log('PROCESSION REQUEST ON INGREDIENT ...')
 	ingredient.findAll(function (err, rows, fields) {
 		if (err) throw err;
 		res.json(rows);
