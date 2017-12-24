@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core'
 import { IngredientService } from '../services/ingredient.service'
+import * as Noty from 'noty'
 
 interface Ingredient {
   name: string
@@ -32,6 +33,13 @@ export class RefrigeratorComponent implements OnInit {
       .subscribe((response) => {
         if (response.ok) {
           this.getIngredients()
+          new Noty({
+            text: 'Ingrédient ajouté',
+            layout: 'topRight',
+            type: 'success',
+            theme: 'mint',
+            timeout: 3000,
+          }).show()
         }
       })
     )
@@ -42,6 +50,13 @@ export class RefrigeratorComponent implements OnInit {
       .subscribe((response) => {
         if (response.ok) {
           this.getIngredients()
+          new Noty({
+            text: 'Ingrédient supprimé',
+            layout: 'topRight',
+            type: 'error',
+            theme: 'mint',
+            timeout: 3000,
+          }).show()
         }
       })
     )
