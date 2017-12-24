@@ -48,10 +48,29 @@ CREATE TABLE `users` (
 INSERT INTO `users` VALUES (1,'clem_ios@hotmail.com','Clemios','wordrave'),(2,'oliv.murat@gmail.com','Oliv','azerty');
 ```
 
-### Running the Code
-After cloning the repository, run the following commands:
-* `npm install` -- installs the app's dependencies
-* `npm start` -- serves the Angular app with live reloading for development purposes
+### Démarrer le projet
+Pour que le projet fonctionne, il faut en plus de la DB, démarrer quelques microservices, pour cela, se rendre dans le repertoire du projet puis :
+* `npm install` -- (seulement la première fois) installe les nodes_modules
+* `npm start` -- démarre l'app angular
+```bash
+cd anthenticator/
+```
+* `npm install` -- (seulement la première fois) installe les nodes_modules
+* `npm start` -- démarre le serveur d'authentification
+* `cd ..` -- pour revenir au répertoire précédent
+```bash
+cd user/
+```
+* `npm install` -- (seulement la première fois) installe les nodes_modules
+* `npm start` -- démarre l'API user
+* `cd ..` -- pour revenir au répertoire précédent
+```bash
+cd ingredient/
+```
+* `npm install` -- (seulement la première fois) installe les nodes_modules
+* `npm start` -- démarre l'API ingredient
+* `cd ..` -- pour revenir au répertoire précédent
+
 
 ### Updating dependencies
 Angular and Material releases are more frequent. Since the switchover to semver, it is now safe(r) to rapidly update your own code from one minor release to another, i.e. 4.2.2 to 4.4.3.
