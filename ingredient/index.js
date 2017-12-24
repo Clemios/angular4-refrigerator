@@ -28,7 +28,7 @@ app.use(function (req, res, next) {
 app.use('/', express.static(__dirname));
 
 // Import API Routes
-app.use(require('./api/user_api'));
+app.use(require('./api/ingredient_api'));
 
 port = process.env.PORT || CONFIG.INGREDIENT.port;
 

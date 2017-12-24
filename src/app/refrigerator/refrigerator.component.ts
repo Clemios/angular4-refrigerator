@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, Inject } from '@angular/core'
+import { IngredientService } from '../services/ingredient.service'
+
+interface I {
+  name: string
+  description: string
+  id: number
+}
 
 @Component({
   selector: 'app-refrigerator',
@@ -7,16 +14,16 @@ import { Component, OnInit } from '@angular/core'
 })
 export class RefrigeratorComponent implements OnInit {
 
-  ingredients: any[] = [{
-    'name': 'Mon premier ingrédient',
-    'quantity': '1',
-    'unit': 'g'
-  },
-  {
-    'name': 'Tomate',
-    'quantity': '2',
-    'unit': 'g'
-  }]
+  ingredientService: any
+  ingredients: any[] = []
+
+  getIngredients() {
+    return (this.ingredientService.getIngredients()
+      .subscribe((ingredients: I[]) => {
+        this.ingredients = ingredients
+      })
+    )
+  }
 
   addIngredient(newIngredient) {
     console.log(newIngredient)
@@ -25,9 +32,13 @@ export class RefrigeratorComponent implements OnInit {
     console.log(this.ingredients)
   }
 
-  constructor() { }
+  constructor( @Inject(IngredientService) ingredientService) {
+    this.ingredientService = ingredientService
+    this.getIngredients()
+  }
 
   ngOnInit() {
+
   }
 
 }

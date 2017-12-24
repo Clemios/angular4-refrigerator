@@ -5,6 +5,7 @@ import {
 } from '@covalent/core'
 import { IPageChangeEvent } from '@covalent/core'
 
+
 @Component({
   selector: 'app-refrigerator-list',
   templateUrl: './refrigerator-list.component.html',
@@ -35,13 +36,16 @@ export class RefrigeratorListComponent implements OnInit, DoCheck {
 
   lastNbOfItems = 0
 
-  constructor(private _dataTableService: TdDataTableService) { }
+  constructor(
+    private _dataTableService: TdDataTableService
+  ) {
+
+  }
 
   ngOnInit() {
   }
 
   ngDoCheck() {
-    console.log('check')
     if (this.lastNbOfItems !== this.ingredients.length) {
       this.filter()
       this.lastNbOfItems = this.ingredients.length
@@ -72,7 +76,6 @@ export class RefrigeratorListComponent implements OnInit, DoCheck {
   }
 
   filter(): void {
-    console.log('FILTER')
     let newData: any[] = this.ingredients
     const excludedColumns: string[] = this.columns
       .filter((column: ITdDataTableColumn) => {

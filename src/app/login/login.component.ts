@@ -34,13 +34,9 @@ export class LoginComponent implements OnInit {
 
   userService: any
   public loggedUser: LoggedUser
-  request = {
-    url: 'http://localhost:4500/check',
-  }
 
   constructor(
     @Inject(UserService) userService,
-    public http: HttpClient,
     private router: Router,
     private authService: AuthenticationService) {
     this.userService = userService

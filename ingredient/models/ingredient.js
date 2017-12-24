@@ -15,7 +15,7 @@ var pool = mysql.createPool({
 
 
 module.exports.findAll = function (callback) {
-	connection.query("SELECT * FROM ingredients ORDER BY id DESC", callback);
+	pool.query("SELECT * FROM ingredients ORDER BY id DESC", callback);
 }
 
 module.exports.addIngredient = function (data, callback) {
