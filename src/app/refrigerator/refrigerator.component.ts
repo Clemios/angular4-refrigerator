@@ -26,10 +26,14 @@ export class RefrigeratorComponent implements OnInit {
   }
 
   addIngredient(newIngredient) {
-    console.log(newIngredient)
     const ingredient = { name: newIngredient.ingredientName, quantity: newIngredient.ingredientQuantity, unit: newIngredient.ingredientUnit }
-    this.ingredients.push(ingredient)
-    console.log(this.ingredients)
+    return (this.ingredientService.addIngredient(ingredient)
+      .subscribe((response) => {
+        if (response.affectedRows === 1) {
+          this.ingredients.push(ingredient)
+        }
+      })
+    )
   }
 
   constructor( @Inject(IngredientService) ingredientService) {

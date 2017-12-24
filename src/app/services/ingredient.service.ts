@@ -25,9 +25,8 @@ export class IngredientService {
         const options = new RequestOptions({
             headers: headers
         })
-
         return this.http.post('http://localhost:' + CONFIG.INGREDIENT.port + '/addingredient', JSON.stringify(data), options)
-            .map(res => res.json())
+            .map((res: Response) => res.json())
     }
 
 

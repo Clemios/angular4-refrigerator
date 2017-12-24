@@ -19,11 +19,11 @@ module.exports.findAll = function (callback) {
 }
 
 module.exports.addIngredient = function (data, callback) {
-	connection.query("INSERT INTO ingredients SET ?", data, callback);
+	pool.query("INSERT INTO ingredients SET ?", data, callback);
 }
 
 module.exports.findByIngredientName = function (ingredientName, callback) {
-	connection.query("SELECT * FROM ingredients WHERE ingredientName = '" + ingredientName + "'", callback);
+	pool.query("SELECT * FROM ingredients WHERE ingredientName = '" + ingredientName + "'", callback);
 }
 
 module.exports.encrypt = function (data, callback) {

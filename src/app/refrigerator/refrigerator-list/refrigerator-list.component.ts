@@ -39,7 +39,6 @@ export class RefrigeratorListComponent implements OnInit, DoCheck {
   constructor(
     private _dataTableService: TdDataTableService
   ) {
-
   }
 
   ngOnInit() {

@@ -22,7 +22,6 @@ export class RefrigeratorEditorComponent implements OnInit {
 
   addIngredient(ingredientName, ingredientQuantity, ingredientUnit) {
     const newIngredient = { ingredientName, ingredientQuantity, ingredientUnit }
-    console.log(newIngredient)
     this.onIngredientAdded.emit(newIngredient)
   }
 
