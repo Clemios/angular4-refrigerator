@@ -12,8 +12,6 @@
 `host` localhost
 `port` 8889
 
-Il faut créer un utilisateur `contact`au password `contact`.
-
 * SQL pour générer la base, les tables et quelques donées:
 
 ```sql
