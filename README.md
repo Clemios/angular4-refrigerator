@@ -1,5 +1,15 @@
 # Refrigerator
 
+## TO DO
+/!\ Penser à un moyen (regex, liste d'ENUM...) afin d'éviter les multiples d'ingrédients /!\
+- [BACK] Refacto le microservice incredient pour obtenir recipe et l'affiner
+- [BACK] Faire la fonction qui supprime les ingredients (en qte) d'une recipe
+- [FRONT] Buttons pour modifier la qte d'un ingredient
+- [FRONT] Faire la vue de modification d'une recette
+- [FRONT/BACK] Concevoir agendas (plannings hebdomadaires, liste de recettes associés à un repas)
+- [FRONT/BACK] Concevoir lists (liste de courses, gestion de plusieur listes)
+
+
 ## Features
 - Gestionnaire de frigo
 - Banque de recettes
@@ -11,8 +21,6 @@
 
 `host` localhost
 `port` 8889
-
-Il faut créer un utilisateur `contact`au password `contact`.
 
 * SQL pour générer la base, les tables et quelques donées:
 
@@ -68,7 +76,7 @@ INSERT INTO `tables_priv` (`Host`, `Db`, `User`, `Table_name`, `Grantor`, `Times
 ```
 
 ### Démarrer le projet
-Pour que le projet fonctionne, il faut en plus de la DB, démarrer quelques microservices (et donc plusieurs terminaux) :
+Pour que le projet fonctionne, il faut démarrer quelques microservices NodeJS (et donc plusieurs terminaux) :
 ```bash
 cd Refrigerator/
 ```
