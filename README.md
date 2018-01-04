@@ -1,5 +1,15 @@
 # Refrigerator
 
+## TO DO
+/!\ Penser à un moyen (regex, liste d'ENUM...) afin d'éviter les multiples d'ingrédients /!\
+- [BACK] Refacto le microservice incredient pour obtenir recipe et l'affiner
+- [BACK] Faire la fonction qui supprime les ingredients (en qte) d'une recipe
+- [FRONT] Buttons pour modifier la qte d'un ingredient
+- [FRONT] Faire la vue de modification d'une recette
+- [FRONT/BACK] Concevoir agendas (plannings hebdomadaires, liste de recettes associés à un repas)
+- [FRONT/BACK] Concevoir lists (liste de courses, gestion de plusieur listes)
+
+
 ## Features
 - Gestionnaire de frigo
 - Banque de recettes
