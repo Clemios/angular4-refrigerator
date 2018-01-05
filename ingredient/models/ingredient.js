@@ -12,11 +12,12 @@ var pool = mysql.createPool({
 pool.getConnection(function (err, connection) {
 	if (!err) {
 		console.log('Database connected');
-	}
-	if (err) {
+	} else {
 		console.log('Problème de connection à la base de données');
 		console.log('code :', err.code);
-		if (err.sqlMessage) {
+		if (!err.sqlMessage) {
+			console.log('Le serveur MySQL est il bien démmaré ?');
+		} else {
 			console.log('sqlMessage : ', err.sqlMessage);
 		}
 	}
