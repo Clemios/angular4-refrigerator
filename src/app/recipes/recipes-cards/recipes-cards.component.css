@@ -19,6 +19,15 @@
     backface-visibility: hidden;
 }
 
-.father:hover {
+.flipOnHover:hover {
+    transform: rotateY(180deg);
+}
+
+.add-tile {
+    width: 450px;
+    height: 560px;
+}
+
+.flipped {
     transform: rotateY(180deg);
 }

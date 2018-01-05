@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
 
   signin(signinEmail, signinPassword) {
     this.checkForSignin(signinEmail, signinPassword).subscribe((loggedUser: LoggedUser) => {
-      if (!isEmpty(loggedUser)) {
+      if (!(Object.keys(loggedUser).length === 0 && loggedUser.constructor === Object)) {
         this.loggedUser = loggedUser
         this.login()
       } else {
