@@ -9,10 +9,18 @@ var pool = mysql.createPool({
 	database: 'kitchen'
 });
 
-// connection.connect(function () {
-// 	console.log("Database connected");
-// });
-
+pool.getConnection(function (err, connection) {
+	if (!err) {
+		console.log('Database connected');
+	}
+	if (err) {
+		console.log('Problème de connection à la base de données');
+		console.log('code :', err.code);
+		if (err.sqlMessage) {
+			console.log('sqlMessage : ', err.sqlMessage);
+		}
+	}
+});
 
 module.exports.findAll = function (callback) {
 	pool.query("SELECT * FROM ingredients ORDER BY id DESC", callback);
