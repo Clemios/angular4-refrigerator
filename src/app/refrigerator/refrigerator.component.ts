@@ -17,12 +17,23 @@ interface Ingredient {
 export class RefrigeratorComponent implements OnInit {
 
   ingredientService: any
-  ingredients: any[] = []
+  ingredients: Ingredient[] = []
 
   getIngredients() {
     return (this.ingredientService.getIngredients()
-      .subscribe((ingredients: Ingredient[]) => {
-        this.ingredients = ingredients
+      .subscribe((response) => {
+        if (response.errno) {
+          console.log(response)
+          new Noty({
+            text: 'DATABASE ERROR',
+            layout: 'topRight',
+            type: 'error',
+            theme: 'mint',
+            timeout: 3000,
+          }).show()
+        } else {
+          this.ingredients = response
+        }
       })
     )
   }
@@ -56,9 +67,16 @@ export class RefrigeratorComponent implements OnInit {
   deleteIngredient(ingredientId) {
     return (this.ingredientService.deleteIngredient({ 'id': ingredientId })
       .subscribe((response) => {
-        console.log('RESPONSE:', response)
-        if (response.ok && JSON.parse(response._body).affectedRows === 1) {
-          this.getIngredients()
+        if (response.errno) {
+          console.log(response)
+          new Noty({
+            text: 'DATABASE ERROR',
+            layout: 'topRight',
+            type: 'error',
+            theme: 'mint',
+            timeout: 3000,
+          }).show()
+        } else {
           new Noty({
             text: 'Ingrédient supprimé',
             layout: 'topRight',
@@ -66,14 +84,7 @@ export class RefrigeratorComponent implements OnInit {
             theme: 'mint',
             timeout: 3000,
           }).show()
-        } else {
-          new Noty({
-            text: 'ERREUR',
-            layout: 'topRight',
-            type: 'error',
-            theme: 'mint',
-            timeout: 3000,
-          }).show()
+          this.getIngredients()
         }
       })
     )

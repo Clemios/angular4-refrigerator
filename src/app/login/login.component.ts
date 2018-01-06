@@ -48,6 +48,8 @@ export class LoginComponent implements OnInit {
   signin(signinEmail, signinPassword) {
     this.checkForSignin(signinEmail, signinPassword).subscribe((response) => {
       if (response.errno) {
+        // En cas d' erreur retoutnée par le microservice user
+        console.log(response)
         new Noty({
           text: 'DATABASE ERROR',
           layout: 'topRight',
@@ -55,10 +57,8 @@ export class LoginComponent implements OnInit {
           theme: 'mint',
           timeout: 3000,
         }).show()
-      } else if (!isEmpty(response)) {
-        // this.loggedUser = response
-        this.login()
-      } else {
+      } else if (isEmpty(response)) {
+        // Si la réponse est vide = aucun user trouvé en base
         new Noty({
           text: 'USER NOT FOUND',
           layout: 'topRight',
@@ -66,24 +66,25 @@ export class LoginComponent implements OnInit {
           theme: 'mint',
           timeout: 3000,
         }).show()
+      } else {
+        this.login()
       }
     })
   }
 
+  // Vérifier si l'user existe en base
   checkForSignin(signinEmail, signinPassword) {
     const data = { email: signinEmail, password: signinPassword }
-    return (this.userService.checkUser(data)
-      .map(res => res)
+    return (this.userService.checkUser(data).map(res => res)
     )
   }
 
-  public signup() {
+  // Créer le token de session qui permet de log l'utilisateur puis le rediriger
+  public login() {
+    this.authService.login().subscribe(() => this.router.navigateByUrl('/'))
   }
 
-  public login() {
-    this.authService
-      .login()
-      .subscribe(() => this.router.navigateByUrl('/'))
+  public signup() {
   }
 
 }

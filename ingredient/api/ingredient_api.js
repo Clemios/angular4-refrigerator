@@ -7,8 +7,8 @@ var ingredient = require('../models/ingredient');
 // API Routes
 app.get('/', function (req, res) {
 	ingredient.findAll(function (err, rows, fields) {
-		if (err) throw err;
-		res.json(rows);
+		if (err) res.send(err);
+		if (rows) res.json(rows);
 	})
 });
 
@@ -28,11 +28,8 @@ app.post('/deleteingredient', function (req, res) {
 	var data = req.body;
 	console.log('DATA BEFORE DELETE:', data)
 	ingredient.deleteIngredient(data.id, function (err, rows, fields) {
-		if (err) {
-			console.log(err);
-			throw err
-		};
-		res.send(JSON.stringify(rows));
+		if (err) res.send(err);
+		if (rows) res.send(JSON.stringify(rows));
 	})
 });
 
