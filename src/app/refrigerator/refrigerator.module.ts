@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { HttpModule } from '@angular/http'
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MaterialModule } from '../material.module'
 import { CovalentModule } from '../covalent.module'
 
@@ -22,7 +22,8 @@ import { IngredientService } from '../services/ingredient.service'
         MaterialModule,
         CovalentModule,
         FlexLayoutModule,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule
     ],
     declarations: [
         RefrigeratorComponent,

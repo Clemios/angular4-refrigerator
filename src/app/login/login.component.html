@@ -5,7 +5,7 @@
       <form>
         <div class="login-input-wrapper" fxLayout="row">
           <mat-form-field class="login-input">
-            <input matInput placeholder="Email" [formControl]="email" [(ngModel)]="signinEmail" name="signinEmailInput">
+            <input matInput placeholder="Email" type="email" [formControl]="email" [(ngModel)]="signinEmail" name="signinEmailInput">
             <button mat-button *ngIf="signinEmail" matSuffix mat-icon-button aria-label="Clear" (click)="signinEmail=''">
               <mat-icon>close</mat-icon>
             </button>

@@ -1,10 +1,11 @@
 <form>
   <div fxLayout="row" style="justify-content: space-between;">
     <mat-form-field fxFlex="60%">
-      <input matInput placeholder="Ingrédient..." [(ngModel)]="ingredientName" name="ingredientName">
+      <input matInput placeholder="Ingrédient..." type="text" [formControl]="ingredient" [(ngModel)]="ingredientName" name="ingredientName">
       <button mat-button *ngIf="ingredientName" matSuffix mat-icon-button aria-label="Clear" (click)="ingredientName=''">
         <mat-icon>close</mat-icon>
       </button>
+      <mat-error *ngIf="ingredient.invalid">{{getIngredientErrorMessage()}}</mat-error>
     </mat-form-field>
     <div fxFlex="30%">
       <button style="float: right;" mat-button *ngIf='ingredientName && ingredientQuantity && ingredientUnit' matSuffix mat-icon-button
@@ -15,10 +16,12 @@
   </div>
   <div fxLayout="row" style="justify-content: space-between;">
     <mat-form-field fxFlex="60%">
-      <input matInput placeholder="Quantitée..." type="number" [(ngModel)]="ingredientQuantity" name="ingredientQuantity">
+      <input matInput placeholder="Quantitée..." type="number" min="0" [formControl]="quantity" [(ngModel)]="ingredientQuantity"
+        name="ingredientQuantity">
       <button mat-button *ngIf="ingredientQuantity" matSuffix mat-icon-button aria-label="Clear" (click)="ingredientQuantity=''">
         <mat-icon>close</mat-icon>
       </button>
+      <mat-error *ngIf="quantity.invalid">{{getQuantityErrorMessage()}}</mat-error>
     </mat-form-field>
     <mat-form-field fxFlex="30%">
       <mat-select placeholder="Unitée" [(ngModel)]="ingredientUnit" name="ingredientUnit">
