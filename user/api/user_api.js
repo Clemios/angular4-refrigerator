@@ -16,8 +16,8 @@ app.get('/', function (req, res) {
 app.post('/check', function (req, res) {
 	var data = req.body;
 	user.checkForSignin(data.email, data.password, function (err, rows, fields) {
-		//if (err) throw err;
-		res.json(rows[0]);
+		if (err) res.json(err);
+		if (rows) res.json(rows[0]);
 	})
 });
 

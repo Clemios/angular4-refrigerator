@@ -46,12 +46,19 @@ export class LoginComponent implements OnInit {
   }
 
   signin(signinEmail, signinPassword) {
-    this.checkForSignin(signinEmail, signinPassword).subscribe((loggedUser: LoggedUser) => {
-      if (!isEmpty(loggedUser)) {
-        this.loggedUser = loggedUser
+    this.checkForSignin(signinEmail, signinPassword).subscribe((response) => {
+      if (response.errno) {
+        new Noty({
+          text: 'DATABASE ERROR',
+          layout: 'topRight',
+          type: 'error',
+          theme: 'mint',
+          timeout: 3000,
+        }).show()
+      } else if (!isEmpty(response)) {
+        // this.loggedUser = response
         this.login()
       } else {
-        console.log('USER NOT FOUND')
         new Noty({
           text: 'USER NOT FOUND',
           layout: 'topRight',
