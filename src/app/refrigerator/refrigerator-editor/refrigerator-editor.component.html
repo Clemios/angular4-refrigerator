@@ -15,7 +15,7 @@
   </div>
   <div fxLayout="row" style="justify-content: space-between;">
     <mat-form-field fxFlex="60%">
-      <input matInput placeholder="Quantitée..." [(ngModel)]="ingredientQuantity" name="ingredientQuantity">
+      <input matInput placeholder="Quantitée..." type="number" [(ngModel)]="ingredientQuantity" name="ingredientQuantity">
       <button mat-button *ngIf="ingredientQuantity" matSuffix mat-icon-button aria-label="Clear" (click)="ingredientQuantity=''">
         <mat-icon>close</mat-icon>
       </button>

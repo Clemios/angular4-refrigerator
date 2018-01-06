@@ -51,30 +51,41 @@ export class LoginComponent implements OnInit {
   }
 
   signin(signinEmail, signinPassword) {
-    this.checkForSignin(signinEmail, signinPassword).subscribe((response) => {
-      if (response.errno) {
-        // En cas d' erreur retoutnée par le microservice user
-        console.log(response)
-        new Noty({
-          text: 'DATABASE ERROR',
-          layout: 'topRight',
-          type: 'error',
-          theme: 'mint',
-          timeout: 3000,
-        }).show()
-      } else if (isEmpty(response)) {
-        // Si la réponse est vide = aucun user trouvé en base
-        new Noty({
-          text: 'USER NOT FOUND',
-          layout: 'topRight',
-          type: 'error',
-          theme: 'mint',
-          timeout: 3000,
-        }).show()
-      } else {
-        this.login()
-      }
-    })
+    if (this.email.errors || this.password.errors) {
+      // Si les champs du formulaire ne sont pas valides
+      new Noty({
+        text: 'Check your informations',
+        layout: 'topRight',
+        type: 'warning',
+        theme: 'mint',
+        timeout: 3000,
+      }).show()
+    } else {
+      this.checkForSignin(signinEmail, signinPassword).subscribe((response) => {
+        if (response.errno) {
+          // En cas d' erreur retoutnée par le microservice user
+          console.log(response)
+          new Noty({
+            text: 'DATABASE ERROR',
+            layout: 'topRight',
+            type: 'error',
+            theme: 'mint',
+            timeout: 3000,
+          }).show()
+        } else if (isEmpty(response)) {
+          // Si la réponse est vide = aucun user trouvé en base
+          new Noty({
+            text: 'USER NOT FOUND',
+            layout: 'topRight',
+            type: 'error',
+            theme: 'mint',
+            timeout: 3000,
+          }).show()
+        } else {
+          this.login()
+        }
+      })
+    }
   }
 
   // Vérifier si l'user existe en base
@@ -98,7 +109,7 @@ export class LoginComponent implements OnInit {
         ''
   }
   public getPasswordErrorMessage() {
-    return this.email.hasError('required') ? 'You must enter a value' : ''
+    return this.password.hasError('required') ? 'You must enter a value' : ''
   }
 
 }
