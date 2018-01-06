@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Inject } from '@angular/core'
+import { FormControl, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http'
 import { Http, Response } from '@angular/http'
@@ -34,6 +35,10 @@ export class LoginComponent implements OnInit {
 
   userService: any
   public loggedUser: LoggedUser
+
+  email = new FormControl('', [Validators.required, Validators.email])
+  password = new FormControl('', [Validators.required])
+  hide = true
 
   constructor(
     @Inject(UserService) userService,
@@ -85,6 +90,15 @@ export class LoginComponent implements OnInit {
   }
 
   public signup() {
+  }
+
+  public getEmailErrorMessage() {
+    return this.email.hasError('required') ? 'You must enter a value' :
+      this.email.hasError('email') ? 'Not a valid email' :
+        ''
+  }
+  public getPasswordErrorMessage() {
+    return this.email.hasError('required') ? 'You must enter a value' : ''
   }
 
 }

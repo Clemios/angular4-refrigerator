@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FlexLayoutModule } from '@angular/flex-layout'
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpModule } from '@angular/http'
 
 import { UserService } from '../services/user.service'
@@ -22,6 +22,7 @@ import { RefrigeratorModule } from '../refrigerator/refrigerator.module'
         CovalentModule,
         FlexLayoutModule,
         FormsModule,
+        ReactiveFormsModule,
         RefrigeratorModule
     ],
     providers: [UserService],
