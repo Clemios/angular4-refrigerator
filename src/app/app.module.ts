@@ -18,12 +18,20 @@ import { AppComponent } from './app.component'
 import { HomeComponent } from './home/home.component'
 
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
+import { RecipesComponent } from './recipes/recipes.component'
+import { RecipesListComponent } from './recipes/recipes-list/recipes-list.component'
+import { RecipesEditorComponent } from './recipes/recipes-editor/recipes-editor.component'
+import { RecipesCardsComponent } from './recipes/recipes-cards/recipes-cards.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     PageNotFoundComponent,
+    RecipesComponent,
+    RecipesListComponent,
+    RecipesEditorComponent,
+    RecipesCardsComponent
   ],
   imports: [
     HttpClientModule,

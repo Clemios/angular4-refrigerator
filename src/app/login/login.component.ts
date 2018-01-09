@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit {
             theme: 'mint',
             timeout: 3000,
           }).show()
-        } else if (isEmpty(response)) {
+        } else if (!(Object.keys(response).length === 0 && response.constructor === Object)) {
           // Si la réponse est vide = aucun user trouvé en base
           new Noty({
             text: 'USER NOT FOUND',

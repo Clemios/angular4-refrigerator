@@ -5,6 +5,7 @@ import { PublicGuard, ProtectedGuard } from 'ngx-auth'
 import { HomeComponent } from './home/home.component'
 import { LoginComponent } from './login/login.component'
 
+import { RecipesComponent } from './recipes/recipes.component'
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
 
 const routes: Routes = [
@@ -29,10 +30,14 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'recipes',
+    component: RecipesComponent,
+  },
+  {
     path: '**',
     component: PageNotFoundComponent,
     pathMatch: 'full'
-  },
+  }
 ]
 
 @NgModule({

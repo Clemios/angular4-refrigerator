@@ -1,0 +1,68 @@
+<mat-grid-list cols="3" rowHeight="5:6">
+
+  <mat-grid-tile>
+    <div [class.father]="true" [class.flipped]="isFlipped" (click)="flipTile(isFlipped)">
+      <mat-card class="add-tile front">
+        <mat-card-header>
+          <!-- <div mat-card-avatar class="example-header-image"></div> -->
+          <mat-card-title>TATA</mat-card-title>
+          <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+        </mat-card-header>
+        <!-- <img mat-card-image src={{recipe.image}} alt={{recipe.name}}> -->
+        <mat-card-content>
+          <p>YOLOOO</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>Enregistrer</button>
+        </mat-card-actions>
+      </mat-card>
+      <mat-card class="add-tile back">
+        <mat-card-header>
+          <!-- <div mat-card-avatar class="example-header-image"></div> -->
+          <mat-card-title>CACAAAAA</mat-card-title>
+          <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+        </mat-card-header>
+        <!-- <img mat-card-image src={{recipe.image}} alt={{recipe.name}}> -->
+        <mat-card-content>
+          <p>PIPIII</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>Enregistrer</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </mat-grid-tile>
+
+  <mat-grid-tile *ngFor="let recipe of recipes">
+    <div class="father flipOnHover">
+      <mat-card class="example-card front">
+        <mat-card-header>
+          <!-- <div mat-card-avatar class="example-header-image"></div> -->
+          <mat-card-title>{{recipe.name}}</mat-card-title>
+          <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+        </mat-card-header>
+        <img mat-card-image src={{recipe.image}} alt={{recipe.name}}>
+        <mat-card-content>
+          <p>{{recipe.description}}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>Modifier</button>
+        </mat-card-actions>
+      </mat-card>
+      <mat-card class="back">
+        <mat-card-header>
+          <!-- <div mat-card-avatar class="example-header-image"></div> -->
+          <mat-card-title>TATA</mat-card-title>
+          <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+        </mat-card-header>
+        <img mat-card-image src={{recipe.image}} alt={{recipe.name}}>
+        <mat-card-content>
+          <p>YOLOOO</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>Enregistrer</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
