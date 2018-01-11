@@ -10,14 +10,14 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  },
+  {
     path: 'home',
     canActivate: [ProtectedGuard],
     component: HomeComponent
-  },
-  {
-    path: 'refrigerator',
-    canActivate: [ProtectedGuard],
-    loadChildren: './refrigerator/refrigerator.module#RefrigeratorModule'
   },
   {
     path: 'login',
@@ -25,13 +25,14 @@ const routes: Routes = [
     loadChildren: './login/login.module#LoginModule'
   },
   {
-    path: '',
-    redirectTo: '/home',
-    pathMatch: 'full'
+    path: 'refrigerator',
+    canActivate: [ProtectedGuard],
+    loadChildren: './refrigerator/refrigerator.module#RefrigeratorModule'
   },
   {
     path: 'recipes',
-    component: RecipesComponent,
+    canActivate: [ProtectedGuard],
+    loadChildren: './recipes/recipes.module#RecipesModule'
   },
   {
     path: '**',

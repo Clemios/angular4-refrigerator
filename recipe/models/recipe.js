@@ -4,7 +4,7 @@ var pool = mysql.createPool({
 	connectionLimit: 10,
 	host: 'localhost',
 	port: '8889',
-	recipe: 'recipes',
+	user: 'recipes',
 	password: 'recipes',
 	database: 'kitchen'
 });
@@ -24,15 +24,19 @@ pool.getConnection(function (err, connection) {
 });
 
 module.exports.findAll = function (callback) {
-	connection.query("SELECT * FROM recipes ORDER BY id DESC", callback);
+	pool.query("SELECT * FROM recipes ORDER BY id DESC", callback);
 }
 
 module.exports.addRecipe = function (data, callback) {
-	connection.query("INSERT INTO recipes SET ?", data, callback);
+	pool.query("INSERT INTO recipes SET ?", data, callback);
 }
 
-module.exports.findByRecipename = function (recipename, callback) {
-	connection.query("SELECT * FROM recipes WHERE recipename = '" + recipename + "'", callback);
+module.exports.deleteRecipe = function (recipeId, callback) {
+	pool.query("DELETE FROM recipes WHERE id = '" + recipeId + "'", callback);
+}
+
+module.exports.findByRecipeName = function (recipeName, callback) {
+	pool.query("SELECT * FROM recipes WHERE recipeName = '" + recipeName + "'", callback);
 }
 
 module.exports.encrypt = function (data, callback) {

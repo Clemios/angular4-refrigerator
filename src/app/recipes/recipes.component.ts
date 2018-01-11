@@ -1,4 +1,13 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, Inject } from '@angular/core'
+import { RecipeService } from '../services/recipe.service'
+import * as Noty from 'noty'
+
+interface Recipe {
+  name: string
+  description: string
+  image: string
+  ingredients: any[]
+}
 
 @Component({
   selector: 'app-recipes',
@@ -7,95 +16,90 @@ import { Component, OnInit } from '@angular/core'
 })
 export class RecipesComponent implements OnInit {
 
-  recipes: any[] = [{
-    'name': 'Tarte aux Pommes',
-    'description': 'Une délicieuse tarte aux pommes',
-    'image': 'https://material.angular.io/assets/img/examples/shiba2.jpg',
-    'ingredients': [
-      {
-        'name': 'Pâte a tarte',
-        'quantity': '100',
-        'unit': 'g'
-      },
-      {
-        'name': 'Pomme',
-        'quantity': '600',
-        'unit': 'g'
-      }
-    ]
-  },
-  {
-    'name': 'Tarte aux Prunes',
-    'description': 'La reine des tartes aux prunes',
-    'image': 'https://material.angular.io/assets/img/examples/shiba2.jpg',
-    'ingredients': [
-      {
-        'name': 'Pâte a tarte',
-        'quantity': '100',
-        'unit': 'g'
-      },
-      {
-        'name': 'Prune',
-        'quantity': '600',
-        'unit': 'g'
-      },
-      {
-        'name': 'Sucre',
-        'quantity': '50',
-        'unit': 'g'
-      }
-    ]
-  },
-  {
-    'name': 'Tarte aux Figues',
-    'description': 'L\'apothéose de la tarte aux figues',
-    'image': 'https://material.angular.io/assets/img/examples/shiba2.jpg',
-    'ingredients': [
-      {
-        'name': 'Pâte a tarte',
-        'quantity': '100',
-        'unit': 'g'
-      },
-      {
-        'name': 'Figue',
-        'quantity': '600',
-        'unit': 'g'
-      },
-      {
-        'name': 'Sucre',
-        'quantity': '75',
-        'unit': 'g'
-      }
-    ]
-  },
-  {
-    'name': 'Tarte aux Quetsches',
-    'description': 'Une sublime tarte aux quetsches',
-    'image': 'https://material.angular.io/assets/img/examples/shiba2.jpg',
-    'ingredients': [
-      {
-        'name': 'Pâte a tarte',
-        'quantity': '100',
-        'unit': 'g'
-      },
-      {
-        'name': 'Quetsche',
-        'quantity': '600',
-        'unit': 'g'
-      }
-    ]
-  }]
+  recipeService: any
+  recipes: Recipe[] = []
 
-  addRecipe(newRecipe) {
-    console.log(newRecipe)
-    const recipe = { name: newRecipe.recipeName, quantity: newRecipe.recipeQuantity, unit: newRecipe.recipeUnit }
-    this.recipes.push(recipe)
-    console.log(this.recipes)
+  getRecipes() {
+    return (this.recipeService.getRecipes()
+      .subscribe((response) => {
+        if (response.errno) {
+          console.log(response)
+          new Noty({
+            text: 'DATABASE ERROR',
+            layout: 'topRight',
+            type: 'error',
+            theme: 'mint',
+            timeout: 3000,
+          }).show()
+        } else {
+          this.recipes = response
+        }
+      })
+    )
   }
 
-  constructor() { }
+  addRecipe(newRecipe) {
+    const recipe = { name: newRecipe.recipeName, description: newRecipe.recipeDescription, image: newRecipe.recipeImage }
+
+    console.log('PPPPAAAAAARRRRREEEEENNNTTT')
+    console.log(newRecipe)
+    return (this.recipeService.addRecipe(recipe)
+      .subscribe((response) => {
+        if (response.ok && JSON.parse(response._body).affectedRows === 1) {
+          this.getRecipes()
+          new Noty({
+            text: 'Ingrédient ajouté',
+            layout: 'topRight',
+            type: 'success',
+            theme: 'mint',
+            timeout: 3000,
+          }).show()
+        } else {
+          new Noty({
+            text: 'ERREUR',
+            layout: 'topRight',
+            type: 'error',
+            theme: 'mint',
+            timeout: 3000,
+          }).show()
+        }
+      })
+    )
+  }
+
+  deleteRecipe(recipeId) {
+    return (this.recipeService.deleteRecipe({ 'id': recipeId })
+      .subscribe((response) => {
+        if (response.errno) {
+          console.log(response)
+          new Noty({
+            text: 'DATABASE ERROR',
+            layout: 'topRight',
+            type: 'error',
+            theme: 'mint',
+            timeout: 3000,
+          }).show()
+        } else {
+          new Noty({
+            text: 'Recette supprimée',
+            layout: 'topRight',
+            type: 'success',
+            theme: 'mint',
+            timeout: 3000,
+          }).show()
+          this.getRecipes()
+        }
+      })
+    )
+  }
+
+  constructor( @Inject(RecipeService) recipeService) {
+    this.recipeService = recipeService
+    this.getRecipes()
+  }
 
   ngOnInit() {
+
   }
 
 }

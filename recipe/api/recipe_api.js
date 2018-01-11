@@ -6,32 +6,31 @@ var recipe = require('../models/recipe');
 
 // API Routes
 app.get('/', function (req, res) {
-
 	recipe.findAll(function (err, rows, fields) {
-		if (err) throw err;
-		res.json(rows);
+		if (err) res.send(err);
+		if (rows) res.json(rows);
 	})
 });
 
-app.post('/addrecipe', function (req, res, next) {
+app.post('/addrecipe', function (req, res) {
 	var data = req.body;
-	recipe.findByRecipename(data.recipename, function (err, rows, fields) {
-		if (rows.length == 1) {
-			recipe.sendResponse(false, res);
-		} else {
-			recipe.encrypt(data, function (err, hash) {
-				data = {
-					recipename: data.recipename,
-					hashedpassword: hash
-				};
-				recipe.addRecipe(data, function (err, info) {
-					if (err) throw err;
-					console.log(info);
-					recipe.sendResponse(true, res);
-				});
-			});
+	console.log('DATA BEFORE INSERT:', data)
+	recipe.addRecipe(data, function (err, rows, fields) {
+		if (err) {
+			console.log(err);
+			throw err
 		};
-	});
+		res.send(JSON.stringify(rows));
+	})
+});
+
+app.post('/deleterecipe', function (req, res) {
+	var data = req.body;
+	console.log('DATA BEFORE DELETE:', data)
+	recipe.deleteRecipe(data.id, function (err, rows, fields) {
+		if (err) res.send(err);
+		if (rows) res.send(JSON.stringify(rows));
+	})
 });
 
 module.exports = app;

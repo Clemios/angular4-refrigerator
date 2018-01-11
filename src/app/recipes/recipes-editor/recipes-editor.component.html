@@ -1,31 +1,47 @@
 <form>
-  <div fxLayout="row" style="justify-content: space-between;">
-    <mat-form-field fxFlex="60%">
-      <input matInput placeholder="Recette..." [(ngModel)]="recipeName" name="recipeName">
-      <button mat-button *ngIf="recipeName" matSuffix mat-icon-button aria-label="Clear" (click)="recipeName=''">
-        <mat-icon>close</mat-icon>
-      </button>
-    </mat-form-field>
-    <div fxFlex="30%">
-      <button style="float: right;" mat-button *ngIf='recipeName && recipeQuantity && recipeUnit' matSuffix mat-icon-button aria-label="Send"
-        (click)="addRecipe(recipeName, recipeQuantity, recipeUnit)">
-        <mat-icon>send</mat-icon>
-      </button>
+  <mat-card-header>
+    <mat-card-title class="no-margin-bottom">Nouvelle recette...</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="no-margin-bottom">
+    <div class="recipe-input-wrapper" fxLayout="row">
+      <mat-form-field class="recipe-input">
+        <input matInput placeholder="Nom..." type="text" [formControl]="recipe" [(ngModel)]="recipeName" name="recipeName">
+        <button mat-button *ngIf="recipeName" matSuffix mat-icon-button aria-label="Clear" (click)="recipeName=''">
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-error *ngIf="recipe.invalid">{{getRecipeErrorMessage()}}</mat-error>
+      </mat-form-field>
     </div>
-  </div>
-  <div fxLayout="row" style="justify-content: space-between;">
-    <mat-form-field fxFlex="60%">
-      <input matInput placeholder="Quantitée..." [(ngModel)]="recipeQuantity" name="recipeQuantity">
-      <button mat-button *ngIf="recipeQuantity" matSuffix mat-icon-button aria-label="Clear" (click)="recipeQuantity=''">
-        <mat-icon>close</mat-icon>
-      </button>
-    </mat-form-field>
-    <mat-form-field fxFlex="30%">
-      <mat-select placeholder="Unitée" [(ngModel)]="recipeUnit" name="recipeUnit">
-        <mat-option *ngFor="let unit of units" [value]="unit.value">
-          {{unit.label}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
+    <div class="recipe-input-wrapper" fxLayout="row">
+      <mat-form-field class="recipe-input">
+        <textarea matInput placeholder="Description..." type="text" [(ngModel)]="recipeDescription" name="recipeDescription"></textarea>
+        <button mat-button *ngIf="recipeDescription" matSuffix mat-icon-button aria-label="Clear" (click)="recipeDescription=''">
+          <mat-icon>close</mat-icon>
+        </button>
+        <!-- <mat-error *ngIf="recipe.invalid">{{getRecipeErrorMessage()}}</mat-error> -->
+      </mat-form-field>
+    </div>
+    <div fxLayout="row">
+      <td-file-upload class="upload-button" #singleFileUpload name="recipeImage" [(ngModel)]="files" (select)="selectEvent($event)"
+        (cancel)="cancelEvent()" [disabled]="disabled" required>
+        <span>{{ singleFileUpload.value?.name }}</span>
+        <ng-template td-file-input-label>
+          <mat-icon>attach_file</mat-icon>
+          <span>
+            Choose an image...
+          </span>
+        </ng-template>
+      </td-file-upload>
+    </div>
+    <div fxLayout="row">
+      <div *ngIf="imagePreview" class="image-wrapper" fxFlex="90%">
+        <img [src]="imagePreview">
+      </div>
+    </div>
+    <!-- <p>Upload Event: {{fileUploadMsg}}</p>
+    <button mat-button color="primary" (click)="toggleDisabled()">Toggle Disable</button> -->
+  </mat-card-content>
+  <mat-card-actions class="no-margin-bottom">
+    <button mat-button (click)="addRecipe(recipeName, recipeDescription)">Enregistrer</button>
+  </mat-card-actions>
 </form>

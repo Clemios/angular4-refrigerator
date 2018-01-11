@@ -27,9 +27,9 @@ app.use(function (req, res, next) {
 app.use('/', express.static(__dirname));
 
 // Import API Routes
-app.use(require('./api/user_api'));
+app.use(require('./api/recipe_api'));
 
-port = process.env.PORT || CONFIG.RECIPER.port;
+port = process.env.PORT || CONFIG.RECIPE.port;
 
 app.listen(port, function () {
 	console.log("MySQL api for recipe ready on port " + port);
