@@ -15,6 +15,7 @@ app.get('/', function (req, res) {
 
 app.post('/check', function (req, res) {
 	var data = req.body;
+	console.log('Utilsateur à véfifier: ', data)
 	user.checkForSignin(data.email, data.password, function (err, rows, fields) {
 		if (err) res.json(err);
 		if (rows) res.json(rows[0]);

@@ -28,10 +28,10 @@ app.use(function (req, res, next) {
 app.use('/', express.static(__dirname));
 
 // Import API Routes
-app.use(require('./api/ingredient_api'));
+app.use(require('./api/listing_api'));
 
-port = process.env.PORT || CONFIG.INGREDIENT.port;
+port = process.env.PORT || CONFIG.LISTING.port;
 
 app.listen(port, function () {
-	console.log("MySQL api for ingredient ready on port " + port);
+	console.log("MySQL api for listing ready on port " + port);
 })

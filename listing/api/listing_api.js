@@ -14,7 +14,7 @@ app.get('/', function (req, res) {
 
 app.post('/addlisting', function (req, res) {
 	var data = req.body;
-	console.log('DATA BEFORE INSERT:', data)
+	console.log('Nouvelle liste: ', data)
 	listing.addListing(data, function (err, rows, fields) {
 		if (err) {
 			console.log(err);
@@ -26,7 +26,7 @@ app.post('/addlisting', function (req, res) {
 
 app.post('/deletelisting', function (req, res) {
 	var data = req.body;
-	console.log('DATA BEFORE DELETE:', data)
+	console.log('Supression de la liste: ', data)
 	listing.deleteListing(data.id, function (err, rows, fields) {
 		if (err) res.send(err);
 		if (rows) res.send(JSON.stringify(rows));

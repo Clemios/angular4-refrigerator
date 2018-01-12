@@ -14,7 +14,7 @@ app.get('/', function (req, res) {
 
 app.post('/addingredient', function (req, res) {
 	var data = req.body;
-	console.log('DATA BEFORE INSERT:', data)
+	console.log('Nouvel Ingrédient: ', data)
 	ingredient.addIngredient(data, function (err, rows, fields) {
 		if (err) {
 			console.log(err);
@@ -26,7 +26,7 @@ app.post('/addingredient', function (req, res) {
 
 app.post('/deleteingredient', function (req, res) {
 	var data = req.body;
-	console.log('DATA BEFORE DELETE:', data)
+	console.log("Supression de l'ingredient: ", data)
 	ingredient.deleteIngredient(data.id, function (err, rows, fields) {
 		if (err) res.send(err);
 		if (rows) res.send(JSON.stringify(rows));
