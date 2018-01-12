@@ -18,11 +18,7 @@ import {
 })
 export class CalendarComponent implements OnInit {
 
-  view = 'month'
-
-  viewDate: Date = new Date()
-
-
+  viewDate: Date
 
   constructor() { }
 
@@ -31,15 +27,24 @@ export class CalendarComponent implements OnInit {
       month: startOfMonth,
       week: startOfWeek,
       day: startOfDay
-    }[this.view]
+    }['week']
 
     const getEnd: any = {
       month: endOfMonth,
       week: endOfWeek,
       day: endOfDay
-    }[this.view]
-    console.log(getDay(new Date(2018, 1, 3)))
-    console.log(format(getStart(this.viewDate), 'YYYY-MM-DD'))
+    }['week']
+    this.viewDate = new Date()
+    const tommorow = new Date()
+    const firstDay = new Date()
+    firstDay.setDate(getStart(this.viewDate))
+    tommorow.setDate(this.viewDate.getDate() + 1)
+    const secondDay = new Date()
+    console.log(getStart(this.viewDate))
+    secondDay.setDate(firstDay.getDate() + 1)
+    console.log('FIRST DAY', format(getStart(this.viewDate), 'YYYY-MM-DD'))
+    console.log('SECOND DAY', format(getStart(this.viewDate), 'YYYY-MM-DD'))
+    console.log(secondDay)
   }
 
 }
