@@ -6,21 +6,22 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MaterialModule } from '../material.module'
 import { CovalentModule } from '../covalent.module'
 
-import { ListsRoutingModule } from './lists-routing.module'
+import { ListingsRoutingModule } from './listings-routing.module'
 
-import { ListsComponent } from './lists.component'
+import { ListingsComponent } from './listings.component'
+import { ListingsListComponent } from './listings-list/listings-list.component'
 
 @NgModule({
   imports: [
     CommonModule,
     HttpModule,
-    ListsRoutingModule,
+    ListingsRoutingModule,
     MaterialModule,
     CovalentModule,
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [ListsComponent]
+  declarations: [ListingsComponent, ListingsListComponent]
 })
-export class ListsModule { }
+export class ListingsModule { }

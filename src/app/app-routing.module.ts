@@ -33,9 +33,9 @@ const routes: Routes = [
     loadChildren: './recipes/recipes.module#RecipesModule'
   },
   {
-    path: 'lists',
+    path: 'listings',
     canActivate: [ProtectedGuard],
-    loadChildren: './lists/lists.module#ListsModule'
+    loadChildren: './listings/listings.module#ListingsModule'
   },
   {
     path: 'schedules',
