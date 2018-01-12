@@ -8,13 +8,13 @@ export const CONFIG = {
     'USER': {
         'port': '4400'
     },
-    'FILE': {
-        'port': '4600'
-    },
     'INGREDIENT': {
         'port': '4410'
     },
     'RECIPE': {
         'port': '4420'
+    },
+    'PLANNING': {
+        'port': '4430'
     }
 }
