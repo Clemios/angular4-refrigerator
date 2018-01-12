@@ -38,9 +38,10 @@ CREATE TABLE `ingredients` (
 INSERT INTO `ingredients` VALUES (1,'Tomate',300,'g'),(2,'Sel',100,'g');
 DROP TABLE IF EXISTS `recipes`;
 CREATE TABLE `recipes` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `name` varchar(45) DEFAULT NULL,
   `description` text,
+  `image` mediumtext NOT NULL,
   PRIMARY KEY (`id`)
 );
 INSERT INTO `recipes` VALUES (1,'Tomates au sel','Prenez des tomates fraiches, parsemez les de sel marin et savourez !');
