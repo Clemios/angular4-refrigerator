@@ -67,8 +67,14 @@ INSERT INTO `users` VALUES (1,'clem_ios@hotmail.com','Clemios','wordrave'),(2,'o
 ### Démarrer le projet
 Pour que le projet fonctionne, il faut démarrer les microservices NodeJS
 
+* Lancement via une seule commande
 ```bash
 node authenticator/index.js & node user/index.js & node ingredient/index.js & node recipe/index.js & npm start
+```
+
+* Installation multiple (experimental):
+```bash
+cd authenticator && npm install & cd .. && cd user && npm install
 ```
 
 ```bash
