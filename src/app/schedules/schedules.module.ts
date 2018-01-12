@@ -9,6 +9,7 @@ import { CovalentModule } from '../covalent.module'
 import { SchedulesRoutingModule } from './schedules-routing.module'
 
 import { SchedulesComponent } from './schedules.component'
+import { CalendarComponent } from './calendar/calendar.component'
 
 @NgModule({
   imports: [
@@ -21,6 +22,6 @@ import { SchedulesComponent } from './schedules.component'
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [SchedulesComponent]
+  declarations: [SchedulesComponent, CalendarComponent]
 })
 export class SchedulesModule { }

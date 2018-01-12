@@ -32,14 +32,14 @@
         position: absolute !important;
         z-index: 2;
         backface-visibility: hidden;
-        width: -webkit-fill-available;
+        width: stretch;
     }
     .back {
         position: absolute !important;
         transform: rotateY(180deg);
         z-index: 1;
         backface-visibility: hidden;
-        width: -webkit-fill-available;
+        width: stretch;
     }
 }
 

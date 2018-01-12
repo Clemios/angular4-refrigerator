@@ -16,16 +16,15 @@ export class RecipesCardsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('RECIPES', this.recipes)
   }
 
   flipTile(isFlipped): void {
-    console.log(isFlipped)
     this.isFlipped = !isFlipped
   }
 
   addRecipe(newRecipe) {
     this.onRecipeAdded.emit(newRecipe)
+    this.isFlipped = !this.isFlipped
   }
 
   deleteRecipe(recipeId) {
