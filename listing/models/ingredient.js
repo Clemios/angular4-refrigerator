@@ -4,15 +4,13 @@ var pool = mysql.createPool({
 	connectionLimit: 10,
 	host: 'localhost',
 	port: '8889',
-	user: 'ingredients',
-	password: 'ingredients',
+	user: 'listings',
+	password: 'listings',
 	database: 'kitchen'
 });
 
 pool.getConnection(function (err, connection) {
-	if (!err) {
-		console.log('Database connected');
-	} else {
+	if (!err) {} else {
 		console.log('Problème de connection à la base de données');
 		console.log('code :', err.code);
 		if (!err.sqlMessage) {
@@ -24,19 +22,19 @@ pool.getConnection(function (err, connection) {
 });
 
 module.exports.findAll = function (callback) {
-	pool.query("SELECT * FROM ingredients ORDER BY id DESC", callback);
+	pool.query("SELECT * FROM listings ORDER BY id DESC", callback);
 }
 
-module.exports.addIngredient = function (data, callback) {
-	pool.query("INSERT INTO ingredients SET ?", data, callback);
+module.exports.addListing = function (data, callback) {
+	pool.query("INSERT INTO listings SET ?", data, callback);
 }
 
-module.exports.deleteIngredient = function (ingredientId, callback) {
-	pool.query("DELETE FROM ingredients WHERE id = '" + ingredientId + "'", callback);
+module.exports.deleteListing = function (listingId, callback) {
+	pool.query("DELETE FROM listings WHERE id = '" + listingId + "'", callback);
 }
 
-module.exports.findByIngredientName = function (ingredientName, callback) {
-	pool.query("SELECT * FROM ingredients WHERE ingredientName = '" + ingredientName + "'", callback);
+module.exports.findByListingName = function (listingName, callback) {
+	pool.query("SELECT * FROM listings WHERE listingName = '" + listingName + "'", callback);
 }
 
 module.exports.encrypt = function (data, callback) {

@@ -33,5 +33,5 @@ app.use(require('./api/ingredient_api'));
 port = process.env.PORT || CONFIG.INGREDIENT.port;
 
 app.listen(port, function () {
-	console.log("MySQL api for ingredient ready on port " + port);
+	console.log("ingredient API ready on :" + port);
 })

@@ -57,27 +57,20 @@ CREATE TABLE `users` (
 INSERT INTO `users` VALUES (1,'clem_ios@hotmail.com','Clemios','wordrave'),(2,'oliv.murat@gmail.com','Oliv','azerty');
 ```
 
-* SQL pour créer les utilsateurs MySQL:
+* Créer les utilsateurs (vous pouvez facultativement configurer des permissions):
 
-```sql
-USE `mysql`;
-INSERT INTO `user` (`Host`, `User`, `Password`, `Select_priv`, `Insert_priv`, `Update_priv`, `Delete_priv`, `Create_priv`, `Drop_priv`, `Reload_priv`, `Shutdown_priv`, `Process_priv`, `File_priv`, `Grant_priv`, `References_priv`, `Index_priv`, `Alter_priv`, `Show_db_priv`, `Super_priv`, `Create_tmp_table_priv`, `Lock_tables_priv`, `Execute_priv`, `Repl_slave_priv`, `Repl_client_priv`, `Create_view_priv`, `Show_view_priv`, `Create_routine_priv`, `Alter_routine_priv`, `Create_user_priv`, `Event_priv`, `Trigger_priv`, `Create_tablespace_priv`, `ssl_type`, `ssl_cipher`, `x509_issuer`, `x509_subject`, `max_questions`, `max_updates`, `max_connections`, `max_user_connections`, `plugin`, `authentication_string`, `password_expired`) VALUES
-('%', 'users', '*1042D4357FE3CB7B425DFBBB2797E1A8E517DACA', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', '', '', '', '', 0, 0, 0, 0, 'mysql_native_password', '', 'N'),
-('%', 'ingredients', '*EEDA0C7D67CDA919AAC69D5FAF548B4CF4259BA0', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', '', '', '', '', 0, 0, 0, 0, 'mysql_native_password', '', 'N'),
-('%', 'recipes', '*BE304807182067899FB640B85EA8E025F0F17266', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', '', '', '', '', 0, 0, 0, 0, 'mysql_native_password', '', 'N');
-```
+- Il y a un utilisateur par table
+- Son nom et mot de passe sont identiques et correspondent aux noms des tables
 
-* Pour attribuer les privilèges sur les tables MySQL:
-```sql
-USE `mysql`;
-INSERT INTO `tables_priv` (`Host`, `Db`, `User`, `Table_name`, `Grantor`, `Timestamp`, `Table_priv`, `Column_priv`) VALUES
-('%', 'kitchen', 'users', 'users', 'root@localhost', '0000-00-00 00:00:00', 'Select,Insert,Update,Delete,Create,Drop,Grant,References,Index,Alter,Create View,Show view,Trigger', ''),
-('%', 'kitchen', 'ingredients', 'ingredients', 'root@localhost', '0000-00-00 00:00:00', 'Select,Insert,Update,Delete,Create,Drop,Grant,References,Index,Alter,Create View,Show view,Trigger', ''),
-('%', 'kitchen', 'recipes', 'recipes', 'root@localhost', '0000-00-00 00:00:00', 'Delete,Create,Drop,Grant,Index,Alter,Create View,Show view,Trigger', '');
-```
+
 
 ### Démarrer le projet
-Pour que le projet fonctionne, il faut démarrer quelques microservices NodeJS (et donc plusieurs terminaux) :
+Pour que le projet fonctionne, il faut démarrer les microservices NodeJS
+
+```bash
+node authenticator/index.js & node user/index.js & node ingredient/index.js & node recipe/index.js & npm start
+```
+
 ```bash
 cd Refrigerator/
 ```

@@ -32,5 +32,5 @@ app.use(require('./api/recipe_api'));
 port = process.env.PORT || CONFIG.RECIPE.port;
 
 app.listen(port, function () {
-	console.log("MySQL api for recipe ready on port " + port);
+	console.log("recipe API ready on :" + port);
 })

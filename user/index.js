@@ -32,5 +32,5 @@ app.use(require('./api/user_api'));
 port = process.env.PORT || CONFIG.USER.port;
 
 app.listen(port, function () {
-	console.log("MySQL api for user ready on port " + port);
+	console.log("user API ready on :" + port);
 })

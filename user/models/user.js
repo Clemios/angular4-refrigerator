@@ -12,7 +12,6 @@ var pool = mysql.createPool({
 
 pool.getConnection(function (err, connection) {
 	if (!err) {
-		console.log('Database connected');
 	} else {
 		console.log('Problème de connection à la base de données');
 		console.log('code :', err.code);
