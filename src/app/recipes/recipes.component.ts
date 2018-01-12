@@ -17,7 +17,7 @@ interface Recipe {
 export class RecipesComponent implements OnInit {
 
   recipeService: any
-  recipes: Recipe[] = []
+  recipes: Recipe[]
 
   getRecipes() {
     return (this.recipeService.getRecipes()
@@ -40,9 +40,6 @@ export class RecipesComponent implements OnInit {
 
   addRecipe(newRecipe) {
     const recipe = { name: newRecipe.recipeName, description: newRecipe.recipeDescription, image: newRecipe.recipeImage }
-
-    console.log('PPPPAAAAAARRRRREEEEENNNTTT')
-    console.log(newRecipe)
     return (this.recipeService.addRecipe(recipe)
       .subscribe((response) => {
         if (response.ok && JSON.parse(response._body).affectedRows === 1) {
@@ -71,7 +68,6 @@ export class RecipesComponent implements OnInit {
     return (this.recipeService.deleteRecipe({ 'id': recipeId })
       .subscribe((response) => {
         if (response.errno) {
-          console.log(response)
           new Noty({
             text: 'DATABASE ERROR',
             layout: 'topRight',

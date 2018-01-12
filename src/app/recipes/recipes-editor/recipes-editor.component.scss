@@ -2,6 +2,10 @@
     margin-bottom: 0px !important;
 }
 
+.float-right {
+    float: right;
+}
+
 .upload-card {
     padding: 6px !important;
     text-align: center;
@@ -21,6 +25,10 @@
         transition: opacity 1s;
         opacity: 1;
     }
+}
+
+.space-around {
+    justify-content: space-around;
 }
 
 .recipe-input-wrapper {

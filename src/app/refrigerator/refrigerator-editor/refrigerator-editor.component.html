@@ -8,8 +8,8 @@
       <mat-error *ngIf="ingredient.invalid">{{getIngredientErrorMessage()}}</mat-error>
     </mat-form-field>
     <div fxFlex="30%">
-      <button style="float: right;" mat-button *ngIf='ingredientName && ingredientQuantity && ingredientUnit' matSuffix mat-icon-button
-        aria-label="Send" (click)="addIngredient(ingredientName, ingredientQuantity, ingredientUnit)">
+      <button style="float: right;" mat-button *ngIf='ingredientName && ingredientQuantity && ingredientUnit' mat-icon-button aria-label="Send"
+        (click)="addIngredient(ingredientName, ingredientQuantity, ingredientUnit)">
         <mat-icon>send</mat-icon>
       </button>
     </div>

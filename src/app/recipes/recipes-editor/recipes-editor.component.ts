@@ -15,21 +15,9 @@ export class RecipesEditorComponent implements OnInit {
   @Input() recipeDescription: number
   @Output() onRecipeAdded: EventEmitter<any> = new EventEmitter<any>()
 
-  recipeUnit: 'mg' | 'g' | 'ml' | 'l'
-
-  units = [
-    { value: 'mg', label: 'Milligramme' },
-    { value: 'g', label: 'Gramme' },
-    { value: 'ml', label: 'Millilitre' },
-    { value: 'l', label: 'Litre' }
-  ]
-
   recipe = new FormControl('', [Validators.required])
-  file: any
+  image: any
   imagePreview: string
-  fileSelectMsg = 'No file selected yet.'
-  fileUploadMsg = 'No file uploaded yet.'
-  disabled: boolean
 
   addRecipe(recipeName, recipeDescription) {
     const recipeImage = this.imagePreview
@@ -38,28 +26,20 @@ export class RecipesEditorComponent implements OnInit {
     this.onRecipeAdded.emit(newRecipe)
   }
 
-  /// FILE INPUT
-  selectEvent(file: File): void {
-    this.fileSelectMsg = file.name
-    this.file = file
-    console.log('SELECT:', this.file)
+  // Image methods
+  selectEvent(image: File): void {
+    // Ici je précharge le fichier et le convertis en base64 pour pouvoir l'enregistrer
+    this.image = image
     const reader = new FileReader()
-    reader.readAsDataURL(file)
+    reader.readAsDataURL(image)
     reader.onload = () => {
-      this.imagePreview = 'data:' + file.type + ';base64,' + reader.result.split(',')[1]
+      this.imagePreview = 'data:' + image.type + ';base64,' + reader.result.split(',')[1]
     }
   }
-
   cancelEvent(): void {
-    this.fileSelectMsg = 'No file selected yet.'
-    this.fileUploadMsg = 'No file uploaded yet.'
     this.imagePreview = ''
   }
-
-  toggleDisabled(): void {
-    this.disabled = !this.disabled
-  }
-  /// END FILE INPUT
+  // END FILE INPUT
 
 
   constructor() {

@@ -3,9 +3,7 @@ import { Routes, RouterModule } from '@angular/router'
 import { PublicGuard, ProtectedGuard } from 'ngx-auth'
 
 import { HomeComponent } from './home/home.component'
-import { LoginComponent } from './login/login.component'
 
-import { RecipesComponent } from './recipes/recipes.component'
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
 
 const routes: Routes = [
@@ -33,6 +31,16 @@ const routes: Routes = [
     path: 'recipes',
     canActivate: [ProtectedGuard],
     loadChildren: './recipes/recipes.module#RecipesModule'
+  },
+  {
+    path: 'lists',
+    canActivate: [ProtectedGuard],
+    loadChildren: './lists/lists.module#ListsModule'
+  },
+  {
+    path: 'schedules',
+    canActivate: [ProtectedGuard],
+    loadChildren: './schedules/schedules.module#SchedulesModule'
   },
   {
     path: '**',

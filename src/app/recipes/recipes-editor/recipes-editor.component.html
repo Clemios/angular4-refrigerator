@@ -21,7 +21,7 @@
         <!-- <mat-error *ngIf="recipe.invalid">{{getRecipeErrorMessage()}}</mat-error> -->
       </mat-form-field>
     </div>
-    <div fxLayout="row">
+    <div class="space-around" fxLayout="row">
       <td-file-upload class="upload-button" #singleFileUpload name="recipeImage" [(ngModel)]="files" (select)="selectEvent($event)"
         (cancel)="cancelEvent()" [disabled]="disabled" required>
         <span>{{ singleFileUpload.value?.name }}</span>
@@ -33,15 +33,15 @@
         </ng-template>
       </td-file-upload>
     </div>
-    <div fxLayout="row">
+    <div class="space-around" fxLayout="row">
       <div *ngIf="imagePreview" class="image-wrapper" fxFlex="90%">
         <img [src]="imagePreview">
       </div>
     </div>
-    <!-- <p>Upload Event: {{fileUploadMsg}}</p>
-    <button mat-button color="primary" (click)="toggleDisabled()">Toggle Disable</button> -->
   </mat-card-content>
   <mat-card-actions class="no-margin-bottom">
-    <button mat-button (click)="addRecipe(recipeName, recipeDescription)">Enregistrer</button>
+    <button class="float-right" mat-button mat-icon-button (click)="addRecipe(recipeName, recipeDescription)">
+      <mat-icon>send</mat-icon>
+    </button>
   </mat-card-actions>
 </form>
