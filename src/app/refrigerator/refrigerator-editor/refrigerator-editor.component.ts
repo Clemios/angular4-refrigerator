@@ -27,7 +27,6 @@ export class RefrigeratorEditorComponent implements OnInit {
   quantity = new FormControl('', [Validators.required])
 
   addIngredient(ingredientName, ingredientQuantity, ingredientUnit) {
-    console.log(this.quantity.errors)
     const newIngredient = { ingredientName, ingredientQuantity, ingredientUnit }
     this.onIngredientAdded.emit(newIngredient)
   }

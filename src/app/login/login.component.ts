@@ -64,7 +64,6 @@ export class LoginComponent implements OnInit {
       this.checkForSignin(signinEmail, signinPassword).subscribe((response) => {
         if (response.errno) {
           // En cas d' erreur retoutnée par le microservice user
-          console.log(response)
           new Noty({
             text: 'DATABASE ERROR',
             layout: 'topRight',

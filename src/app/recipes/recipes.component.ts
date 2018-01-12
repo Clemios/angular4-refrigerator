@@ -23,7 +23,6 @@ export class RecipesComponent implements OnInit {
     return (this.recipeService.getRecipes()
       .subscribe((response) => {
         if (response.errno) {
-          console.log(response)
           new Noty({
             text: 'DATABASE ERROR',
             layout: 'topRight',

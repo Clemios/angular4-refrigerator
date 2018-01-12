@@ -23,7 +23,6 @@ export class RefrigeratorComponent implements OnInit {
     return (this.ingredientService.getIngredients()
       .subscribe((response) => {
         if (response.errno) {
-          console.log(response)
           new Noty({
             text: 'DATABASE ERROR',
             layout: 'topRight',
@@ -68,7 +67,6 @@ export class RefrigeratorComponent implements OnInit {
     return (this.ingredientService.deleteIngredient({ 'id': ingredientId })
       .subscribe((response) => {
         if (response.errno) {
-          console.log(response)
           new Noty({
             text: 'DATABASE ERROR',
             layout: 'topRight',

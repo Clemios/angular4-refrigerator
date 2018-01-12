@@ -22,7 +22,6 @@ export class RecipesEditorComponent implements OnInit {
   addRecipe(recipeName, recipeDescription) {
     const recipeImage = this.imagePreview
     const newRecipe = { recipeName, recipeDescription, recipeImage }
-    console.log('NEW', newRecipe)
     this.onRecipeAdded.emit(newRecipe)
   }
 
