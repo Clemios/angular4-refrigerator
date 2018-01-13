@@ -8,8 +8,11 @@ import { CovalentModule } from '../covalent.module'
 
 import { ListingsRoutingModule } from './listings-routing.module'
 
+import { ListingService } from '../services/listing.service'
+
 import { ListingsComponent } from './listings.component'
 import { ListingsListComponent } from './listings-list/listings-list.component'
+import { ListingsEditorComponent } from './listings-editor/listings-editor.component'
 
 @NgModule({
   imports: [
@@ -22,6 +25,7 @@ import { ListingsListComponent } from './listings-list/listings-list.component'
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [ListingsComponent, ListingsListComponent]
+  declarations: [ListingsComponent, ListingsListComponent, ListingsEditorComponent],
+  providers: [ListingService]
 })
 export class ListingsModule { }

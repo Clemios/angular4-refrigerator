@@ -1,5 +1,3 @@
-<div fxLayout="row">
-  <mat-card fxFlex="100%">
-    <app-recipes-cards (onRecipeAdded)="addRecipe($event)" (onRecipeDeleted)="deleteRecipe($event)" [recipes]="recipes"></app-recipes-cards>
-  </mat-card>
-</div>
+<mat-card fxFlex="100%">
+  <app-recipes-cards (onRecipeAdded)="addRecipe($event)" (onRecipeDeleted)="deleteRecipe($event)" [recipes]="recipes"></app-recipes-cards>
+</mat-card>

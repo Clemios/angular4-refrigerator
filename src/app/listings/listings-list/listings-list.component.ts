@@ -11,6 +11,7 @@ import { IPageChangeEvent } from '@covalent/core'
   styleUrls: ['./listings-list.component.css']
 })
 export class ListingsListComponent implements OnInit {
+  typesOfShoes = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers']
 
   constructor() { }
 

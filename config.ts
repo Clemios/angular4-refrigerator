@@ -16,5 +16,8 @@ export const CONFIG = {
     },
     'PLANNING': {
         'port': '4430'
+    },
+    'LISTING': {
+        'port': '4440'
     }
 }

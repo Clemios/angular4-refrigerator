@@ -33,5 +33,5 @@ app.use(require('./api/listing_api'));
 port = process.env.PORT || CONFIG.LISTING.port;
 
 app.listen(port, function () {
-	console.log("MySQL api for listing ready on port " + port);
+	console.log("listing API ready on :" + port);
 })

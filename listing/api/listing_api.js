@@ -13,9 +13,11 @@ app.get('/', function (req, res) {
 });
 
 app.post('/addlisting', function (req, res) {
-	var data = req.body;
+	var data = req.body.name;
 	console.log('Nouvelle liste: ', data)
-	listing.addListing(data, function (err, rows, fields) {
+	listing.addListing({
+		name: data
+	}, function (err, rows, fields) {
 		if (err) {
 			console.log(err);
 			throw err
