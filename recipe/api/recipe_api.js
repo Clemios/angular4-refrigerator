@@ -12,6 +12,15 @@ app.get('/', function (req, res) {
 	})
 });
 
+app.post('/get', function (req, res) {
+	var data = req.body;
+	console.log('Demande de la recette: ', data)
+	recipe.findById(data.id, function (err, rows, fields) {
+		if (err) res.send(err);
+		if (rows) res.json(rows[0]);
+	})
+});
+
 app.post('/addrecipe', function (req, res) {
 	var data = req.body;
 	console.log('Nouvelle recette: ', data)

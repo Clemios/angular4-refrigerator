@@ -18,6 +18,12 @@ export class RecipeService {
         )
     }
 
+    getRecipe(data) {
+        return this.http.post('http://localhost:' + CONFIG.RECIPE.port + '/get', data).pipe(
+            map((res: Response) => res.json())
+        )
+    }
+
     addRecipe(data) {
         const headers = new Headers({
             'Content-Type': 'application/json'

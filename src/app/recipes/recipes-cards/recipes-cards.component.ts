@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-recipes-cards',
@@ -10,10 +11,11 @@ export class RecipesCardsComponent implements OnInit {
   @Input('recipes') recipes: any[]
   @Output() onRecipeAdded: EventEmitter<any> = new EventEmitter<any>()
   @Output() onRecipeDeleted: EventEmitter<any> = new EventEmitter<any>()
+  @Output() onRecipeGet: EventEmitter<any> = new EventEmitter<any>()
 
   isFlipped = false
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -25,6 +27,10 @@ export class RecipesCardsComponent implements OnInit {
   addRecipe(newRecipe) {
     this.onRecipeAdded.emit(newRecipe)
     this.isFlipped = !this.isFlipped
+  }
+
+  getRecipe(recipeId) {
+    this.router.navigate(['/recipes', recipeId])
   }
 
   deleteRecipe(recipeId) {

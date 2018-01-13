@@ -25,16 +25,16 @@ module.exports.findAll = function (callback) {
 	pool.query("SELECT * FROM recipes ORDER BY id DESC", callback);
 }
 
+module.exports.findById = function (recipeId, callback) {
+	pool.query("SELECT * FROM recipes WHERE id = '" + recipeId + "'", callback);
+}
+
 module.exports.addRecipe = function (data, callback) {
 	pool.query("INSERT INTO recipes SET ?", data, callback);
 }
 
 module.exports.deleteRecipe = function (recipeId, callback) {
 	pool.query("DELETE FROM recipes WHERE id = '" + recipeId + "'", callback);
-}
-
-module.exports.findByRecipeName = function (recipeName, callback) {
-	pool.query("SELECT * FROM recipes WHERE recipeName = '" + recipeName + "'", callback);
 }
 
 module.exports.encrypt = function (data, callback) {
