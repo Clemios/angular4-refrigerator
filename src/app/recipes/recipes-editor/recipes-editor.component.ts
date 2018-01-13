@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, Inject } from '@angular/core'
 import { FormControl, Validators } from '@angular/forms'
+import { Ingredient } from '../../interfaces/ingredient'
 
 import { CONFIG } from '../../../../config'
 
@@ -15,14 +16,32 @@ export class RecipesEditorComponent implements OnInit {
   @Input() recipeDescription: number
   @Output() onRecipeAdded: EventEmitter<any> = new EventEmitter<any>()
 
+  ingredientUnit: 'mg' | 'g' | 'ml' | 'l'
+
+  units = [
+    { value: 'mg', label: 'Milligramme' },
+    { value: 'g', label: 'Gramme' },
+    { value: 'ml', label: 'Millilitre' },
+    { value: 'l', label: 'Litre' }
+  ]
+
   recipe = new FormControl('', [Validators.required])
   image: any
   imagePreview: string
+  ingredients: Ingredient[] = []
+
+  ingredient = new FormControl('', [Validators.required])
+  quantity = new FormControl('', [Validators.required])
 
   addRecipe(recipeName, recipeDescription) {
     const recipeImage = this.imagePreview
     const newRecipe = { recipeName, recipeDescription, recipeImage }
     this.onRecipeAdded.emit(newRecipe)
+  }
+
+  addIngredient(ingredientName, ingredientQuantity, ingredientUnit) {
+    const newIngredient: Ingredient = { name: ingredientName, quantity: ingredientQuantity, unit: ingredientUnit }
+    this.ingredients.push(newIngredient)
   }
 
   // Image methods
@@ -45,10 +64,18 @@ export class RecipesEditorComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.ingredientUnit = 'g'
   }
 
   public getRecipeErrorMessage() {
     return this.recipe.hasError('required') ? 'You must enter a value' : ''
+  }
+
+  public getIngredientErrorMessage() {
+    return this.ingredient.hasError('required') ? 'You must enter a value' : ''
+  }
+  public getQuantityErrorMessage() {
+    return this.quantity.hasError('required') ? 'You must enter a numeric value' : ''
   }
 
 }
