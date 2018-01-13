@@ -1,13 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core'
+import { Recipe } from '../interfaces/recipe'
 import { RecipeService } from '../services/recipe.service'
 import * as Noty from 'noty'
-
-interface Recipe {
-  name: string
-  description: string
-  image: string
-  ingredients: any[]
-}
 
 @Component({
   selector: 'app-recipes',

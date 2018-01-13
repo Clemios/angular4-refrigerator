@@ -1,13 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core'
+import { Ingredient } from '../interfaces/ingredient'
 import { IngredientService } from '../services/ingredient.service'
 import * as Noty from 'noty'
-
-interface Ingredient {
-  name: string
-  quantity: string
-  unit: string
-  id: number
-}
 
 @Component({
   selector: 'app-refrigerator',
@@ -17,7 +11,7 @@ interface Ingredient {
 export class RefrigeratorComponent implements OnInit {
 
   ingredientService: any
-  ingredients: Ingredient[] = []
+  ingredients: Ingredient[]
 
   getIngredients() {
     return (this.ingredientService.getIngredients()
