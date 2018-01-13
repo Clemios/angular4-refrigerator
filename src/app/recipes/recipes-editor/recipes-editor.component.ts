@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, Inject } from '@angular/core'
 import { FormControl, Validators } from '@angular/forms'
 import { Ingredient } from '../../interfaces/ingredient'
+import { Recipe } from '../../interfaces/recipe'
 
 import { CONFIG } from '../../../../config'
 
@@ -35,7 +36,8 @@ export class RecipesEditorComponent implements OnInit {
 
   addRecipe(recipeName, recipeDescription) {
     const recipeImage = this.imagePreview
-    const newRecipe = { recipeName, recipeDescription, recipeImage }
+    const recipeIngredients = this.ingredients
+    const newRecipe: Recipe = { name: recipeName, description: recipeDescription, image: recipeImage, ingredients: recipeIngredients }
     this.onRecipeAdded.emit(newRecipe)
   }
 

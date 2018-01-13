@@ -1,4 +1,4 @@
-<mat-grid-list cols="2" rowHeight="580px">
+<mat-grid-list cols="3" rowHeight="580px">
 
   <mat-grid-tile>
     <div [class.father]="true" [class.flipped]="isFlipped">
@@ -19,9 +19,20 @@
       <mat-card-header>
         <mat-card-title>{{recipe.name}}</mat-card-title>
       </mat-card-header>
-      <div className="recipe-image-wrapper no-margin-top">
-        <img mat-card-image class="no-margin-top" src={{recipe.image}} alt={{recipe.name}}>
+      <div fxLayout="row" style="justify-content: space-between;">
+        <div fxFlex="60%">
+          <img class="card-image" src={{recipe.image}} alt={{recipe.name}}>
+        </div>
+        <div fxFlex="40%">
+          <mat-list role="list">
+            <mat-list-item role="listitem">
+              <span>test</span>
+              <span class="float-right">oooo</span>
+            </mat-list-item>
+          </mat-list>
+        </div>
       </div>
+
       <mat-card-content>
         <p class="recipe-description">{{recipe.description}}</p>
       </mat-card-content>
