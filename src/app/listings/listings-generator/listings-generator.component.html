@@ -1,0 +1,25 @@
+<div fxLayout="row">
+  <div fxFlex="30%">
+    <form>
+      <mat-form-field>
+        <input matInput placeholder="Nom de la liste..." type="text" [formControl]="name" [(ngModel)]="listingName" name="listingName">
+        <button mat-button *ngIf="listingName" matSuffix mat-icon-button aria-label="Clear" (click)="listingName=''">
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-error *ngIf="name.invalid">{{getNameErrorMessage()}}</mat-error>
+      </mat-form-field>
+
+      <button *ngIf="name.valid" mat-icon-button (click)="addListing(listingName)">
+        <mat-icon aria-label="Add">add</mat-icon>
+      </button>
+    </form>
+  </div>
+  <div fxFlex="70%">
+    <div class="button-row">
+      <button mat-button (click)="getMainListing()">
+        <mat-icon aria-label="favorite">star</mat-icon>
+      </button>
+      <button *ngFor="let listing of listings" mat-button (click)="getListing(listing.id)">{{listing.name}}</button>
+    </div>
+  </div>
+</div>

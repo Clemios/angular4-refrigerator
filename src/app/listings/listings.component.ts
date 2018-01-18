@@ -1,6 +1,6 @@
-import { Component, OnInit, Inject } from '@angular/core'
-import { FormControl, Validators } from '@angular/forms'
+import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core'
 import { Listing } from '../interfaces/listing'
+import { Ingredient } from '../interfaces/ingredient'
 import { ListingService } from '../services/listing.service'
 
 @Component({
@@ -11,11 +11,8 @@ import { ListingService } from '../services/listing.service'
 export class ListingsComponent implements OnInit {
 
   listingService: any
-  listings: Listing[] = []
-  listingName: string
-
-  name = new FormControl('', [Validators.required])
-
+  listings: Listing[]
+  listing: any
 
   getListings() {
     return (this.listingService.getListings()
@@ -30,6 +27,42 @@ export class ListingsComponent implements OnInit {
           }).show()
         } else {
           this.listings = response
+        }
+      })
+    )
+  }
+
+  getListing(listingId) {
+    return (this.listingService.getListing({ 'id': listingId })
+      .subscribe((response) => {
+        if (response.errno) {
+          new Noty({
+            text: 'DATABASE ERROR',
+            layout: 'topRight',
+            type: 'error',
+            theme: 'mint',
+            timeout: 3000,
+          }).show()
+        } else {
+          this.listing = response
+        }
+      })
+    )
+  }
+
+  getMainListing() {
+    return (this.listingService.getMainListing()
+      .subscribe((response) => {
+        if (response.errno) {
+          new Noty({
+            text: 'DATABASE ERROR',
+            layout: 'topRight',
+            type: 'error',
+            theme: 'mint',
+            timeout: 3000,
+          }).show()
+        } else {
+          this.listing = response
         }
       })
     )
@@ -61,9 +94,16 @@ export class ListingsComponent implements OnInit {
     )
   }
 
-  addIngredientToListing(newIngredient) {
-    const ingredient = { name: newIngredient.ingredientName, quantity: newIngredient.ingredientQuantity, unit: newIngredient.ingredientUnit }
-    return (this.listingService.addIngredient(ingredient)
+  addIngredientToListing(newIngredientToListing) {
+    const newIngredient: Ingredient = {
+      name: newIngredientToListing.ingredientName,
+      quantity: newIngredientToListing.ingredientQuantity,
+      unit: newIngredientToListing.ingredientUnit
+    }
+    let newIngredients: Ingredient[]
+    newIngredients = JSON.parse(this.listing.ingredients)
+    newIngredients.push(newIngredient)
+    return (this.listingService.addIngredientToList({ 'id': newIngredientToListing.listingId, 'ingredients': JSON.stringify(newIngredients) })
       .subscribe((response) => {
         if (response.ok) {
           this.getListings()
@@ -74,6 +114,7 @@ export class ListingsComponent implements OnInit {
             theme: 'mint',
             timeout: 3000,
           }).show()
+          this.getListing(this.listing.id)
         } else {
           new Noty({
             text: 'ERREUR',
@@ -87,16 +128,40 @@ export class ListingsComponent implements OnInit {
     )
   }
 
+  deleteIngredientFromListing(ingredientId) {
+    let newIngredients: Ingredient[]
+    newIngredients = JSON.parse(this.listing.ingredients)
+    newIngredients.splice(ingredientId, 1)
+    return (this.listingService.deleteIngredientFromList({ 'id': this.listing.id, 'ingredients': JSON.stringify(newIngredients) })
+      .subscribe((response) => {
+        if (response.errno) {
+          new Noty({
+            text: 'DATABASE ERROR',
+            layout: 'topRight',
+            type: 'error',
+            theme: 'mint',
+            timeout: 3000,
+          }).show()
+        } else {
+          new Noty({
+            text: 'Ingrédient supprimé',
+            layout: 'topRight',
+            type: 'success',
+            theme: 'mint',
+            timeout: 3000,
+          }).show()
+          this.getListing(this.listing.id)
+        }
+      })
+    )
+  }
+
   constructor( @Inject(ListingService) listingService) {
     this.listingService = listingService
-    // this.getListings()
+    this.getListings()
   }
 
   ngOnInit() {
-  }
-
-  public getNameErrorMessage() {
-    return this.name.hasError('required') ? 'You must enter a value' : ''
   }
 
 }

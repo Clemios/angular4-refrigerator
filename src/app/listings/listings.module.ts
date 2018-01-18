@@ -12,7 +12,8 @@ import { ListingService } from '../services/listing.service'
 
 import { ListingsComponent } from './listings.component'
 import { ListingsListComponent } from './listings-list/listings-list.component'
-import { ListingsEditorComponent } from './listings-editor/listings-editor.component'
+import { ListingsEditorComponent } from './listings-editor/listings-editor.component';
+import { ListingsGeneratorComponent } from './listings-generator/listings-generator.component'
 
 @NgModule({
   imports: [
@@ -25,7 +26,7 @@ import { ListingsEditorComponent } from './listings-editor/listings-editor.compo
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [ListingsComponent, ListingsListComponent, ListingsEditorComponent],
+  declarations: [ListingsComponent, ListingsListComponent, ListingsEditorComponent, ListingsGeneratorComponent],
   providers: [ListingService]
 })
 export class ListingsModule { }

@@ -7,17 +7,51 @@ var listing = require('../models/listing');
 // API Routes
 app.get('/', function (req, res) {
 	listing.findAll(function (err, rows, fields) {
-		if (err) res.send(err);
+		if (err) console.log(res), res.send(err);
 		if (rows) res.json(rows);
 	})
 });
 
+app.post('/get', function (req, res) {
+	var data = req.body;
+	console.log('Demande de la liste: ', data)
+	listing.findById(data.id, function (err, rows, fields) {
+		if (err) res.send(err);
+		if (rows) res.json(rows[0]);
+	})
+});
+
+app.post('/get-main', function (req, res) {
+	var data = req.body;
+	console.log('Demande de la liste principale ')
+	listing.findMain(function (err, rows, fields) {
+		if (err) res.send(err);
+		if (rows) res.json(rows[0]);
+	})
+});
+
 app.post('/addlisting', function (req, res) {
-	var data = req.body.name;
-	console.log('Nouvelle liste: ', data)
+	var listingName = req.body.name;
+	console.log('Nouvelle liste: ', listingName)
 	listing.addListing({
-		name: data
+		name: listingName,
+		main: 'FALSE',
+		ingredients: '[]'
 	}, function (err, rows, fields) {
+		if (err) {
+			console.log(err);
+			throw err
+		};
+		res.send(JSON.stringify(rows));
+	})
+});
+
+app.post('/addingredient-tolisting', function (req, res) {
+	var listingId = req.body.id;
+	var ingredients = req.body.ingredients;
+	console.log('Nouvel Ingrédient: ', ingredients)
+	console.log('Pour la Liste: ', listingId)
+	listing.addIngredientToListing(listingId, ingredients, function (err, rows, fields) {
 		if (err) {
 			console.log(err);
 			throw err
@@ -32,6 +66,20 @@ app.post('/deletelisting', function (req, res) {
 	listing.deleteListing(data.id, function (err, rows, fields) {
 		if (err) res.send(err);
 		if (rows) res.send(JSON.stringify(rows));
+	})
+});
+
+app.post('/deleteingredient-fromlisting', function (req, res) {
+	var listingId = req.body.id;
+	var ingredients = req.body.ingredients;
+	console.log('Nouvel Ingrédient: ', ingredients)
+	console.log('Pour la Liste: ', listingId)
+	listing.deleteIngredientFromListing(listingId, ingredients, function (err, rows, fields) {
+		if (err) {
+			console.log(err);
+			throw err
+		};
+		res.send(JSON.stringify(rows));
 	})
 });
 

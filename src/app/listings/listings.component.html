@@ -1,45 +1,14 @@
-<mat-card fxFlex="100%">
-  <div fxLayout="row">
-    <form>
-      <mat-form-field>
-        <input matInput placeholder="Nom de la liste..." type="text" [formControl]="name" [(ngModel)]="listingName" name="listingName">
-        <button mat-button *ngIf="listingName" matSuffix mat-icon-button aria-label="Clear" (click)="listingName=''">
-          <mat-icon>close</mat-icon>
-        </button>
-        <mat-error *ngIf="name.invalid">{{getNameErrorMessage()}}</mat-error>
-      </mat-form-field>
-
-      <button *ngIf="name.valid" mat-icon-button (click)="addListing(listingName)">
-        <mat-icon aria-label="Add">add</mat-icon>
-      </button>
-    </form>
-  </div>
-  <div fxLayout="row">
-    <mat-tab-group fxFlex="100%">
-      <mat-tab label="Main">
-        <ng-template mat-tab-label>
-          ⭐
-        </ng-template>
-        <div>
-          <mat-card class="listings-editor" fxFlex="30%">
-            <app-listings-editor></app-listings-editor>
-          </mat-card>
-          <mat-card fxFlex="70%">
-            <app-listings-list></app-listings-list>
-          </mat-card>
-        </div>
-      </mat-tab>
-      <mat-tab label="Tab 1">
-        <div class="demo-tab-content">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis
-          vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur
-          felis nec, feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor, orci enim rutrum
-          enim, vel tempor sapien arcu a tellus.
-        </div>
-      </mat-tab>
-      <mat-tab label="Tab 3" disabled>
-        No content
-      </mat-tab>
-    </mat-tab-group>
-  </div>
-</mat-card>
+<div fxLayout="row">
+  <mat-card fxFlex="100%">
+    <app-listings-generator (onListingAdded)="addListing($event)" [listings]="listings" (onGetListing)="getListing($event)" (onGetMainListing)="getMainListing()"></app-listings-generator>
+  </mat-card>
+</div>
+<div fxLayout="row">
+  <mat-card class="listings-editor" fxFlex="30%">
+    <app-listings-editor (onIngredientAddedToListing)="addIngredientToListing($event)" [listing]="listing"></app-listings-editor>
+  </mat-card>
+  <mat-card fxFlex="70%">
+    <app-listings-list (onGetMainListing)="getMainListing()" (onIngredientDeletedFromListing)="deleteIngredientFromListing($event)"
+      [listing]="listing"></app-listings-list>
+  </mat-card>
+</div>

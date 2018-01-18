@@ -17,7 +17,6 @@ export class RecipeDetailsComponent implements OnInit {
   getRecipe(recipeId) {
     return (this.recipeService.getRecipe({ 'id': recipeId })
       .subscribe((response) => {
-        console.log('RESPONSE', response)
         if (response.errno) {
           new Noty({
             text: 'DATABASE ERROR',
@@ -36,7 +35,6 @@ export class RecipeDetailsComponent implements OnInit {
   constructor( @Inject(RecipeService) recipeService, route: ActivatedRoute) {
     this.recipeService = recipeService
     this.getRecipe(route.snapshot.params['id'])
-    console.log(route.snapshot.params['id'])
   }
 
   ngOnInit() {

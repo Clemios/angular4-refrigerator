@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
 import { FormControl, Validators } from '@angular/forms'
+import { Listing } from '../../interfaces/listing'
+import { Ingredient } from '../../interfaces/ingredient'
 
 @Component({
   selector: 'app-listings-editor',
@@ -8,9 +10,10 @@ import { FormControl, Validators } from '@angular/forms'
 })
 export class ListingsEditorComponent implements OnInit {
 
+  @Input('listing') listing: Listing
   @Input() ingredientName: string
   @Input() ingredientQuantity: number
-  @Output() onIngredientAddedToList: EventEmitter<any> = new EventEmitter<any>()
+  @Output() onIngredientAddedToListing: EventEmitter<any> = new EventEmitter<any>()
 
   ingredientUnit: 'mg' | 'g' | 'ml' | 'l'
 
@@ -24,9 +27,9 @@ export class ListingsEditorComponent implements OnInit {
   ingredient = new FormControl('', [Validators.required])
   quantity = new FormControl('', [Validators.required])
 
-  addIngredient(ingredientName, ingredientQuantity, ingredientUnit) {
-    const newIngredient = { ingredientName, ingredientQuantity, ingredientUnit }
-    this.onIngredientAddedToList.emit(newIngredient)
+  addIngredientToList(listingId, ingredientName, ingredientQuantity, ingredientUnit) {
+    const newIngredientToListing = { listingId, ingredientName, ingredientQuantity, ingredientUnit }
+    this.onIngredientAddedToListing.emit(newIngredientToListing)
   }
 
 

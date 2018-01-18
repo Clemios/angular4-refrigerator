@@ -22,19 +22,31 @@ pool.getConnection(function (err, connection) {
 });
 
 module.exports.findAll = function (callback) {
-	pool.query("SELECT * FROM listings ORDER BY id DESC", callback);
+	pool.query("SELECT * FROM listings WHERE main = 'FALSE' ORDER BY id DESC", callback);
 }
 
 module.exports.addListing = function (data, callback) {
 	pool.query("INSERT INTO listings SET ?", data, callback);
 }
 
+module.exports.addIngredientToListing = function (listingId, ingredients, callback) {
+	pool.query("UPDATE listings SET ingredients = '" + ingredients + "' WHERE id ='" + listingId + "'", callback);
+}
+
 module.exports.deleteListing = function (listingId, callback) {
 	pool.query("DELETE FROM listings WHERE id = '" + listingId + "'", callback);
 }
 
-module.exports.findByListingName = function (listingName, callback) {
-	pool.query("SELECT * FROM listings WHERE listingName = '" + listingName + "'", callback);
+module.exports.deleteIngredientFromListing = function (listingId, ingredients, callback) {
+	pool.query("UPDATE listings SET ingredients = '" + ingredients + "' WHERE id ='" + listingId + "'", callback);
+}
+
+module.exports.findById = function (listingId, callback) {
+	pool.query("SELECT * FROM listings WHERE id = '" + listingId + "'", callback);
+}
+
+module.exports.findMain = function (callback) {
+	pool.query("SELECT * FROM listings WHERE main = 'TRUE'", callback);
 }
 
 module.exports.encrypt = function (data, callback) {
