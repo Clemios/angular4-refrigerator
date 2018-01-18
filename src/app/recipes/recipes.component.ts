@@ -25,15 +25,20 @@ export class RecipesComponent implements OnInit {
             timeout: 3000,
           }).show()
         } else {
+          response.map((recipe) => {
+            recipe.ingredients = JSON.parse(recipe.ingredients)
+            console.log('IN MAP', recipe.ingredients)
+          })
           this.recipes = response
+          console.log(this.recipes)
         }
       })
     )
   }
 
   addRecipe(newRecipe) {
-    const recipe = { name: newRecipe.recipeName, description: newRecipe.recipeDescription, image: newRecipe.recipeImage }
-    return (this.recipeService.addRecipe(recipe)
+    console.log(newRecipe)
+    return (this.recipeService.addRecipe(newRecipe)
       .subscribe((response) => {
         if (response.ok && JSON.parse(response._body).affectedRows === 1) {
           this.getRecipes()

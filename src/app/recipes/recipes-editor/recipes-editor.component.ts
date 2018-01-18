@@ -37,7 +37,8 @@ export class RecipesEditorComponent implements OnInit {
   addRecipe(recipeName, recipeDescription) {
     const recipeImage = this.imagePreview
     const recipeIngredients = this.ingredients
-    const newRecipe: Recipe = { name: recipeName, description: recipeDescription, image: recipeImage, ingredients: recipeIngredients }
+    console.log('Ingredients', JSON.stringify(recipeIngredients))
+    const newRecipe = { name: recipeName, description: recipeDescription, image: recipeImage, ingredients: JSON.stringify(recipeIngredients) }
     this.onRecipeAdded.emit(newRecipe)
   }
 

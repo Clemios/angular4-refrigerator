@@ -22,7 +22,12 @@ app.post('/get', function (req, res) {
 });
 
 app.post('/addrecipe', function (req, res) {
-	var data = req.body;
+	var data = {
+		'name': req.body.name,
+		'description': req.body.description,
+		'image': req.body.image,
+		'ingredients': '[]',
+	}
 	console.log('Nouvelle recette: ', data)
 	recipe.addRecipe(data, function (err, rows, fields) {
 		if (err) {

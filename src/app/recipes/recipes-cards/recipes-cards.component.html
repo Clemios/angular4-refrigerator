@@ -1,4 +1,4 @@
-<mat-grid-list cols="3" rowHeight="580px">
+<mat-grid-list cols="3" rowHeight="500px">
 
   <mat-grid-tile>
     <div [class.father]="true" [class.flipped]="isFlipped">
@@ -25,9 +25,9 @@
         </div>
         <div fxFlex="40%">
           <mat-list role="list">
-            <mat-list-item role="listitem">
-              <span>test</span>
-              <span class="float-right">oooo</span>
+            <mat-list-item *ngFor="let ingredient of recipe.ingredients" role="listitem">
+              <span>{{ingredient.name}}</span>
+              <span class="float-right">{{ingredient.quantity}}{{ingredient.unit}}</span>
             </mat-list-item>
           </mat-list>
         </div>
