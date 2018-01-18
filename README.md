@@ -7,7 +7,7 @@
 
 ## Explications techniques
 
-J'ai ecris mon code de manière scémantique le plus possible. J'ai intégré une gestion basique des erreurs et de la validation des inputs. En démarrant les microsercives un à un (voir plus bas) il enverront des logs dans leur terminal respectif.
+J'ai ecris mon code de manière scémantique le plus possible. J'ai intégré une gestion basique des erreurs et de la validation des inputs. En démarrant les microsercives un à un (voir plus bas) il enverront des logs dans leur terminal respectif. Pour le déloiement j'ai écris des stripts customs dans package.json
 Faute de temps l'utilisation de la BDD n'est pas complètement optimisée, et j'enviseageais d'uniformiser le code le plus possible afin de développer des "shared_components", idem pour les methodes métiers redondantes.
 
 ## Dépendances
@@ -83,14 +83,14 @@ cd Refrigerator/
 ```
 Pour que le projet fonctionne, il faut installer et démarrer chacun des microservices
 
-* Lancement via une seule commande (à la racine du projet)
-```bash
-node authenticator/index.js & node user/index.js & node ingredient/index.js & node recipe/index.js & npm start
-```
-
 * Installation multiple (experimental):
 ```bash
-cd authenticator && npm install & cd .. && cd user && npm install
+cd authenticator && npm install & cd .. && cd user && npm install & cd .. && cd ingredient && npm install & cd .. && cd recipe && npm install & cd .. && cd listing && npm install
+```
+
+* Lancement via une seule commande (à la racine du projet)
+```bash
+npm start
 ```
 
 * Installation et lancement manuels :
