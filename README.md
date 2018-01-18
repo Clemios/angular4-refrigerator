@@ -1,19 +1,19 @@
 # Refrigerator
 
-## TO DO
-/!\ Penser à un moyen (regex, liste d'ENUM...) afin d'éviter les multiples d'ingrédients /!\
-- [BACK] Refacto le microservice incredient pour obtenir recipe et l'affiner
-- [BACK] Faire la fonction qui supprime les ingredients (en qte) d'une recipe
-- [FRONT] Buttons pour modifier la qte d'un ingredient
-- [FRONT] Faire la vue de modification d'une recette
-- [FRONT/BACK] Concevoir agendas (plannings hebdomadaires, liste de recettes associés à un repas)
-- [FRONT/BACK] Concevoir lists (liste de courses, gestion de plusieur listes)
+## Présentation
+- Projet d'etudes du cour d'Angular du M2 Ingesup
+- Le projet s'articule autour d'un fonctionnement en microservices
+- Chaque partie possède dons son API en nodeJS
 
+## Explications techniques
 
-## Features
-- Gestionnaire de frigo
-- Banque de recettes
-- Generateur/Gestionnaire de liste de courses
+J'ai ecris mon code de manière scémantique le plus possible. J'ai intégré une gestion basique des erreurs et de la validation des inputs. En démarrant les microsercives un à un (voir plus bas) il enverront des logs dans leur terminal respectif.
+Faute de temps l'utilisation de la BDD n'est pas complètement optimisée, et j'enviseageais d'uniformiser le code le plus possible afin de développer des "shared_components", idem pour les methodes métiers redondantes.
+
+## Dépendances
+- Material : Fournit des compsants HTML et des classes CSS
+- Covalent : Rajout quelques methodes à cerains components de Material (comme la fontion filter() pour les tables paginées par exempe)
+- Noty : Javascript Notifications library
 
 ## Configuration de la base MySQL
 
@@ -36,6 +36,7 @@ CREATE TABLE `ingredients` (
   PRIMARY KEY (`id`)
 );
 INSERT INTO `ingredients` VALUES (1,'Tomate',300,'g'),(2,'Sel',100,'g');
+
 DROP TABLE IF EXISTS `recipes`;
 CREATE TABLE `recipes` (
   `id` int(11) NOT NULL,
@@ -45,6 +46,18 @@ CREATE TABLE `recipes` (
   PRIMARY KEY (`id`)
 );
 INSERT INTO `recipes` VALUES (1,'Tomates au sel','Prenez des tomates fraiches, parsemez les de sel marin et savourez !');
+
+DROP TABLE IF EXISTS `listings`;
+CREATE TABLE `listings` (
+  `id` int(11) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `ingredients` text NOT NULL,
+  `main` varchar(45) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
+);
+INSERT INTO `listings` (`id`, `name`, `ingredients`, `main`) VALUES
+(1, 'Une liste', '[{\"name\":\"tomate\",\"quantity\":3,\"unit\":\"g\"},{\"name\":\"sel\",\"quantity\":30,\"unit\":\"g\"}]', 'FALSE'),
+(2, 'Liste principale', '[{\"name\":\"tomate\",\"quantity\":3,\"unit\":\"g\"},{\"name\":\"sel\",\"quantity\":30,\"unit\":\"g\"}]', 'TRUE');
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
@@ -59,15 +72,18 @@ INSERT INTO `users` VALUES (1,'clem_ios@hotmail.com','Clemios','wordrave'),(2,'o
 
 * Créer les utilsateurs (vous pouvez facultativement configurer des permissions):
 
-- Il y a un utilisateur par table
+- Il y a un utilisateur par table (ingredients, recipes, listings, schedules, users)
 - Son nom et mot de passe sont identiques et correspondent aux noms des tables
 
 
-
 ### Démarrer le projet
-Pour que le projet fonctionne, il faut démarrer les microservices NodeJS
+Rendez vous dans le repertoire du projet :
+```bash
+cd Refrigerator/
+```
+Pour que le projet fonctionne, il faut installer et démarrer chacun des microservices
 
-* Lancement via une seule commande
+* Lancement via une seule commande (à la racine du projet)
 ```bash
 node authenticator/index.js & node user/index.js & node ingredient/index.js & node recipe/index.js & npm start
 ```
@@ -77,6 +93,7 @@ node authenticator/index.js & node user/index.js & node ingredient/index.js & no
 cd authenticator && npm install & cd .. && cd user && npm install
 ```
 
+* Installation et lancement manuels :
 ```bash
 cd Refrigerator/
 ```
@@ -97,6 +114,21 @@ cd Refrigerator/ingredient/
 ```
 * `npm install` -- (seulement la première fois) installe les nodes_modules
 * `npm start` -- démarre l'API ingredient
+```bash
+cd Refrigerator/recipe/
+```
+* `npm install` -- (seulement la première fois) installe les nodes_modules
+* `npm start` -- démarre l'API recipe
+```bash
+cd Refrigerator/listing/
+```
+* `npm install` -- (seulement la première fois) installe les nodes_modules
+* `npm start` -- démarre l'API listing
+```bash
+cd Refrigerator/schedules/
+```
+* `npm install` -- (seulement la première fois) installe les nodes_modules
+* `npm start` -- démarre l'API schedules
 
 
 ### Updating dependencies
