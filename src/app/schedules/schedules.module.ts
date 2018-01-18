@@ -10,6 +10,7 @@ import { SchedulesRoutingModule } from './schedules-routing.module'
 
 import { SchedulesComponent } from './schedules.component'
 import { CalendarComponent } from './calendar/calendar.component'
+import { SchedulesGeneratorComponent } from './schedules-generator/schedules-generator.component'
 
 @NgModule({
   imports: [
@@ -22,6 +23,6 @@ import { CalendarComponent } from './calendar/calendar.component'
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [SchedulesComponent, CalendarComponent]
+  declarations: [SchedulesComponent, CalendarComponent, SchedulesGeneratorComponent]
 })
 export class SchedulesModule { }

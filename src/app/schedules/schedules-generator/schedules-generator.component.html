@@ -1,0 +1,15 @@
+<div fxLayout="row">
+  <div fxFlex="10%">
+    <button mat-icon-button (click)="addSchedule()">
+      <mat-icon aria-label="Add">add</mat-icon>
+    </button>
+  </div>
+  <div fxFlex="90%">
+    <div class="button-row">
+      <button mat-button (click)="getMainSchedule()">
+        <mat-icon aria-label="favorite">history</mat-icon>
+      </button>
+      <button *ngFor="let schedule of schedules" mat-button (click)="getSchedule(schedule.id)">{{schedule.name}}</button>
+    </div>
+  </div>
+</div>

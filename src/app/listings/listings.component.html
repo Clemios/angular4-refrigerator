@@ -1,8 +1,6 @@
-<div fxLayout="row">
-  <mat-card fxFlex="100%">
-    <app-listings-generator (onListingAdded)="addListing($event)" [listings]="listings" (onGetListing)="getListing($event)" (onGetMainListing)="getMainListing()"></app-listings-generator>
-  </mat-card>
-</div>
+<mat-card>
+  <app-listings-generator (onListingAdded)="addListing($event)" [listings]="listings" (onGetListing)="getListing($event)" (onGetMainListing)="getMainListing()"></app-listings-generator>
+</mat-card>
 <div fxLayout="row">
   <mat-card class="listings-editor" fxFlex="30%">
     <app-listings-editor (onIngredientAddedToListing)="addIngredientToListing($event)" [listing]="listing"></app-listings-editor>
