@@ -14,7 +14,7 @@ export const CONFIG = {
     'RECIPE': {
         'port': '4420'
     },
-    'PLANNING': {
+    'SCHEDULE': {
         'port': '4430'
     },
     'LISTING': {
