@@ -11,9 +11,11 @@ import { RecipesRoutingModule } from './recipes-routing.module'
 import { RecipesComponent } from './recipes.component'
 import { RecipesCardsComponent } from './recipes-cards/recipes-cards.component'
 import { RecipesEditorComponent } from './recipes-editor/recipes-editor.component'
-
-import { RecipeService } from '../services/recipe.service';
 import { RecipeDetailsComponent } from './recipe-details/recipe-details.component'
+
+import { RecipeService } from '../services/recipe.service'
+import { IngredientService } from '../services/ingredient.service'
+
 
 @NgModule({
     imports: [
@@ -32,6 +34,6 @@ import { RecipeDetailsComponent } from './recipe-details/recipe-details.componen
         RecipesEditorComponent,
         RecipeDetailsComponent
     ],
-    providers: [RecipeService],
+    providers: [RecipeService, IngredientService],
 })
 export class RecipesModule { }

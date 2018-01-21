@@ -24,6 +24,10 @@ export class RecipeService {
         )
     }
 
+    compareIngredients(data) {
+        return (data)
+    }
+
     addRecipe(data) {
         const headers = new Headers({
             'Content-Type': 'application/json'
