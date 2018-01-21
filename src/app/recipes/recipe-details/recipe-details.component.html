@@ -1,5 +1,28 @@
-<div fxLayout="row">
+<div *ngIf="recipe" fxLayout="row">
   <mat-card fxFlex="100%">
-
+    <div fxLayout="row">
+      <h1>{{recipe.name}}</h1>
+    </div>
+    <div fxLayout="row" class="space-around">
+      <div class="image-wrapper" fxFlex="40%">
+        <img [src]="recipe.image">
+      </div>
+      <div fxFlex="50%">
+        <div fxFlex="100%">
+          <div fxLayout="row">
+            <span>Description:</span>
+          </div>
+          <div fxLayout="row">
+            <span>{{recipe.description}}</span>
+          </div>
+          <div fxLayout="row">
+            <span>Ingrédients:</span>
+          </div>
+          <div fxLayout="row">
+            <span>{{recipe.ingredients}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </mat-card>
 </div>

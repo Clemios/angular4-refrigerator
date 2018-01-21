@@ -1,27 +1,13 @@
-.upload-card {
-    padding: 6px !important;
-    text-align: center;
-}
-
 .image-wrapper {
-    width: 100%;
     border: 2px solid black;
     position: relative;
     background: white;
-    margin-top: 12px;
     img {
-        width: 100%;
         -webkit-transition: opacity 1s;
         -moz-transition: opacity 1s;
         -o-transition: opacity 1s;
         transition: opacity 1s;
         opacity: 1;
-    }
-}
-
-.recipe-input-wrapper {
-    justify-content: space-around;
-    .recipe-input {
-        width: 90%;
+        width: 100%;
     }
 }

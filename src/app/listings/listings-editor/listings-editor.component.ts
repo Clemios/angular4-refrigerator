@@ -6,7 +6,7 @@ import { Ingredient } from '../../interfaces/ingredient'
 @Component({
   selector: 'app-listings-editor',
   templateUrl: './listings-editor.component.html',
-  styleUrls: ['./listings-editor.component.css']
+  styleUrls: ['./listings-editor.component.scss']
 })
 export class ListingsEditorComponent implements OnInit {
 

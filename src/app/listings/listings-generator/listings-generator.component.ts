@@ -7,7 +7,7 @@ import { Listing } from '../../interfaces/listing'
 @Component({
   selector: 'app-listings-generator',
   templateUrl: './listings-generator.component.html',
-  styleUrls: ['./listings-generator.component.css']
+  styleUrls: ['./listings-generator.component.scss']
 })
 export class ListingsGeneratorComponent implements OnInit {
 

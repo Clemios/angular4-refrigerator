@@ -15,6 +15,11 @@ Faute de temps l'utilisation de la BDD n'est pas complètement optimisée, et j'
 - Covalent : Rajout quelques methodes à cerains components de Material (comme la fontion filter() pour les tables paginées par exempe)
 - Noty : Javascript Notifications library
 
+## Configuration du serveur qui détiens la BDSS
+
+- Utilisation de WAMP/MAMP conseillée
+- Configurez ceci : post_max_size = 1024M (pour gérer l'uplopad d'images encoées en base64)
+
 ## Configuration de la base MySQL
 
 * Configuration MySQL:

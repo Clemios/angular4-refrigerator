@@ -11,7 +11,7 @@ import { Ingredient } from '../../interfaces/ingredient'
 @Component({
   selector: 'app-listings-list',
   templateUrl: './listings-list.component.html',
-  styleUrls: ['./listings-list.component.css']
+  styleUrls: ['./listings-list.component.scss']
 })
 export class ListingsListComponent implements OnInit, OnChanges {
 
