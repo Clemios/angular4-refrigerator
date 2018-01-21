@@ -37,7 +37,6 @@ export class IngredientService {
         const options = new RequestOptions({
             headers: headers
         })
-        console.log('SERVICE', data)
         return this.http.post('http://localhost:' + CONFIG.INGREDIENT.port + '/updateingredient', JSON.stringify(data), options).pipe(
             map((res: Response) => (res.json()))
         )

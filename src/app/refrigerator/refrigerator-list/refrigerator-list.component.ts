@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, OnChanges, DoCheck, EventEmitter, Inject } from '@angular/core'
+import { Component, OnInit, Input, Output, OnChanges, SimpleChanges, EventEmitter, Inject } from '@angular/core'
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material'
 import {
   TdDataTableService, TdDataTableSortingOrder,
@@ -12,7 +12,7 @@ import { IPageChangeEvent } from '@covalent/core'
   templateUrl: './refrigerator-list.component.html',
   styleUrls: ['./refrigerator-list.component.scss']
 })
-export class RefrigeratorListComponent implements OnInit, DoCheck {
+export class RefrigeratorListComponent implements OnInit, OnChanges {
 
   @Input('ingredients') ingredients: any[]
   @Output() onIngredientDeleted: EventEmitter<any> = new EventEmitter<any>()
@@ -62,12 +62,10 @@ export class RefrigeratorListComponent implements OnInit, DoCheck {
   ngOnInit() {
   }
 
-  ngDoCheck() {
-    if (this.ingredients) {
-      if (this.lastNbOfItems !== this.ingredients.length) {
-        this.filter()
-        this.lastNbOfItems = this.ingredients.length
-      }
+  ngOnChanges(changes: SimpleChanges) {
+    if (!changes.ingredients.firstChange) {
+      this.filter()
+      this.lastNbOfItems = this.ingredients.length
     }
   }
 
