@@ -32,7 +32,7 @@ app.post('/addrecipe', function (req, res) {
 		'name': req.body.name,
 		'description': req.body.description,
 		'image': req.body.image,
-		'ingredients': '[]',
+		'ingredients': req.body.ingredients,
 	}
 	console.log('Nouvelle recette: ', data)
 	recipe.addRecipe(data, function (err, rows, fields) {
