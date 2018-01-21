@@ -12,6 +12,9 @@ import { RefrigeratorComponent } from './refrigerator.component'
 import { RefrigeratorListComponent } from './refrigerator-list/refrigerator-list.component'
 import { RefrigeratorEditorComponent } from './refrigerator-editor/refrigerator-editor.component'
 
+import { DialogComponent } from './refrigerator-list/refrigerator-list.component'
+
+
 import { IngredientService } from '../services/ingredient.service'
 
 @NgModule({
@@ -23,13 +26,15 @@ import { IngredientService } from '../services/ingredient.service'
         CovalentModule,
         FlexLayoutModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
     ],
     declarations: [
         RefrigeratorComponent,
         RefrigeratorListComponent,
-        RefrigeratorEditorComponent
+        RefrigeratorEditorComponent,
+        DialogComponent
     ],
+    entryComponents: [DialogComponent],
     providers: [IngredientService],
 })
 export class RefrigeratorModule { }

@@ -19,7 +19,7 @@ export class ListingsComponent implements OnInit {
       .subscribe((response) => {
         if (response.errno) {
           new Noty({
-            text: 'DATABASE ERROR',
+            text: 'DATABASE: ' + response.errno,
             layout: 'topRight',
             type: 'error',
             theme: 'mint',
@@ -37,7 +37,7 @@ export class ListingsComponent implements OnInit {
       .subscribe((response) => {
         if (response.errno) {
           new Noty({
-            text: 'DATABASE ERROR',
+            text: 'DATABASE: ' + response.errno,
             layout: 'topRight',
             type: 'error',
             theme: 'mint',
@@ -55,7 +55,7 @@ export class ListingsComponent implements OnInit {
       .subscribe((response) => {
         if (response.errno) {
           new Noty({
-            text: 'DATABASE ERROR',
+            text: 'DATABASE: ' + response.errno,
             layout: 'topRight',
             type: 'error',
             theme: 'mint',
@@ -72,23 +72,23 @@ export class ListingsComponent implements OnInit {
     const listing = { name: listingName }
     return (this.listingService.addListing(listing)
       .subscribe((response) => {
-        if (response.ok) {
-          this.getListings()
+        if (response.errno) {
           new Noty({
-            text: 'Liste ajoutée',
-            layout: 'topRight',
-            type: 'success',
-            theme: 'mint',
-            timeout: 3000,
-          }).show()
-        } else {
-          new Noty({
-            text: 'ERREUR',
+            text: 'DATABASE: ' + response.errno,
             layout: 'topRight',
             type: 'error',
             theme: 'mint',
             timeout: 3000,
           }).show()
+        } else {
+          new Noty({
+            text: 'Liste ajoutée !',
+            layout: 'topRight',
+            type: 'success',
+            theme: 'mint',
+            timeout: 3000,
+          }).show()
+          this.getListings()
         }
       })
     )
@@ -105,8 +105,15 @@ export class ListingsComponent implements OnInit {
     newIngredients.push(newIngredient)
     return (this.listingService.addIngredientToList({ 'id': newIngredientToListing.listingId, 'ingredients': JSON.stringify(newIngredients) })
       .subscribe((response) => {
-        if (response.ok) {
-          this.getListings()
+        if (response.errno) {
+          new Noty({
+            text: 'DATABASE: ' + response.errno,
+            layout: 'topRight',
+            type: 'error',
+            theme: 'mint',
+            timeout: 3000,
+          }).show()
+        } else {
           new Noty({
             text: 'Ingrédient ajouté',
             layout: 'topRight',
@@ -115,14 +122,6 @@ export class ListingsComponent implements OnInit {
             timeout: 3000,
           }).show()
           this.getListing(this.listing.id)
-        } else {
-          new Noty({
-            text: 'ERREUR',
-            layout: 'topRight',
-            type: 'error',
-            theme: 'mint',
-            timeout: 3000,
-          }).show()
         }
       })
     )
@@ -136,7 +135,7 @@ export class ListingsComponent implements OnInit {
       .subscribe((response) => {
         if (response.errno) {
           new Noty({
-            text: 'DATABASE ERROR',
+            text: 'DATABASE: ' + response.errno,
             layout: 'topRight',
             type: 'error',
             theme: 'mint',

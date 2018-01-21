@@ -14,13 +14,13 @@ export class RecipeService {
 
     getRecipes() {
         return this.http.get('http://localhost:' + CONFIG.RECIPE.port).pipe(
-            map((res: Response) => res.json())
+            map((res: Response) => (res.json()))
         )
     }
 
     getRecipe(data) {
         return this.http.post('http://localhost:' + CONFIG.RECIPE.port + '/get', data).pipe(
-            map((res: Response) => res.json())
+            map((res: Response) => (res.json()))
         )
     }
 
@@ -32,7 +32,7 @@ export class RecipeService {
             headers: headers
         })
         return this.http.post('http://localhost:' + CONFIG.RECIPE.port + '/addrecipe', JSON.stringify(data), options).pipe(
-            map((res: Response) => (res))
+            map((res: Response) => (res.json()))
         )
     }
 

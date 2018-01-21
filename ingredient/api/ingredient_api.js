@@ -17,8 +17,20 @@ app.post('/addingredient', function (req, res) {
 	console.log('Nouvel Ingrédient: ', data)
 	ingredient.addIngredient(data, function (err, rows, fields) {
 		if (err) {
-			console.log(err);
-			throw err
+			console.log(err.code);
+			res.send(err);
+		};
+		res.send(JSON.stringify(rows));
+	})
+});
+
+app.post('/updateingredient', function (req, res) {
+	var data = req.body;
+	console.log("Supression de l'ingredient: ", data)
+	ingredient.deleteIngredient(data, function (err, rows, fields) {
+		if (err) {
+			console.log(err.code);
+			res.send(err);
 		};
 		res.send(JSON.stringify(rows));
 	})
@@ -28,8 +40,11 @@ app.post('/deleteingredient', function (req, res) {
 	var data = req.body;
 	console.log("Supression de l'ingredient: ", data)
 	ingredient.deleteIngredient(data.id, function (err, rows, fields) {
-		if (err) res.send(err);
-		if (rows) res.send(JSON.stringify(rows));
+		if (err) {
+			console.log(err.code);
+			res.send(err);
+		};
+		res.send(JSON.stringify(rows));
 	})
 });
 

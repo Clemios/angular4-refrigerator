@@ -18,7 +18,7 @@ export class RecipesComponent implements OnInit {
       .subscribe((response) => {
         if (response.errno) {
           new Noty({
-            text: 'DATABASE ERROR',
+            text: 'DATABASE: ' + response.errno,
             layout: 'topRight',
             type: 'error',
             theme: 'mint',
@@ -27,36 +27,33 @@ export class RecipesComponent implements OnInit {
         } else {
           response.map((recipe) => {
             recipe.ingredients = JSON.parse(recipe.ingredients)
-            console.log('IN MAP', recipe.ingredients)
           })
           this.recipes = response
-          console.log(this.recipes)
         }
       })
     )
   }
 
   addRecipe(newRecipe) {
-    console.log(newRecipe)
     return (this.recipeService.addRecipe(newRecipe)
       .subscribe((response) => {
-        if (response.ok && JSON.parse(response._body).affectedRows === 1) {
-          this.getRecipes()
+        if (response.errno) {
           new Noty({
-            text: 'Ingrédient ajouté',
-            layout: 'topRight',
-            type: 'success',
-            theme: 'mint',
-            timeout: 3000,
-          }).show()
-        } else {
-          new Noty({
-            text: 'ERREUR',
+            text: 'DATABASE: ' + response.errno,
             layout: 'topRight',
             type: 'error',
             theme: 'mint',
             timeout: 3000,
           }).show()
+        } else {
+          new Noty({
+            text: 'Recette ajoutée !',
+            layout: 'topRight',
+            type: 'success',
+            theme: 'mint',
+            timeout: 3000,
+          }).show()
+          this.getRecipes()
         }
       })
     )
@@ -67,7 +64,7 @@ export class RecipesComponent implements OnInit {
       .subscribe((response) => {
         if (response.errno) {
           new Noty({
-            text: 'DATABASE ERROR',
+            text: 'DATABASE: ' + response.errno,
             layout: 'topRight',
             type: 'error',
             theme: 'mint',

@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
         if (response.errno) {
           // En cas d' erreur retoutnée par le microservice user
           new Noty({
-            text: 'DATABASE ERROR',
+            text: 'DATABASE: ' + response.errno,
             layout: 'topRight',
             type: 'error',
             theme: 'mint',

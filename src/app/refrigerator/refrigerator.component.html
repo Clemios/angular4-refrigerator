@@ -2,5 +2,6 @@
   <app-refrigerator-editor (onIngredientAdded)="addIngredient($event)"></app-refrigerator-editor>
 </mat-card>
 <mat-card fxFlex="70%">
-  <app-refrigerator-list (onIngredientDeleted)="deleteIngredient($event)" [ingredients]="ingredients"></app-refrigerator-list>
+  <app-refrigerator-list (onIngredientDeleted)="deleteIngredient($event)" (onIngredientQuantityUpdated)="updateIndregientQuantity($event)"
+    [ingredients]="ingredients"></app-refrigerator-list>
 </mat-card>

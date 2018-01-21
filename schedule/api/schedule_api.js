@@ -7,8 +7,11 @@ var schedule = require('../models/schedule');
 // API Routes
 app.get('/', function (req, res) {
 	schedule.findAll(function (err, rows, fields) {
-		if (err) console.log(res), res.send(err);
-		if (rows) res.json(rows);
+		if (err) {
+			console.log(err.code);
+			res.send(err);
+		};
+		res.send(JSON.stringify(rows));
 	})
 });
 
@@ -16,8 +19,11 @@ app.post('/get', function (req, res) {
 	var data = req.body;
 	console.log('Demande de la liste: ', data)
 	schedule.findById(data.id, function (err, rows, fields) {
-		if (err) res.send(err);
-		if (rows) res.json(rows[0]);
+		if (err) {
+			console.log(err.code);
+			res.send(err);
+		};
+		res.send(JSON.stringify(rows[0]));
 	})
 });
 
@@ -25,8 +31,11 @@ app.post('/get-main', function (req, res) {
 	var data = req.body;
 	console.log('Demande de la liste principale ')
 	schedule.findMain(function (err, rows, fields) {
-		if (err) res.send(err);
-		if (rows) res.json(rows[0]);
+		if (err) {
+			console.log(err.code);
+			res.send(err);
+		};
+		res.send(JSON.stringify(rows[0]));
 	})
 });
 
@@ -39,8 +48,8 @@ app.post('/addschedule', function (req, res) {
 		ingredients: '[]'
 	}, function (err, rows, fields) {
 		if (err) {
-			console.log(err);
-			throw err
+			console.log(err.code);
+			res.send(err);
 		};
 		res.send(JSON.stringify(rows));
 	})
@@ -53,8 +62,8 @@ app.post('/addingredient-toschedule', function (req, res) {
 	console.log('Pour la Liste: ', scheduleId)
 	schedule.addIngredientToSchedule(scheduleId, ingredients, function (err, rows, fields) {
 		if (err) {
-			console.log(err);
-			throw err
+			console.log(err.code);
+			res.send(err);
 		};
 		res.send(JSON.stringify(rows));
 	})
@@ -64,8 +73,11 @@ app.post('/deleteschedule', function (req, res) {
 	var data = req.body;
 	console.log('Supression de la liste: ', data)
 	schedule.deleteSchedule(data.id, function (err, rows, fields) {
-		if (err) res.send(err);
-		if (rows) res.send(JSON.stringify(rows));
+		if (err) {
+			console.log(err.code);
+			res.send(err);
+		};
+		res.send(JSON.stringify(rows));
 	})
 });
 
@@ -76,8 +88,8 @@ app.post('/deleteingredient-fromschedule', function (req, res) {
 	console.log('Pour la Liste: ', scheduleId)
 	schedule.deleteIngredientFromSchedule(scheduleId, ingredients, function (err, rows, fields) {
 		if (err) {
-			console.log(err);
-			throw err
+			console.log(err.code);
+			res.send(err);
 		};
 		res.send(JSON.stringify(rows));
 	})

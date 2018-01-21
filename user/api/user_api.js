@@ -8,8 +8,11 @@ var user = require('../models/user');
 app.get('/', function (req, res) {
 
 	user.findAll(function (err, rows, fields) {
-		if (err) throw err;
-		res.json(rows);
+		if (err) {
+			console.log(err.code);
+			res.send(err);
+		};
+		res.send(JSON.stringify(rows));
 	})
 });
 
@@ -17,8 +20,11 @@ app.post('/check', function (req, res) {
 	var data = req.body;
 	console.log('Utilsateur à véfifier: ', data)
 	user.checkForSignin(data.email, data.password, function (err, rows, fields) {
-		if (err) res.json(err);
-		if (rows) res.json(rows[0]);
+		if (err) {
+			console.log(err.code);
+			res.send(err);
+		};
+		res.send(JSON.stringify(rows[0]));
 	})
 });
 

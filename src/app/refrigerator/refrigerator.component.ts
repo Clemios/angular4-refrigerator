@@ -18,7 +18,7 @@ export class RefrigeratorComponent implements OnInit {
       .subscribe((response) => {
         if (response.errno) {
           new Noty({
-            text: 'DATABASE ERROR',
+            text: 'DATABASE: ' + response.errno,
             layout: 'topRight',
             type: 'error',
             theme: 'mint',
@@ -35,23 +35,48 @@ export class RefrigeratorComponent implements OnInit {
     const ingredient = { name: newIngredient.ingredientName, quantity: newIngredient.ingredientQuantity, unit: newIngredient.ingredientUnit }
     return (this.ingredientService.addIngredient(ingredient)
       .subscribe((response) => {
-        if (response.ok && JSON.parse(response._body).affectedRows === 1) {
-          this.getIngredients()
+        if (response.errno) {
           new Noty({
-            text: 'Ingrédient ajouté',
-            layout: 'topRight',
-            type: 'success',
-            theme: 'mint',
-            timeout: 3000,
-          }).show()
-        } else {
-          new Noty({
-            text: 'ERREUR',
+            text: 'DATABASE: ' + response.errno,
             layout: 'topRight',
             type: 'error',
             theme: 'mint',
             timeout: 3000,
           }).show()
+        } else {
+          new Noty({
+            text: 'Ingrédient ajouté !',
+            layout: 'topRight',
+            type: 'success',
+            theme: 'mint',
+            timeout: 3000,
+          }).show()
+          this.getIngredients()
+        }
+      })
+    )
+  }
+
+  updateIngredientQuantity(newQuantity) {
+    return (this.ingredientService.updateIngredientQuantity({ 'id': newQuantity.id, 'quantity': newQuantity.quantity })
+      .subscribe((response) => {
+        if (response.errno) {
+          new Noty({
+            text: 'DATABASE: ' + response.errno,
+            layout: 'topRight',
+            type: 'error',
+            theme: 'mint',
+            timeout: 3000,
+          }).show()
+        } else {
+          new Noty({
+            text: 'Quantitée mise à jour',
+            layout: 'topRight',
+            type: 'success',
+            theme: 'mint',
+            timeout: 3000,
+          }).show()
+          this.getIngredients()
         }
       })
     )
@@ -62,7 +87,7 @@ export class RefrigeratorComponent implements OnInit {
       .subscribe((response) => {
         if (response.errno) {
           new Noty({
-            text: 'DATABASE ERROR',
+            text: 'DATABASE: ' + response.errno,
             layout: 'topRight',
             type: 'error',
             theme: 'mint',

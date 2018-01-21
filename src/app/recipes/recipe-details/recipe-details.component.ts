@@ -19,7 +19,7 @@ export class RecipeDetailsComponent implements OnInit {
       .subscribe((response) => {
         if (response.errno) {
           new Noty({
-            text: 'DATABASE ERROR',
+            text: 'DATABASE: ' + response.errno,
             layout: 'topRight',
             type: 'error',
             theme: 'mint',

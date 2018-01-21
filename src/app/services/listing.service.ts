@@ -38,7 +38,7 @@ export class ListingService {
             headers: headers
         })
         return this.http.post('http://localhost:' + CONFIG.LISTING.port + '/addlisting', JSON.stringify(data), options).pipe(
-            map((res: Response) => (res))
+            map((res: Response) => (res.json()))
         )
     }
 
@@ -50,7 +50,7 @@ export class ListingService {
             headers: headers
         })
         return this.http.post('http://localhost:' + CONFIG.LISTING.port + '/addingredient-tolisting', JSON.stringify(data), options).pipe(
-            map((res: Response) => (res))
+            map((res: Response) => (res.json()))
         )
     }
 
@@ -68,7 +68,7 @@ export class ListingService {
             headers: headers
         })
         return this.http.post('http://localhost:' + CONFIG.LISTING.port + '/deleteingredient-fromlisting', JSON.stringify(data), options).pipe(
-            map((res: Response) => (res))
+            map((res: Response) => (res.json()))
         )
     }
 

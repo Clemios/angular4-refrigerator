@@ -26,7 +26,20 @@ export class IngredientService {
             headers: headers
         })
         return this.http.post('http://localhost:' + CONFIG.INGREDIENT.port + '/addingredient', JSON.stringify(data), options).pipe(
-            map((res: Response) => (res))
+            map((res: Response) => (res.json()))
+        )
+    }
+
+    updateIngredientQuantity(data) {
+        const headers = new Headers({
+            'Content-Type': 'application/json'
+        })
+        const options = new RequestOptions({
+            headers: headers
+        })
+        console.log('SERVICE', data)
+        return this.http.post('http://localhost:' + CONFIG.INGREDIENT.port + '/updateingredient', JSON.stringify(data), options).pipe(
+            map((res: Response) => (res.json()))
         )
     }
 

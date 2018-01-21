@@ -15,7 +15,10 @@
         {{column.label}}
       </th>
       <th td-data-table-column>
-        <span>Actions</span>
+        <span>Modification</span>
+      </th>
+      <th td-data-table-column>
+        <span>Supression</span>
       </th>
     </tr>
   </thead>
@@ -23,6 +26,11 @@
     <tr td-data-table-row *ngFor="let ingredient of filteredData">
       <td td-data-table-cell *ngFor="let column of columns" [numeric]="column.numeric">
         {{ingredient[column.name]}}
+      </td>
+      <td td-data-table-cell>
+        <button mat-icon-button color="accent" (click)="openDialog(ingredient.id, ingredient.name, ingredient.quantity, ingredient.unit)">
+          <mat-icon aria-label="Create">create</mat-icon>
+        </button>
       </td>
       <td td-data-table-cell>
         <button mat-icon-button color="warn" (click)="deleteIngredient(ingredient.id)">

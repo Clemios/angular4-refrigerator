@@ -6,6 +6,7 @@ import {
   MatSelectModule
 } from '@angular/material'
 import { MatTabsModule } from '@angular/material/tabs'
+import { MatDialogModule } from '@angular/material/dialog'
 import { MatListModule, MatCardModule } from '@angular/material'
 import { MatGridListModule } from '@angular/material/grid-list'
 
@@ -21,7 +22,8 @@ import { MatGridListModule } from '@angular/material/grid-list'
     MatListModule,
     MatCardModule,
     MatInputModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDialogModule
   ],
   exports: [
     MatButtonModule,
@@ -34,7 +36,8 @@ import { MatGridListModule } from '@angular/material/grid-list'
     MatListModule,
     MatCardModule,
     MatInputModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDialogModule
   ],
 })
 export class MaterialModule { }

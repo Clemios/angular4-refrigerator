@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, Output, OnChanges, DoCheck, EventEmitter } from '@angular/core'
+import { Component, OnInit, Input, Output, OnChanges, DoCheck, EventEmitter, Inject } from '@angular/core'
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material'
 import {
   TdDataTableService, TdDataTableSortingOrder,
   ITdDataTableSortChangeEvent, ITdDataTableColumn
@@ -15,6 +16,7 @@ export class RefrigeratorListComponent implements OnInit, DoCheck {
 
   @Input('ingredients') ingredients: any[]
   @Output() onIngredientDeleted: EventEmitter<any> = new EventEmitter<any>()
+  @Output() onIngredientQuantityUpdated: EventEmitter<any> = new EventEmitter<any>()
 
   // Paramètres pour la dataTable
 
@@ -38,17 +40,34 @@ export class RefrigeratorListComponent implements OnInit, DoCheck {
   lastNbOfItems = 0
 
   constructor(
-    private _dataTableService: TdDataTableService
+    private _dataTableService: TdDataTableService,
+    public dialog: MatDialog
   ) {
+  }
+
+  openDialog(id, name, quantity, unit): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '250px',
+      data: { id, name, quantity, unit }
+    })
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const newQuantity = { id: result.id, quantity: result.quantity }
+        this.onIngredientQuantityUpdated.emit(newQuantity)
+      }
+    })
   }
 
   ngOnInit() {
   }
 
   ngDoCheck() {
-    if (this.lastNbOfItems !== this.ingredients.length) {
-      this.filter()
-      this.lastNbOfItems = this.ingredients.length
+    if (this.ingredients) {
+      if (this.lastNbOfItems !== this.ingredients.length) {
+        this.filter()
+        this.lastNbOfItems = this.ingredients.length
+      }
     }
   }
 
@@ -93,6 +112,22 @@ export class RefrigeratorListComponent implements OnInit, DoCheck {
     newData = this._dataTableService.sortData(newData, this.sortBy, this.sortOrder)
     newData = this._dataTableService.pageData(newData, this.fromRow, this.currentPage * this.pageSize)
     this.filteredData = newData
+  }
+
+}
+
+@Component({
+  selector: 'app-dialog-component',
+  templateUrl: 'dialog-component.html',
+})
+export class DialogComponent {
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+
+  onNoClick(): void {
+    this.dialogRef.close()
   }
 
 }
