@@ -32,6 +32,7 @@ export class RecipeDetailsComponent implements OnInit {
             timeout: 3000,
           }).show()
         } else {
+          response.ingredients = JSON.parse(response.ingredients)
           this.recipe = response
         }
       })
