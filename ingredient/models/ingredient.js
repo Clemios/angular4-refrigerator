@@ -29,6 +29,10 @@ module.exports.addIngredient = function (data, callback) {
 	pool.query("INSERT INTO ingredients SET ?", data, callback);
 }
 
+module.exports.updateIngredient = function (ingredientId, quantity, callback) {
+	pool.query("UPDATE listings SET quantity = '" + quantity + "' WHERE id ='" + ingredientId + "'", callback);
+}
+
 module.exports.deleteIngredient = function (ingredientId, callback) {
 	pool.query("DELETE FROM ingredients WHERE id = '" + ingredientId + "'", callback);
 }

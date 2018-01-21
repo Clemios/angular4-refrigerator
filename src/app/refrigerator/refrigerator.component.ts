@@ -18,7 +18,7 @@ export class RefrigeratorComponent implements OnInit {
       .subscribe((response) => {
         if (response.errno) {
           new Noty({
-            text: 'DATABASE: ' + response.errno,
+            text: 'DATABASE: ' + response.code,
             layout: 'topRight',
             type: 'error',
             theme: 'mint',
@@ -37,7 +37,7 @@ export class RefrigeratorComponent implements OnInit {
       .subscribe((response) => {
         if (response.errno) {
           new Noty({
-            text: 'DATABASE: ' + response.errno,
+            text: 'DATABASE: ' + response.code,
             layout: 'topRight',
             type: 'error',
             theme: 'mint',
@@ -58,11 +58,12 @@ export class RefrigeratorComponent implements OnInit {
   }
 
   updateIngredientQuantity(newQuantity) {
-    return (this.ingredientService.updateIngredientQuantity({ 'id': newQuantity.id, 'quantity': newQuantity.quantity })
+    return (this.ingredientService.updateIngredientQuantity({ 'id': newQuantity.id, 'quantity': parseInt(newQuantity.quantity, 10) })
       .subscribe((response) => {
+        console.log(response)
         if (response.errno) {
           new Noty({
-            text: 'DATABASE: ' + response.errno,
+            text: 'DATABASE: ' + response.code,
             layout: 'topRight',
             type: 'error',
             theme: 'mint',
@@ -87,7 +88,7 @@ export class RefrigeratorComponent implements OnInit {
       .subscribe((response) => {
         if (response.errno) {
           new Noty({
-            text: 'DATABASE: ' + response.errno,
+            text: 'DATABASE: ' + response.code,
             layout: 'topRight',
             type: 'error',
             theme: 'mint',

@@ -18,7 +18,7 @@ export class RecipesComponent implements OnInit {
       .subscribe((response) => {
         if (response.errno) {
           new Noty({
-            text: 'DATABASE: ' + response.errno,
+            text: 'DATABASE: ' + response.code,
             layout: 'topRight',
             type: 'error',
             theme: 'mint',
@@ -39,7 +39,7 @@ export class RecipesComponent implements OnInit {
       .subscribe((response) => {
         if (response.errno) {
           new Noty({
-            text: 'DATABASE: ' + response.errno,
+            text: 'DATABASE: ' + response.code,
             layout: 'topRight',
             type: 'error',
             theme: 'mint',
@@ -64,7 +64,7 @@ export class RecipesComponent implements OnInit {
       .subscribe((response) => {
         if (response.errno) {
           new Noty({
-            text: 'DATABASE: ' + response.errno,
+            text: 'DATABASE: ' + response.code,
             layout: 'topRight',
             type: 'error',
             theme: 'mint',

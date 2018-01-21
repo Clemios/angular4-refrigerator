@@ -25,9 +25,11 @@ app.post('/addingredient', function (req, res) {
 });
 
 app.post('/updateingredient', function (req, res) {
-	var data = req.body;
-	console.log("Supression de l'ingredient: ", data)
-	ingredient.deleteIngredient(data, function (err, rows, fields) {
+	var ingredientId = req.body.id;
+	var quantity = req.body.quantity;
+	console.log("Mise a jout de la quantitée: ", quantity)
+	console.log("Pour la l'Ingredient: ", ingredientId)
+	ingredient.updateIngredient(ingredientId, quantity, function (err, rows, fields) {
 		if (err) {
 			console.log(err.code);
 			res.send(err);
