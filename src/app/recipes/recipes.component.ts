@@ -62,6 +62,32 @@ export class RecipesComponent implements OnInit {
     )
   }
 
+  editRecipe(editedRecipe) {
+    console.log('PARENT')
+    return (this.recipeService.editRecipe(editedRecipe)
+      .subscribe((response) => {
+        if (response.errno) {
+          new Noty({
+            text: 'DATABASE: ' + response.code,
+            layout: 'topRight',
+            type: 'error',
+            theme: 'mint',
+            timeout: 3000,
+          }).show()
+        } else {
+          new Noty({
+            text: 'Recette modifiée !',
+            layout: 'topRight',
+            type: 'success',
+            theme: 'mint',
+            timeout: 3000,
+          }).show()
+          this.getRecipes()
+        }
+      })
+    )
+  }
+
   deleteRecipe(recipeId) {
     return (this.recipeService.deleteRecipe({ 'id': recipeId })
       .subscribe((response) => {

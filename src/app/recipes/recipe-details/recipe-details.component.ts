@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core'
+import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core'
 import { MatDialog } from '@angular/material'
 import { ActivatedRoute } from '@angular/router'
 import { Recipe } from '../../interfaces/recipe'
@@ -60,13 +60,38 @@ export class RecipeDetailsComponent implements OnInit {
     )
   }
 
+  editRecipe(newRecipe) {
+    return (this.recipeService.editRecipe(newRecipe)
+      .subscribe((response) => {
+        if (response.errno) {
+          new Noty({
+            text: 'DATABASE: ' + response.code,
+            layout: 'topRight',
+            type: 'error',
+            theme: 'mint',
+            timeout: 3000,
+          }).show()
+        } else {
+          new Noty({
+            text: 'Recette modifiée !',
+            layout: 'topRight',
+            type: 'success',
+            theme: 'mint',
+            timeout: 3000,
+          }).show()
+          this.getRecipe(newRecipe.id)
+        }
+      })
+    )
+  }
+
   openDialog(): void {
     const dialogRef = this.dialog.open(RecipesEditorComponent, {
       width: '60%',
-      data: { action: 'edit', recipeName: this.recipe.name, recipeDescription: this.recipe.description, recipeIngredients: this.recipe.ingredients }
+      data: { action: 'edit', recipeId: this.recipe.id, recipeName: this.recipe.name, recipeDescription: this.recipe.description, recipeIngredients: this.recipe.ingredients }
     })
     const sub = dialogRef.componentInstance.onRecipeEdited.subscribe((result) => {
-      console.log(result)
+      this.editRecipe(result)
       dialogRef.close()
     })
   }

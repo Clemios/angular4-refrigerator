@@ -33,6 +33,10 @@ module.exports.addRecipe = function (data, callback) {
 	pool.query("INSERT INTO recipes SET ?", data, callback);
 }
 
+module.exports.editRecipe = function (id, name, description, image, ingredients, callback) {
+	pool.query("UPDATE recipes SET name = '" + name + "', description = '" + description + "', image = '" + image + "', ingredients = '" + ingredients + "' WHERE id ='" + id + "'", callback);
+}
+
 module.exports.deleteRecipe = function (recipeId, callback) {
 	pool.query("DELETE FROM recipes WHERE id = '" + recipeId + "'", callback);
 }

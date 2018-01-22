@@ -9,7 +9,6 @@ import { Router } from '@angular/router'
 export class RecipesCardsComponent implements OnInit {
 
   @Input('recipes') recipes: any[]
-  @Output() onRecipeAdded: EventEmitter<any> = new EventEmitter<any>()
   @Output() onRecipeDeleted: EventEmitter<any> = new EventEmitter<any>()
   @Output() onRecipeGet: EventEmitter<any> = new EventEmitter<any>()
 
@@ -18,15 +17,6 @@ export class RecipesCardsComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-  }
-
-  flipTile(isFlipped): void {
-    this.isFlipped = !isFlipped
-  }
-
-  addRecipe(newRecipe) {
-    this.onRecipeAdded.emit(newRecipe)
-    this.isFlipped = !this.isFlipped
   }
 
   getRecipe(recipeId) {

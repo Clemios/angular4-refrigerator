@@ -44,6 +44,22 @@ app.post('/addrecipe', function (req, res) {
 	})
 });
 
+app.post('/editrecipe', function (req, res) {
+
+	var id = req.body.id
+	var name = req.body.name
+	var description = req.body.description
+	var ingredients = req.body.ingredients
+	var image = req.body.image || ''
+	recipe.editRecipe(id, name, description, image, ingredients, function (err, rows, fields) {
+		if (err) {
+			console.log(err);
+			res.send(err);
+		};
+		res.send(JSON.stringify(rows));
+	})
+});
+
 app.post('/deleterecipe', function (req, res) {
 	var data = req.body;
 	console.log('Supression de la recette: ', data)

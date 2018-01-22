@@ -40,6 +40,18 @@ export class RecipeService {
         )
     }
 
+    editRecipe(data) {
+        const headers = new Headers({
+            'Content-Type': 'application/json'
+        })
+        const options = new RequestOptions({
+            headers: headers
+        })
+        return this.http.post('http://localhost:' + CONFIG.RECIPE.port + '/editrecipe', JSON.stringify(data), options).pipe(
+            map((res: Response) => (res.json()))
+        )
+    }
+
     deleteRecipe(data) {
         return this.http.post('http://localhost:' + CONFIG.RECIPE.port + '/deleterecipe', data).pipe(
             map((res: Response) => (res.json()))

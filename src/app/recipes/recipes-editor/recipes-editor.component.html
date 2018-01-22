@@ -98,7 +98,7 @@
   </mat-card-content>
   <mat-card-actions class="no-margin-bottom">
     <button mat-button (click)="onNoClick()">Annuler</button>
-    <button *ngIf='recipeName || data.recipeName' class="float-right" mat-button mat-icon-button (click)="data.action === 'edit' ? editRecipe(data.recipeName, data.recipeDescription ) : addRecipe(recipeName || data.recipeName, recipeDescription || data.recipeDescription)">
+    <button *ngIf='recipeName || data.recipeName' class="float-right" mat-button mat-icon-button (click)="data.action === 'edit' ? editRecipe(data.recipeId, data.recipeName, data.recipeDescription ) : addRecipe(recipeName || data.recipeName, recipeDescription || data.recipeDescription)">
       <mat-icon>send</mat-icon>
     </button>
   </mat-card-actions>

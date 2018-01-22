@@ -44,7 +44,11 @@ export class RecipesEditorComponent implements OnInit {
     this.onRecipeAdded.emit(newRecipe)
   }
 
-  editRecipe(recipeId) {
+  editRecipe(redipeId, recipeName, recipeDescription) {
+    // const recipeImage = this.imagePreview
+    const recipeIngredients = this.ingredients
+    const editedRecipe = { id: redipeId, name: recipeName, description: recipeDescription, ingredients: JSON.stringify(recipeIngredients) }
+    this.onRecipeEdited.emit(editedRecipe)
 
   }
 
@@ -89,10 +93,8 @@ export class RecipesEditorComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<RecipesEditorComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog) {
     this.ingredients = []
-    console.log('DATA', data)
     if (data.recipeIngredients) {
       this.ingredients = data.recipeIngredients
-      console.log(this.ingredients)
     }
   }
 
