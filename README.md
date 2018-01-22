@@ -10,6 +10,10 @@
 J'ai ecris mon code de manière scémantique le plus possible. J'ai intégré une gestion basique des erreurs et de la validation des inputs. En démarrant les microsercives un à un (voir plus bas) il enverront des logs dans leur terminal respectif. Pour le déloiement j'ai écris des stripts customs dans package.json
 Faute de temps l'utilisation de la BDD n'est pas complètement optimisée, et j'enviseageais d'uniformiser le code le plus possible afin de développer des "shared_components", idem pour les methodes métiers redondantes.
 
+## Problèmes majeurs
+
+- Lier les objets Ingredient du frigo avec ceux des recettes (il me manque une belle regepx pour comparer les ingredientNames saisis ou une architecture de base de donnée plus avancée avec des clefs externes et joitures)
+
 ## Dépendances
 - Material : Fournit des compsants HTML et des classes CSS
 - Covalent : Rajout quelques methodes à cerains components de Material (comme la fontion filter() pour les tables paginées par exempe)
