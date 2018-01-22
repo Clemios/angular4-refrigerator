@@ -34,6 +34,7 @@ import { IngredientService } from '../services/ingredient.service'
         RecipesEditorComponent,
         RecipeDetailsComponent
     ],
+    entryComponents: [RecipesEditorComponent],
     providers: [RecipeService, IngredientService],
 })
 export class RecipesModule { }

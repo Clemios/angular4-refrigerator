@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core'
+import { MatDialog } from '@angular/material'
 import { Recipe } from '../interfaces/recipe'
 import { RecipeService } from '../services/recipe.service'
+import { RecipesEditorComponent } from './recipes-editor/recipes-editor.component'
 
 import * as Noty from 'noty'
 
@@ -85,7 +87,18 @@ export class RecipesComponent implements OnInit {
     )
   }
 
-  constructor( @Inject(RecipeService) recipeService) {
+  openDialog(): void {
+    const dialogRef = this.dialog.open(RecipesEditorComponent, {
+      width: '60%',
+      data: {}
+    })
+    const sub = dialogRef.componentInstance.onRecipeAdded.subscribe((result) => {
+      this.addRecipe(result)
+      dialogRef.close()
+    })
+  }
+
+  constructor( @Inject(RecipeService) recipeService, public dialog: MatDialog) {
     this.recipeService = recipeService
     this.getRecipes()
   }

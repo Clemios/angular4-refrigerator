@@ -1,26 +1,4 @@
-<div fxLayout="row">
-  <div>
-    <button mat-icon-button color="accent">
-      <mat-icon aria-label="Edit">add</mat-icon>
-    </button>
-  </div>
-</div>
 <mat-grid-list cols="3" rowHeight="400px">
-
-  <!-- <mat-grid-tile>
-    <div [class.father]="true" [class.flipped]="isFlipped">
-      <mat-card class="new-recipe front" (click)="flipTile(isFlipped)">
-        <mat-card-header>
-        </mat-card-header>
-        <mat-card-content>
-          <mat-icon>add_circle</mat-icon>
-        </mat-card-content>
-      </mat-card>
-      <mat-card class="new-recipe back">
-        <app-recipes-editor (onRecipeAdded)="addRecipe($event)"></app-recipes-editor>
-      </mat-card>
-    </div>
-  </mat-grid-tile> -->
   <mat-grid-tile *ngFor="let recipe of recipes">
     <mat-card class="recipe-card">
       <mat-card-header>

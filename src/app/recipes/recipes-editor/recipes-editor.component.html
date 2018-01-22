@@ -87,7 +87,8 @@
     </div>
   </mat-card-content>
   <mat-card-actions class="no-margin-bottom">
-    <button class="float-right" mat-button mat-icon-button (click)="addRecipe(recipeName, recipeDescription)">
+    <button mat-button (click)="onNoClick()">Annuler</button>
+    <button *ngIf='recipeName' class="float-right" mat-button mat-icon-button (click)="addRecipe(recipeName, recipeDescription)">
       <mat-icon>send</mat-icon>
     </button>
   </mat-card-actions>

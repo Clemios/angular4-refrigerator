@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, Inject } from '@angular/core'
 import { FormControl, Validators } from '@angular/forms'
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material'
 import { Ingredient } from '../../interfaces/ingredient'
 import { Recipe } from '../../interfaces/recipe'
 
@@ -35,10 +36,12 @@ export class RecipesEditorComponent implements OnInit {
   quantity = new FormControl('', [Validators.required])
 
   addRecipe(recipeName, recipeDescription) {
+    console.log('QADDD', recipeName)
     const recipeImage = this.imagePreview
     const recipeIngredients = this.ingredients
     const newRecipe = { name: recipeName, description: recipeDescription, image: recipeImage, ingredients: JSON.stringify(recipeIngredients) }
     this.onRecipeAdded.emit(newRecipe)
+    // this.dialogRef.close()
   }
 
   addIngredient(ingredientName, ingredientQuantity, ingredientUnit) {
@@ -62,11 +65,16 @@ export class RecipesEditorComponent implements OnInit {
   // END FILE INPUT
 
 
-  constructor() {
+  constructor(public dialogRef: MatDialogRef<RecipesEditorComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   ngOnInit() {
     this.ingredientUnit = 'g'
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close()
   }
 
   public getRecipeErrorMessage() {

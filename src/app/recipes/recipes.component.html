@@ -1,3 +1,10 @@
 <mat-card>
-  <app-recipes-cards (onRecipeAdded)="addRecipe($event)" (onRecipeDeleted)="deleteRecipe($event)" [recipes]="recipes"></app-recipes-cards>
+  <div fxLayout="row">
+    <div>
+      <button mat-icon-button color="accent" (click)="openDialog()">
+        <mat-icon aria-label="Edit">add</mat-icon>
+      </button>
+    </div>
+  </div>
+  <app-recipes-cards (onRecipeDeleted)="deleteRecipe($event)" [recipes]="recipes"></app-recipes-cards>
 </mat-card>
