@@ -1,9 +1,12 @@
 import { Component, OnInit, Inject } from '@angular/core'
+import { MatDialog } from '@angular/material'
 import { ActivatedRoute } from '@angular/router'
 import { Recipe } from '../../interfaces/recipe'
 import { Ingredient } from '../../interfaces/ingredient'
 import { RecipeService } from '../../services/recipe.service'
 import { IngredientService } from '../../services/ingredient.service'
+
+import { RecipesEditorComponent } from '../recipes-editor/recipes-editor.component'
 
 import * as Noty from 'noty'
 
@@ -57,7 +60,18 @@ export class RecipeDetailsComponent implements OnInit {
     )
   }
 
-  constructor( @Inject(RecipeService) recipeService, @Inject(IngredientService) ingredientService, route: ActivatedRoute) {
+  openDialog(): void {
+    const dialogRef = this.dialog.open(RecipesEditorComponent, {
+      width: '60%',
+      data: { action: 'edit', recipeName: this.recipe.name, recipeDescription: this.recipe.description, recipeIngredients: this.recipe.ingredients }
+    })
+    const sub = dialogRef.componentInstance.onRecipeEdited.subscribe((result) => {
+      console.log(result)
+      dialogRef.close()
+    })
+  }
+
+  constructor( @Inject(RecipeService) recipeService, @Inject(IngredientService) ingredientService, public dialog: MatDialog, route: ActivatedRoute) {
     this.recipeService = recipeService
     this.getRecipe(route.snapshot.params['id'])
     this.ingredientService = ingredientService

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, Inject } from '@angular/core'
 import { FormControl, Validators } from '@angular/forms'
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material'
+import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material'
 import { Ingredient } from '../../interfaces/ingredient'
 import { Recipe } from '../../interfaces/recipe'
 
@@ -17,6 +17,8 @@ export class RecipesEditorComponent implements OnInit {
   @Input() recipeName: string
   @Input() recipeDescription: number
   @Output() onRecipeAdded: EventEmitter<any> = new EventEmitter<any>()
+  @Output() onRecipeEdited: EventEmitter<any> = new EventEmitter<any>()
+
 
   ingredientUnit: 'mg' | 'g' | 'ml' | 'l'
 
@@ -30,23 +32,42 @@ export class RecipesEditorComponent implements OnInit {
   recipe = new FormControl('', [Validators.required])
   image: any
   imagePreview: string
-  ingredients: Ingredient[] = []
+  ingredients: Ingredient[]
 
   ingredient = new FormControl('', [Validators.required])
   quantity = new FormControl('', [Validators.required])
 
   addRecipe(recipeName, recipeDescription) {
-    console.log('QADDD', recipeName)
     const recipeImage = this.imagePreview
     const recipeIngredients = this.ingredients
     const newRecipe = { name: recipeName, description: recipeDescription, image: recipeImage, ingredients: JSON.stringify(recipeIngredients) }
     this.onRecipeAdded.emit(newRecipe)
-    // this.dialogRef.close()
+  }
+
+  editRecipe(recipeId) {
+
+  }
+
+  openDialog(id, name, quantity, unit): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '250px',
+      data: { id, name, quantity, unit }
+    })
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.ingredients[result.id].quantity = result.quantity
+      }
+    })
   }
 
   addIngredient(ingredientName, ingredientQuantity, ingredientUnit) {
     const newIngredient: Ingredient = { name: ingredientName, quantity: ingredientQuantity, unit: ingredientUnit }
     this.ingredients.push(newIngredient)
+  }
+
+  deleteIngredient(ingredientId) {
+    this.ingredients.splice(ingredientId, 1)
   }
 
   // Image methods
@@ -66,7 +87,13 @@ export class RecipesEditorComponent implements OnInit {
 
 
   constructor(public dialogRef: MatDialogRef<RecipesEditorComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
+    @Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog) {
+    this.ingredients = []
+    console.log('DATA', data)
+    if (data.recipeIngredients) {
+      this.ingredients = data.recipeIngredients
+      console.log(this.ingredients)
+    }
   }
 
   ngOnInit() {
@@ -86,6 +113,22 @@ export class RecipesEditorComponent implements OnInit {
   }
   public getQuantityErrorMessage() {
     return this.quantity.hasError('required') ? 'You must enter a numeric value' : ''
+  }
+
+}
+
+@Component({
+  selector: 'app-dialog-component',
+  templateUrl: 'dialog-component.html',
+})
+export class DialogComponent {
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+
+  onNoClick(): void {
+    this.dialogRef.close()
   }
 
 }

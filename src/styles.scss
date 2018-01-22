@@ -32,6 +32,10 @@ body {
   margin: 0.5em;
 }
 
+.mat-list-item {
+  height: 36px !important;
+}
+
 .login-card {
   .mat-tab-label {
     width: 50%;
@@ -40,6 +44,10 @@ body {
 
 .float-right {
   float: right;
+}
+
+.margin-left-5 {
+  margin-left: 5%;
 }
 
 .no-margin-bottom {

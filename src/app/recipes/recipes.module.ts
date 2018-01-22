@@ -13,6 +13,8 @@ import { RecipesCardsComponent } from './recipes-cards/recipes-cards.component'
 import { RecipesEditorComponent } from './recipes-editor/recipes-editor.component'
 import { RecipeDetailsComponent } from './recipe-details/recipe-details.component'
 
+import { DialogComponent } from './recipes-editor/recipes-editor.component'
+
 import { RecipeService } from '../services/recipe.service'
 import { IngredientService } from '../services/ingredient.service'
 
@@ -32,9 +34,10 @@ import { IngredientService } from '../services/ingredient.service'
         RecipesComponent,
         RecipesCardsComponent,
         RecipesEditorComponent,
-        RecipeDetailsComponent
+        RecipeDetailsComponent,
+        DialogComponent
     ],
-    entryComponents: [RecipesEditorComponent],
+    entryComponents: [RecipesEditorComponent, DialogComponent],
     providers: [RecipeService, IngredientService],
 })
 export class RecipesModule { }

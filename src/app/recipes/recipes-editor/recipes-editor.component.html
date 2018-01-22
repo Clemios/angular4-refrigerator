@@ -5,8 +5,8 @@
   <mat-card-content class="no-margin-bottom">
     <div class="recipe-input-wrapper" fxLayout="row">
       <mat-form-field class="recipe-input">
-        <input matInput placeholder="Nom..." type="text" [formControl]="recipe" [(ngModel)]="recipeName" name="recipeName">
-        <button mat-button *ngIf="recipeName" matSuffix mat-icon-button aria-label="Clear" (click)="recipeName=''">
+        <input matInput placeholder="Nom..." type="text" [formControl]="recipe" [(ngModel)]="recipeName || data.recipeName" name="recipeName">
+        <button mat-button *ngIf="recipeName || data.recipeName" matSuffix mat-icon-button aria-label="Clear" (click)="recipeName='' || data.recipeName=''">
           <mat-icon>close</mat-icon>
         </button>
         <mat-error *ngIf="recipe.invalid">{{getRecipeErrorMessage()}}</mat-error>
@@ -14,11 +14,10 @@
     </div>
     <div class="recipe-input-wrapper" fxLayout="row">
       <mat-form-field class="recipe-input">
-        <textarea matInput placeholder="Description..." type="text" [(ngModel)]="recipeDescription" name="recipeDescription"></textarea>
-        <button mat-button *ngIf="recipeDescription" matSuffix mat-icon-button aria-label="Clear" (click)="recipeDescription=''">
+        <textarea matInput placeholder="Description..." type="text" [(ngModel)]="recipeDescription || data.recipeDescription" name="recipeDescription"></textarea>
+        <button mat-button *ngIf="recipeDescription || data.recipeDescription" matSuffix mat-icon-button aria-label="Clear" (click)="recipeDescription='' || data.recipeDescription=''">
           <mat-icon>close</mat-icon>
         </button>
-        <!-- <mat-error *ngIf="recipe.invalid">{{getRecipeErrorMessage()}}</mat-error> -->
       </mat-form-field>
     </div>
     <div class="space-around" fxLayout="row">
@@ -78,17 +77,28 @@
       </div>
       <div class="space-between" fxFlex="60%">
         <mat-list role="list">
-          <mat-list-item *ngFor="let ingredient of ingredients" role="listitem">
-            <span>{{ingredient.name}}</span>
-            <span class="float-right">{{ingredient.quantity}}{{ingredient.unit}}</span>
-          </mat-list-item>
+          <div *ngFor="let ingredient of ingredients; let i = index" fxLayout="row" class="space-around">
+            <mat-list-item role="listitem">
+              <span>{{ingredient.name}}</span>
+              <span class="margin-left-5">{{ingredient.quantity}}</span>
+              <span class="margin-left-5">{{ingredient.unit}}</span>
+            </mat-list-item>
+            <div>
+              <button mat-icon-button color="accent" (click)="openDialog(i, ingredient.name, ingredient.quantity, ingredient.unit)">
+                <mat-icon aria-label="Edit">create</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="deleteIngredient(i)">
+                <mat-icon aria-label="Delete">delete</mat-icon>
+              </button>
+            </div>
+          </div>
         </mat-list>
       </div>
     </div>
   </mat-card-content>
   <mat-card-actions class="no-margin-bottom">
     <button mat-button (click)="onNoClick()">Annuler</button>
-    <button *ngIf='recipeName' class="float-right" mat-button mat-icon-button (click)="addRecipe(recipeName, recipeDescription)">
+    <button *ngIf='recipeName || data.recipeName' class="float-right" mat-button mat-icon-button (click)="data.action === 'edit' ? editRecipe(data.recipeName, data.recipeDescription ) : addRecipe(recipeName || data.recipeName, recipeDescription || data.recipeDescription)">
       <mat-icon>send</mat-icon>
     </button>
   </mat-card-actions>
