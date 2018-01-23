@@ -10,10 +10,12 @@
 J'ai ecris mon code de manière scémantique le plus possible. J'ai intégré une gestion basique des erreurs et de la validation des inputs. En démarrant les microsercives un à un (voir plus bas) il enverront des logs dans leur terminal respectif. Pour le déloiement j'ai écris des stripts customs dans package.json
 Faute de temps l'utilisation de la BDD n'est pas complètement optimisée, et j'enviseageais d'uniformiser le code le plus possible afin de développer des "shared_components", idem pour les methodes métiers redondantes.
 
-## Problèmes rencontrés
+## Problèmes rencontrés et idées d'évolution
 
 - Lier les objets Ingredient du frigo avec ceux des recettes (il me manque une belle regepx pour comparer les ingredientNames saisis ou une architecture de base de donnée plus avancée avec des clefs externes et joitures)
 - Mieux gérer les images (si l'image est trop volumineuse le serveur peut renvoyer une erreur 413: Payload To Large si son "post_max_size" n'est pas siffusant)
+- Essayer d'intégrer l'utilisation de la date pour les plannings
+- Uniformiser l'unité de mesure coté back pour faciliter les conversions
 
 ## Dépendances
 - Material : Fournit des compsants HTML et des classes CSS
