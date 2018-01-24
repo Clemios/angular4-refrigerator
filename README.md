@@ -16,6 +16,7 @@ Faute de temps l'utilisation de la BDD n'est pas complètement optimisée, et j'
 - Mieux gérer les images (si l'image est trop volumineuse le serveur peut renvoyer une erreur 413: Payload To Large si son "post_max_size" n'est pas siffusant)
 - Essayer d'intégrer l'utilisation de la date pour les plannings
 - Uniformiser l'unité de mesure coté back pour faciliter les conversions
+- Mauvaise gestion du temps et des priorités
 
 ## Dépendances
 - Material : Fournit des compsants HTML et des classes CSS
@@ -96,7 +97,7 @@ Pour que le projet fonctionne, il faut installer et démarrer chacun des microse
 
 * Installation multiple (experimental):
 ```bash
-cd authenticator && npm install & cd .. && cd user && npm install & cd .. && cd ingredient && npm install & cd .. && cd recipe && npm install & cd .. && cd listing && npm install
+cd authenticator && npm install & cd .. && cd user && npm install & cd .. && cd ingredient && npm install & cd .. && cd recipe && npm install & cd .. && cd listing && npm install & cd .. && cd schedule && npm install
 ```
 
 * Lancement via une seule commande (à la racine du projet)
@@ -140,11 +141,3 @@ cd Refrigerator/schedules/
 ```
 * `npm install` -- (seulement la première fois) installe les nodes_modules
 * `npm start` -- démarre l'API schedules
-
-
-### Updating dependencies
-Angular and Material releases are more frequent. Since the switchover to semver, it is now safe(r) to rapidly update your own code from one minor release to another, i.e. 4.2.2 to 4.4.3.
-* `npm run update:check` -- displays a list of available safe (minor) and risky (major) updates
-* `npm run update:run` -- updates package.json and run npm install in safe mode
-* `npm run update:all` -- updates package.json and run npm install in risky mode
-> Note: No matter which mode you run, always pay attention to CLI messages about incompatibilities. i.e. There may be a new TypeScript version like `2.5.3`, but Angular CLI may request a version range of `>=2.1.0 <2.4.0`. In that case heed the warning and execute `npm install typescript@'>=2.1.0 <2.4.0'` to rollback the update to that particular package.
