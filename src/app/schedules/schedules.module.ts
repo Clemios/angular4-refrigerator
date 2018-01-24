@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { HttpModule } from '@angular/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { CalendarModule } from 'angular-calendar'
 import { MaterialModule } from '../material.module'
 import { CovalentModule } from '../covalent.module'
 
@@ -21,7 +22,8 @@ import { SchedulesGeneratorComponent } from './schedules-generator/schedules-gen
     CovalentModule,
     FlexLayoutModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CalendarModule.forRoot()
   ],
   declarations: [SchedulesComponent, CalendarComponent, SchedulesGeneratorComponent]
 })

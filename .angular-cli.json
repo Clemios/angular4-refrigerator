@@ -28,7 +28,8 @@
             "../node_modules/noty/lib/themes/nest.css",
             "../node_modules/noty/lib/themes/relax.css",
             "../node_modules/noty/lib/themes/semanticui.css",
-            "../node_modules/noty/lib/themes/sunset.css"
+            "../node_modules/noty/lib/themes/sunset.css",
+            "../node_modules/angular-calendar/css/angular-calendar.css"
         ],
         "scripts": ["../node_modules/noty/lib/noty.js"],
         "environmentSource": "environments/environment.ts",

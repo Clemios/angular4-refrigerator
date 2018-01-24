@@ -1,9 +1,23 @@
 <div fxLayout="row">
-  <mat-card></mat-card>
-  <mat-card></mat-card>
-  <mat-card></mat-card>
-  <mat-card></mat-card>
-  <mat-card></mat-card>
-  <mat-card></mat-card>
-  <mat-card></mat-card>
+  <button mat-icon-button (click)="addEvent()">
+    <mat-icon aria-label="Add">add</mat-icon>
+  </button>
+  <div class="btn-group">
+    <button mwlCalendarPreviousView [(viewDate)]="viewDate" (click)="decrement()">
+      Previous
+    </button>
+    <button mwlCalendarToday [(viewDate)]="viewDate" (click)="viewDateChange.next(viewDate)">
+      Today
+    </button>
+    <button mwlCalendarNextView [(viewDate)]="viewDate" (click)="viewDateChange.next(viewDate)">
+      Next
+    </button>
+  </div>
+</div>
+<mwl-calendar-week-view [viewDate]="viewDate" [events]="events" (dayHeaderClicked)="clickedDate=$event.day.date" [refresh]="refresh"
+  (eventTimesChanged)="eventTimesChanged($event)" (eventClicked)="handleEvent('Clicked', $event.event)">
+</mwl-calendar-week-view>
+<div class="alert alert-info">
+  Click on a day on the view.
+  <strong *ngIf="clickedDate">You clicked on this day: {{ clickedDate | date:'medium' }}</strong>
 </div>
